@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SEO Landing Page + Magic Mirror 🪞
 
-## Getting Started
+Este é um projeto de estudo desenvolvido por **Rodrigo Alexandre**, com foco em:
 
-First, run the development server:
+- SEO com Next.js 15 + TypeScript
+- Coleta e exibição de estatísticas reais dos visitantes
+- Interação com o usuário via "Espelho Mágico" (LLM-ready)
+- Layout responsivo com design profissional
+- Testes automatizados
+- Deploy contínuo via Vercel
+- Notificações de visita por e-mail com Resend
+
+---
+
+## 🔥 Tech Stack
+
+- [Next.js 15 (App Router)](https://nextjs.org/docs)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Resend](https://resend.com/) (e-mail API)
+- [ipapi.co](https://ipapi.co/) (geolocalização via IP)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [Jest](https://jestjs.io/)
+- CSS Modules + globals.css
+
+---
+
+## 📦 Funcionalidades
+
+- Header com menu responsivo e links sociais (GitHub, LinkedIn, Medium)
+- Área de portfólio com carrossel de projetos estilo Pokédex (em desenvolvimento)
+- "Espelho Mágico" com input do usuário (suporte futuro a LLMs)
+- Estatísticas reais de visitante: IP, local, agente, referência, organização
+- Envio automático de estatísticas por e-mail via API `/notify`
+
+---
+
+## 🚀 Como rodar localmente
 
 ```bash
-npm run dev
-# or
+yarn install
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse: [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔐 Variáveis de ambiente
 
-## Learn More
+Crie um arquivo `.env.local` com:
 
-To learn more about Next.js, take a look at the following resources:
+```
+RESEND_API_KEY=chave_aqui
+EMAIL_FROM=noreply@seudominio.com
+EMAIL_TO=seu@email.com
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🧪 Rodando os testes
 
-## Deploy on Vercel
+```bash
+yarn test
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ✨ Feito por
+
+[Rodrigo Alexandre](https://www.linkedin.com/in/rodrigoalexandre79/)
+
+Desenvolvedor React Native com foco em Mobile, Cloud e Performance.
