@@ -1,4 +1,3 @@
-// src/seo.config.ts
 import { DefaultSeoProps } from 'next-seo';
 
 const config: DefaultSeoProps = {
