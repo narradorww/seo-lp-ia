@@ -27,6 +27,8 @@ export async function POST(req: NextRequest) {
 
     return new Response(JSON.stringify({ success: true, response }), { status: 200 });
   } catch (error) {
-    return new Response(JSON.stringify({ error: 'Falha ao enviar e-mail' }), { status: 500 });
-  }
+    console.error('Erro ao enviar e-mail:', error);
+  return new Response(JSON.stringify({ error: 'Falha ao enviar e-mail' }), {
+    status: 500,
+  });
 }

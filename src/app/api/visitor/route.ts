@@ -24,6 +24,7 @@ export async function GET(req: NextRequest) {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
+    console.log('Erro ao obter dados do visitante:', error);
     return new Response(JSON.stringify({ error: 'Falha ao obter dados do visitante' }), {
       status: 500,
     });
