@@ -1,5 +1,3 @@
-// src/components/Stats/VisitorStats.tsx
-
 'use client';
 
 import { useEffect, useState } from 'react';

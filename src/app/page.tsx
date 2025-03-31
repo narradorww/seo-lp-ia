@@ -5,6 +5,7 @@ import ProjectList from '@components/Portfolio/ProjectList';
 import MagicMirror from '@components/MagicMirror/MagicMirror';
 import VisitorStats from '@components/Stats/VisitorStats';
 import styles from './page.module.css';
+import CookieNotice from '@/components/Layout/CookieNotice';
 
 export default function LandingPage() {
   return (
@@ -24,6 +25,7 @@ export default function LandingPage() {
       </main>
 
       <Footer />
+      <CookieNotice />
     </div>
   );
 }

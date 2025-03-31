@@ -1,0 +1,37 @@
+/* CookieNotice.module.css */
+
+.notice {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    background-color: var(--foreground);
+    color: var(--background);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+  }
+  
+  .notice button {
+    align-self: flex-end;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 0.85rem;
+  }
+  
+  @media (min-width: 768px) {
+    .notice {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
