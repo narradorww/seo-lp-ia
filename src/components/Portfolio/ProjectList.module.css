@@ -1,0 +1,22 @@
+.carouselContainer {
+  overflow-x: auto;
+  display: flex;
+  scroll-snap-type: x mandatory;
+  gap: 1rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.projectCard {
+  min-width: 100vw;
+  scroll-snap-align: center;
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+  border-radius: var(--radius);
+  background: var(--background);
+}
+
+@media (min-width: 768px) {
+  .projectCard {
+    min-width: 320px;
+  }
+}

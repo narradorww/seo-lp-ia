@@ -1,0 +1,17 @@
+/* VisitorStats.module.css */
+
+.container {
+    margin-top: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    background-color: var(--background);
+    font-size: 0.95rem;
+    color: var(--foreground);
+  }
+  
+  .container h2 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+  

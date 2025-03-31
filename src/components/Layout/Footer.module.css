@@ -1,0 +1,12 @@
+/* Footer.module.css */
+
+.footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--secondary);
+    background-color: var(--background);
+    border-top: 1px solid var(--border-color);
+    margin-top: 2rem;
+  }
+  
