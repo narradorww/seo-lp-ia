@@ -1,30 +1,74 @@
-import styles from './ProjectList.module.css';
+'use client'
 
-const projects = [
-  {
-    title: 'HandsOn 3D',
-    description: 'App React Native com renderização 3D em tempo real usando Three.js e integração com Firebase.',
-  },
-  {
-    title: 'Cleanly Redirect System',
-    description: 'Plugin WordPress com redirecionamento dinâmico por código postal e integração com Cleanly.',
-  },
-  {
-    title: 'Balaio Rural',
-    description: 'MVP SaaS para compras coletivas via WhatsApp com pagamentos PIX e estrutura escalável.',
-  },
-];
+import React, { useEffect, useState } from 'react';
+import Slider from 'react-slick';
 
-export default function ProjectList() {
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+const GITHUB_USERNAME = 'narradorww';
+const REPOS_TO_DISPLAY = 8;
+
+const ProjectList = () => {
+  const [repos, setRepos] = useState([]);
+
+  useEffect(() => {
+    const fetchRepos = async () => {
+      try {
+        const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos`);
+        const data = await response.json();
+        const sortedRepos = data
+          .sort((a, b) => b.stargazers_count - a.stargazers_count)
+          .slice(0, REPOS_TO_DISPLAY);
+        setRepos(sortedRepos);
+      } catch (error) {
+        console.error('Erro ao buscar repositórios:', error);
+      }
+    };
+
+    fetchRepos();
+  }, []);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3, // Ajuste conforme necessário
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+
   return (
-    <div className={styles.carouselContainer}>
-  {projects.map((project, index) => (
-    <div key={index} className={styles.projectCard}>
-      <h3>{project.title}</h3>
-      <p>{project.description}</p>
+    <div>
+      <h2>Principais Projetos</h2>
+      <Slider {...settings}>
+        {repos.map((repo) => (
+          <div key={repo.id}>
+            <h3>
+              <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
+                {repo.name}
+              </a>
+            </h3>
+            <p>{repo.description}</p>
+            <p>⭐ {repo.stargazers_count}</p>
+          </div>
+        ))}
+      </Slider>
     </div>
-  ))}
-</div>
-
   );
-}
+};
+
+export default ProjectList;

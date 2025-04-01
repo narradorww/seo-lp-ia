@@ -1,22 +1,43 @@
+/* ProjectCarousel.module.css */
+
 .carouselContainer {
-  overflow-x: auto;
-  display: flex;
-  scroll-snap-type: x mandatory;
-  gap: 1rem;
-  -webkit-overflow-scrolling: touch;
+  background-color: var(--background);
+  color: var(--foreground);
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: center;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.filterInput {
+  display: block;
+  margin: 0 auto 1.5rem;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  width: 80%;
+  max-width: 400px;
 }
 
 .projectCard {
-  min-width: 100vw;
-  scroll-snap-align: center;
-  border: 1px solid var(--border-color);
+  background-color: var(--card-background);
+  color: var(--card-foreground);
   padding: 1rem;
   border-radius: var(--radius);
-  background: var(--background);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-@media (min-width: 768px) {
-  .projectCard {
-    min-width: 320px;
-  }
+.projectCard h3 a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.projectCard h3 a:hover {
+  text-decoration: underline;
 }
