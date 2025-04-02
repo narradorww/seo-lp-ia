@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
+  console.log("LogSnag Token?", process.env.LOGSNAG_API_KEY);
+
   const userAgent = request.headers.get("user-agent") || "";
   const ip = request.headers.get("x-forwarded-for") || "unknown";
   const path = request.nextUrl.pathname;
