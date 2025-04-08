@@ -16,6 +16,7 @@ export default function MagicMirror() {
   return (
     <div className={styles.container}>
       <h2 className={styles.heading}>Espelho Mágico</h2>
+      <p className={styles.subtext}> 🚧 Em construção 🚧</p>
       <p className={styles.subtext}>Faça uma pergunta e veja o que o espelho revela.</p>
       <input
         className={styles.input}

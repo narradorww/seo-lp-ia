@@ -27,7 +27,7 @@ export default function VisitorStats() {
 
   return (
     <div className={styles.container}>
-      <h2>Estatísticas do Visitante</h2>
+      <h3>Estatísticas do Visitante</h3>
       <p><strong>IP:</strong> {stats.ip}</p>
       <p><strong>User Agent:</strong> {stats.userAgent}</p>
       <p><strong>Referência:</strong> {stats.referrer || 'Nenhuma'}</p>
