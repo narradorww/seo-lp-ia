@@ -1,37 +1,20 @@
-// Edge runtime = menor latência + Geo/IP prontos na Vercel
-export const runtime = 'edge';
+export const runtime = 'edge';           // garante Edge Function
 
 import { NextResponse } from 'next/server';
 import { headers } from 'next/headers';
-
-// helpers só existem quando a build roda NA Vercel
-let ipAddress: typeof import('@vercel/functions').ipAddress | undefined;
-let geolocation: typeof import('@vercel/functions').geolocation | undefined;
-
-if (process.env.VERCEL) {
-  // importa dinamicamente p/ evitar erro em dev
-  ({ ipAddress, geolocation } = await import('@vercel/functions'));
-}
+import { ipAddress, geolocation } from '@vercel/edge'; // ✅ helpers corretos
 
 export async function GET(request: Request) {
-  /** 1️⃣ dados base, sempre disponíveis */
   const h = await headers();
   const userAgent = h.get('user-agent') ?? '';
   const referrer  = h.get('referer') ?? '';
 
-  let ip    = 'desconhecido';
-  let geo: import('@vercel/functions').Geo | undefined;
+  /* -------- Vercel prod -------- */
+  let ip  = ipAddress(request) ?? 'desconhecido';
+  let geo = geolocation(request);        // {} fora da Vercel ou sem header
 
-  /** 2️⃣ produção na Vercel – usa headers oficiais */
-  if (process.env.VERCEL && ipAddress && geolocation) {
-    ip  = ipAddress(request) ??
-          h.get('x-forwarded-for')?.split(',')[0] ??
-          'desconhecido';
-    geo = geolocation(request);               // { city, country, region, latitude, longitude … }
-  }
-
-  /** 3️⃣ fallback local (next dev / docker / outra cloud) */
-  if (!process.env.VERCEL) {
+  /* -------- fallback local -------- */
+  if (!process.env.VERCEL || ip === 'desconhecido') {
     try {
       const ext = await fetch('https://ipapi.co/json/').then(r => r.json());
       ip  = ext.ip;
@@ -43,12 +26,12 @@ export async function GET(request: Request) {
         longitude: ext.longitude
       };
     } catch (err) {
-      console.error('IP lookup failed:', err);
+      console.error('[visitor] IP lookup failed:', err);
     }
   }
 
   return NextResponse.json(
     { ip, userAgent, referrer, geo },
-    { headers: { 'Cache-Control': 'no-store' } }  // nunca cacheia
+    { headers: { 'Cache-Control': 'no-store' } }
   );
 }
