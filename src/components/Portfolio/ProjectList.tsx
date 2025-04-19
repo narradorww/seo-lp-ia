@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
@@ -17,22 +17,21 @@ interface GitHubRepo {
 const GITHUB_USERNAME = 'narradorww';
 const REPOS_TO_DISPLAY = 8;
 
-const ProjectList = () => {
+export default function ProjectList() {
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
 
   useEffect(() => {
-    const fetchRepos = async () => {
+    (async () => {
       try {
-        const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=stars&direction=desc`);
-        const data = await response.json();
-        const topRepos = data.slice(0, REPOS_TO_DISPLAY);
-        setRepos(topRepos);
-      } catch (error) {
-        console.error('Erro ao buscar repositórios:', error);
+        const res = await fetch(
+          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=stars&direction=desc`
+        );
+        const data = await res.json();
+        setRepos(data.slice(0, REPOS_TO_DISPLAY));
+      } catch (err) {
+        console.error('Erro ao buscar repositórios:', err);
       }
-    };
-
-    fetchRepos();
+    })();
   }, []);
 
   const settings = {
@@ -45,41 +44,31 @@ const ProjectList = () => {
     centerPadding: '0',
     variableWidth: false,
     responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
+      { breakpoint: 1024, settings: { slidesToShow: 2 } },
+      { breakpoint: 600,  settings: { slidesToShow: 1 } },
     ],
   };
 
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Principais Projetos</h2>
-      <Slider {...settings}>
-        {repos.map((repo: GitHubRepo) => (
-          <div key={repo.id} className={styles.projectCard}>
-            <h3>
-              <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
-                {repo.name}
-              </a>
-            </h3>
-            <p>{repo.description}</p>
-            <div className={styles.stars}>
-              ⭐ {repo.stargazers_count}
+
+      {/* wrapper local para aplicar seletores globais com segurança */}
+      <div className={styles.carouselWrapper}>
+        <Slider {...settings}>
+          {repos.map((repo) => (
+            <div key={repo.id} className={styles.projectCard}>
+              <h3>
+                <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
+                  {repo.name}
+                </a>
+              </h3>
+              <p>{repo.description}</p>
+              <div className={styles.stars}>⭐ {repo.stargazers_count}</div>
             </div>
-          </div>
-        ))}
-      </Slider>
+          ))}
+        </Slider>
+      </div>
     </div>
   );
-};
-
-export default ProjectList;
+}

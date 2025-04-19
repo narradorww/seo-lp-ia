@@ -1,5 +1,3 @@
-/* ProjectList.module.css – ajustes de espaçamento vertical no carrossel
-   Uso de :global() para afetar classes do react‑slick */
 
    .container {
     display: flex;
