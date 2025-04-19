@@ -40,8 +40,7 @@ export async function GET(request: Request) {
         region:    ext.region,
         country:   ext.country_name,
         latitude:  ext.latitude,
-        longitude: ext.longitude,
-        org:       ext.org,
+        longitude: ext.longitude
       };
     } catch (err) {
       console.error('IP lookup failed:', err);
