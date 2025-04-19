@@ -20,7 +20,7 @@ export async function GET(request: Request) {
   const referrer  = h.get('referer') ?? '';
 
   let ip    = 'desconhecido';
-  let geo: Record<string, unknown> | undefined;
+  let geo: import('@vercel/functions').Geo | undefined;
 
   /** 2️⃣ produção na Vercel – usa headers oficiais */
   if (process.env.VERCEL && ipAddress && geolocation) {
