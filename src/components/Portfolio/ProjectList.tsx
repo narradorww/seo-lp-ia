@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
-
+import styles from './ProjectList.module.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -23,12 +23,10 @@ const ProjectList = () => {
   useEffect(() => {
     const fetchRepos = async () => {
       try {
-        const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos`);
+        const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=stars&direction=desc`);
         const data = await response.json();
-        const sortedRepos = data
-          .sort((a: { stargazers_count: number; }, b: { stargazers_count: number; }) => b.stargazers_count - a.stargazers_count)
-          .slice(0, REPOS_TO_DISPLAY);
-        setRepos(sortedRepos);
+        const topRepos = data.slice(0, REPOS_TO_DISPLAY);
+        setRepos(topRepos);
       } catch (error) {
         console.error('Erro ao buscar repositórios:', error);
       }
@@ -41,8 +39,11 @@ const ProjectList = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3, // Ajuste conforme necessário
+    slidesToShow: 3,
     slidesToScroll: 1,
+    centerMode: false,
+    centerPadding: '0',
+    variableWidth: false,
     responsive: [
       {
         breakpoint: 1024,
@@ -60,18 +61,20 @@ const ProjectList = () => {
   };
 
   return (
-    <div>
-      <h2>Principais Projetos</h2>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Principais Projetos</h2>
       <Slider {...settings}>
         {repos.map((repo: GitHubRepo) => (
-          <div key={repo.id}>
+          <div key={repo.id} className={styles.projectCard}>
             <h3>
               <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
                 {repo.name}
               </a>
             </h3>
             <p>{repo.description}</p>
-            <p>⭐ {repo.stargazers_count}</p>
+            <div className={styles.stars}>
+              ⭐ {repo.stargazers_count}
+            </div>
           </div>
         ))}
       </Slider>

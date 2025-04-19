@@ -1,32 +1,55 @@
-// src/app/api/visitor/route.ts
+// Edge runtime = menor latência + Geo/IP prontos na Vercel
+export const runtime = 'edge';
 
-import { NextRequest } from 'next/server';
-import axios from 'axios';
-import { VisitorGeoData, VisitorInfo } from '@/types/visitor';
+import { NextResponse } from 'next/server';
+import { headers } from 'next/headers';
 
+// helpers só existem quando a build roda NA Vercel
+let ipAddress: typeof import('@vercel/functions').ipAddress | undefined;
+let geolocation: typeof import('@vercel/functions').geolocation | undefined;
 
-export async function GET(req: NextRequest) {
-  const ipHeader = req.headers.get('x-forwarded-for');
-  const ip = ipHeader?.split(',')[0].trim() || '8.8.8.8';
+if (process.env.VERCEL) {
+  // importa dinamicamente p/ evitar erro em dev
+  ({ ipAddress, geolocation } = await import('@vercel/functions'));
+}
 
-  try {
-    const { data } = await axios.get<VisitorGeoData>(`https://ipapi.co/${ip}/json/`);
+export async function GET(request: Request) {
+  /** 1️⃣ dados base, sempre disponíveis */
+  const h = await headers();
+  const userAgent = h.get('user-agent') ?? '';
+  const referrer  = h.get('referer') ?? '';
 
-    const visitor: VisitorInfo = {
-      ip,
-      userAgent: req.headers.get('user-agent') || null,
-      referrer: req.headers.get('referer') || null,
-      geo: data,
-    };
+  let ip    = 'desconhecido';
+  let geo: Record<string, unknown> | undefined;
 
-    return new Response(JSON.stringify(visitor), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  } catch (error) {
-    console.log('Erro ao obter dados do visitante:', error);
-    return new Response(JSON.stringify({ error: 'Falha ao obter dados do visitante' }), {
-      status: 500,
-    });
+  /** 2️⃣ produção na Vercel – usa headers oficiais */
+  if (process.env.VERCEL && ipAddress && geolocation) {
+    ip  = ipAddress(request) ??
+          h.get('x-forwarded-for')?.split(',')[0] ??
+          'desconhecido';
+    geo = geolocation(request);               // { city, country, region, latitude, longitude … }
   }
+
+  /** 3️⃣ fallback local (next dev / docker / outra cloud) */
+  if (!process.env.VERCEL) {
+    try {
+      const ext = await fetch('https://ipapi.co/json/').then(r => r.json());
+      ip  = ext.ip;
+      geo = {
+        city:      ext.city,
+        region:    ext.region,
+        country:   ext.country_name,
+        latitude:  ext.latitude,
+        longitude: ext.longitude,
+        org:       ext.org,
+      };
+    } catch (err) {
+      console.error('IP lookup failed:', err);
+    }
+  }
+
+  return NextResponse.json(
+    { ip, userAgent, referrer, geo },
+    { headers: { 'Cache-Control': 'no-store' } }  // nunca cacheia
+  );
 }

@@ -11,13 +11,11 @@ export function useGitHubRepos(username: string) {
   useEffect(() => {
     async function fetchRepos() {
       try {
-        const response = await fetch(`https://api.github.com/users/${username}/repos`);
+        const response = await fetch(`https://api.github.com/users/${username}/repos?sort=stars&direction=desc`);
         if (!response.ok) throw new Error(`Erro: ${response.status}`);
         const data: GitHubRepo[] = await response.json();
-        const sortedRepos = data
-          .sort((a, b) => b.stargazers_count - a.stargazers_count)
-          .slice(0, REPOS_TO_DISPLAY);
-        setRepos(sortedRepos);
+        const topRepos = data.slice(0, REPOS_TO_DISPLAY);
+        setRepos(topRepos);
       } catch (error) {
         console.error('Erro ao buscar repositórios:', error);
       } finally {
