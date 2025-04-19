@@ -1,118 +1,95 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: var(--background);
+  color: var(--background);
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: 0 0 8px 4px rgba(255, 215, 0, 0.2);
+  max-width: 100%;
+}
 
-   .container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    background-color: var(--background);
-    color: var(--background);
-    padding: 2rem;
-    border-radius: var(--radius);
-    box-shadow: 0 0 8px 4px rgba(255, 215, 0, 0.2);
-    max-width: 100%;
-  }
-  
-  .title {
-    color: var(--primary);
-    margin: 0;
-    font-size: 2rem;
-  }
-  
-  /* Card do projeto */
-  .projectCard {
-    background-color: var(--background);
-    color: var(--foreground);
-    padding: 1.5rem;
-    border-radius: var(--radius);
-    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
-    /* remova ou customize a borda conforme necessário */
-    border: 2px solid transparent; /* sem cor padrão */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 280px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .projectCard:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
-    border-color: #686349; /* destaque no hover */
-  }
-  
-  .projectCard h3 a {
-    color: var(--primary);
-    text-decoration: none;
-    font-size: 1.25rem;
-    transition: color 0.3s ease;
-  }
-  
-  .projectCard h3 a:hover {
-    color: var(--foreground);
-  }
-  
-  .projectCard p {
-    margin: 0.5rem 0;
-    color: var(--foreground);
-    opacity: 0.9;
-    flex-grow: 1;
-    overflow: hidden;
-    margin: 10px 0;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-  }
-  
-  .stars {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--primary);
-    font-weight: bold;
-  }
-  
-  /* === Slick Slider ajustes (globais) === */
-  :global(.slick-slider) {
-    margin: 0; /* remove margem externa */
-  }
-  
-  /* Padding de 10 px em TODAS as direções ⇒ 20 px de espaço lateral + 20 px vertical entre slide e track */
-  :global(.slick-slide) {
-    padding: 10px;
-    box-sizing: border-box;
-  }
-  
-  /* Dots de navegação */
-  :global(.slick-dots) {
-    bottom: -30px;
-  }
-  
-  :global(.slick-dots li button:before) {
-    color: var(--primary);
-  }
-  
-  :global(.slick-dots li.slick-active button:before) {
-    color: var(--primary);
-  }
-  
-  /* ===== Responsive ===== */
-  @media (max-width: 768px) {
-    .container {
-      padding: 1.5rem;
-    }
-  
-    .title {
-      font-size: 1.5rem;
-    }
-  
-    .projectCard {
-      padding: 1rem;
-      height: 240px;
-    }
-  
-    /* 8 px de padding global → 16 px de gap vertical e lateral */
-    :global(.slick-slide) {
-      padding: 8px;
-    }
-  }
-  
+.title {
+  color: var(--primary);
+  margin: 0;
+  font-size: 2rem;
+}
+
+/* ---------- cartões ---------- */
+.projectCard {
+  background-color: var(--background);
+  color: var(--foreground);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+  border: 2px solid transparent;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.projectCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+  border-color: #686349;
+}
+
+.projectCard h3 a {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 1.25rem;
+  transition: color 0.3s ease;
+}
+
+.projectCard h3 a:hover { color: var(--foreground); }
+
+.projectCard p {
+  margin: 0.5rem 0;
+  color: var(--foreground);
+  opacity: 0.9;
+  flex-grow: 1;
+  overflow: hidden;
+  margin: 10px 0;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* ---------- wrapper slick ---------- */
+.carouselWrapper {
+  /* nada especial, só ponto de ancoragem para os :global */
+}
+
+/* agora os seletores globais ficam “dentro” do wrapper local */
+.carouselWrapper :global(.slick-slider) { margin: 0; }
+
+.carouselWrapper :global(.slick-slide) {
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.carouselWrapper :global(.slick-dots)      { bottom: -30px; }
+.carouselWrapper :global(.slick-dots li button:before),
+.carouselWrapper :global(.slick-dots li.slick-active button:before) {
+  color: var(--primary);
+}
+
+/* ---------- responsivo ---------- */
+@media (max-width: 768px) {
+  .container { padding: 1.5rem; }
+  .title     { font-size: 1.5rem; }
+  .projectCard { padding: 1rem; height: 240px; }
+  .carouselWrapper :global(.slick-slide) { padding: 8px; }
+}
