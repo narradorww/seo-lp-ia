@@ -3,40 +3,17 @@
 import { useEffect, useState } from 'react';
 import styles from './VisitorStats.module.css';
 import { VisitorInfo } from '@/types/visitor';
+import { useTrackVisitor } from '@/hooks/useTrackVisitor';
 
 export default function VisitorStats() {
-  const [stats, setStats] = useState<VisitorInfo | null>(null);
+ const { visitor } = useTrackVisitor();
 
-  useEffect(() => {
-    const fetchVisitorData = async () => {
-      try {
-        const res = await fetch('/api/visitor', { method: 'POST' });
-        const data: VisitorInfo = await res.json();
+ if (!visitor) {
+   return <div className={styles.container}>Carregando...</div>;
+ }
 
-        if (!data || !data.ip) {
-          console.warn('[VisitorStats] Nenhum dado retornado de /api/visitor');
-          return;
-        }
 
-        console.log('[DEBUG] Visitor info:', data);
-        setStats(data);
-
-        await fetch('/api/notify', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        });
-      } catch (err) {
-        console.error('[VisitorStats] Falha ao buscar dados do visitante:', err);
-      }
-    };
-
-    fetchVisitorData();
-  }, []);
-
-  if (!stats) return null;
-
-  const { ip, userAgent, referrer, geo } = stats;
+   const { ip, userAgent, referrer, geo } = visitor;
 
   return (
     <div className={styles.container}>
@@ -47,10 +24,10 @@ export default function VisitorStats() {
 
       {geo && (
         <>
-          <p><strong>Localização:</strong> {geo.city || '–'}, {geo.region || '–'}, {geo.country_name || '–'}</p>
+          <p><strong>Localização:</strong> {geo.city || '–'}, {geo.region || '–'}, {geo.country|| '–'}</p>
           <p><strong>Latitude:</strong> {geo.latitude ?? '–'}</p>
           <p><strong>Longitude:</strong> {geo.longitude ?? '–'}</p>
-          <p><strong>Organização:</strong> {geo.org || '–'}</p>
+          
         </>
       )}
     </div>
