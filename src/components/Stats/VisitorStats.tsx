@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+
 import styles from './VisitorStats.module.css';
-import { VisitorInfo } from '@/types/visitor';
 import { useTrackVisitor } from '@/hooks/useTrackVisitor';
 
 export default function VisitorStats() {
