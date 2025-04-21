@@ -1,18 +1,17 @@
 'use client';
 
-
 import styles from './VisitorStats.module.css';
 import { useTrackVisitor } from '@/hooks/useTrackVisitor';
+import Link from 'next/link';
 
 export default function VisitorStats() {
- const { visitor } = useTrackVisitor();
+  const { visitor } = useTrackVisitor();
 
- if (!visitor) {
-   return <div className={styles.container}>Carregando...</div>;
- }
+  if (!visitor) {
+    return <div className={styles.container}>Carregando...</div>;
+  }
 
-
-   const { ip, userAgent, referrer, geo } = visitor;
+  const { ip, userAgent, referrer, geo } = visitor;
 
   return (
     <div className={styles.container}>
@@ -23,12 +22,15 @@ export default function VisitorStats() {
 
       {geo && (
         <>
-          <p><strong>Localização:</strong> {geo.city || '–'}, {geo.region || '–'}, {geo.country|| '–'}</p>
+          <p><strong>Localização:</strong> {geo.city || '–'}, {geo.region || '–'}, {geo.country || '–'}</p>
           <p><strong>Latitude:</strong> {geo.latitude ?? '–'}</p>
           <p><strong>Longitude:</strong> {geo.longitude ?? '–'}</p>
-          
         </>
       )}
+
+      <Link href="/dashboard" className={styles.dashboardButton}>
+        Ver no Mapa 🌍
+      </Link>
     </div>
   );
 }
