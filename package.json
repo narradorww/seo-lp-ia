@@ -13,16 +13,19 @@
   },
   "dependencies": {
     "@types/react-slick": "^0.23.13",
+    "@types/ua-parser-js": "^0.7.39",
     "@vercel/edge": "^1.2.1",
     "@vercel/functions": "^2.0.0",
     "axios": "^1.8.4",
+    "mongodb": "^6.15.0",
     "next": "15.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
     "react-slick": "^0.30.3",
     "resend": "^4.2.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "ua-parser-js": "^2.0.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
