@@ -36,13 +36,16 @@ export async function GET() {
       .limit(100)
       .toArray();
 
-    const locations: VisitorGeo[] = cursor.map((doc) => ({
-      latitude: doc.geo.latitude,
-      longitude: doc.geo.longitude,
-      city: doc.geo.city,
-      region: doc.geo.region,
-      country: doc.geo.country || doc.geo.country_name,
-    }));
+      const locations: VisitorGeo[] = cursor
+      .filter(doc => doc.geo && doc.geo.latitude != null && doc.geo.longitude != null)
+      .map((doc) => ({
+        latitude: doc.geo!.latitude,
+        longitude: doc.geo!.longitude,
+        city: doc.geo?.city,
+        region: doc.geo?.region,
+        country: doc.geo?.country || doc.geo?.country_name,
+      }));
+    
 
     return NextResponse.json({ locations });
   } catch (err) {
