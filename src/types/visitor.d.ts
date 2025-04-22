@@ -34,4 +34,25 @@ export interface VisitorGeoData {
     referrer?: string | null;
     geo?: VisitorGeoData;
   }
+
+  export interface VisitData {
+    ip: string;
+    userAgent: string;
+    referrer?: string;
+    sistema_operacional: string;
+    navegador: string;
+    dispositivo: string;
+    geo?: {
+      city?: string;
+      region?: string;
+      country?: string;
+      country_name?: string;
+      latitude?: number;
+      longitude?: number;
+    };
+    dataHora: Date;
+    ipOrg?: string;
+    isBot?: boolean;
+  }
+  
   

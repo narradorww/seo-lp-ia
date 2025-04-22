@@ -1,25 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import clientPromise from '@/lib/mongodb';
 import { Resend } from 'resend';
+import { calculateLeadScore } from '@/utils/calculateLeadScore';
+import { isBot } from '@/utils/isBot';
+import { VisitData } from '@/types/visitor';
+import { resolveIpOrg } from '@/utils/resolveIpOrg';
 
 const resend = new Resend(process.env.RESEND_API_KEY as string);
 
-interface VisitData {
-  ip: string;
-  userAgent: string;
-  referrer?: string;
-  geo?: {
-    city?: string;
-    region?: string;
-    country?: string;
-    latitude?: number;
-    longitude?: number;
-  };
-  sistema_operacional: string;
-  navegador: string;
-  dispositivo: string;
-  dataHora: Date;
-}
+
 
 export async function POST(request: NextRequest) {
   try {
@@ -49,12 +38,33 @@ export async function POST(request: NextRequest) {
     const db = client.db('visitTracker');
     await db.collection<VisitData>('visitas').insertOne(visitData);
 
-    await resend.emails.send({
-      from: process.env.EMAIL_FROM!,
-      to: process.env.EMAIL_TO!,
-      subject: 'Nova visita registrada',
-      html: `<pre>${JSON.stringify(visitData, null, 2)}</pre>`
-    });
+    const score = calculateLeadScore(visitData);
+    const botDetected = isBot(visitData.userAgent);
+    const ipOrg = await resolveIpOrg(visitData.ip);
+
+
+const fullVisitData: VisitData = {
+  ...visitData,
+  ipOrg,
+  isBot: botDetected,
+};
+
+await db.collection<VisitData>('visitas').insertOne(fullVisitData);
+
+
+await resend.emails.send({
+  from: process.env.EMAIL_FROM!,
+  to: process.env.EMAIL_TO!,
+  subject: `🧭 Nova visita (score ${score})${botDetected ? ' 🤖 BOT' : ''}`,
+  text: `Lead Score: ${score}\nTipo: ${botDetected ? 'BOT' : 'HUMANO'}\nOrg. IP: ${ipOrg ?? 'Desconhecida'}`,
+  html: `
+    <h3>Lead Score: ${score}</h3>
+    <p><strong>Tipo:</strong> ${botDetected ? 'BOT' : 'HUMANO'}</p>
+    <p><strong>Org. IP:</strong> ${ipOrg ?? 'Desconhecida'}</p>
+    <pre>${JSON.stringify(fullVisitData, null, 2)}</pre>
+  `
+});
+
 
     return NextResponse.json({ status: 'ok' });
   } catch (err) {
