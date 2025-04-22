@@ -53,6 +53,7 @@ export interface VisitorGeoData {
     dataHora: Date;
     ipOrg?: string;
     isBot?: boolean;
+    leadScore?: number;
   }
   
   

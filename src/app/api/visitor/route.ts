@@ -45,8 +45,9 @@ export async function POST(request: NextRequest) {
 
 const fullVisitData: VisitData = {
   ...visitData,
-  ipOrg,
+  ipOrg: ipOrg ?? undefined,
   isBot: botDetected,
+  leadScore: score,
 };
 
 await db.collection<VisitData>('visitas').insertOne(fullVisitData);
