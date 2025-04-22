@@ -8,7 +8,7 @@ export default function ProfileCard() {
       <div className={styles.avatarCard}>
         <img
           src="/rodrigo-avatar.jpeg"
-          alt="Foto de Rodrigo Alexandre"
+          alt="Foto de Rodrigo Alexandre na Imersao"
           className={styles.avatar}
         />
         <a
