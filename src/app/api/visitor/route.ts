@@ -3,14 +3,14 @@ import clientPromise from '@/lib/mongodb';
 import { Resend } from 'resend';
 import { calculateLeadScore } from '@/utils/calculateLeadScore';
 import { isBot } from '@/utils/isBot';
-import { VisitData } from '@/types/visitor';
 import { resolveIpOrg } from '@/utils/resolveIpOrg';
+import { VisitData } from '@/types/visitor';
 
 const resend = new Resend(process.env.RESEND_API_KEY as string);
 
 
-
 export async function POST(request: NextRequest) {
+
   try {
     const body = await request.json();
     const {
@@ -34,38 +34,39 @@ export async function POST(request: NextRequest) {
       dataHora: new Date()
     };
 
+    const score = calculateLeadScore(visitData);
+    const botDetected = isBot(userAgent);
+    const ipOrg = await resolveIpOrg(ip); // tolerante a falha
+
+    const fullVisitData: VisitData = {
+      ...visitData,
+      ipOrg: ipOrg ?? undefined,
+      isBot: botDetected,
+      leadScore: score
+    };
+
     const client = await clientPromise;
     const db = client.db('visitTracker');
-    await db.collection<VisitData>('visitas').insertOne(visitData);
+    await db.collection<VisitData>('visitas').insertOne(fullVisitData);
 
-    const score = calculateLeadScore(visitData);
-    const botDetected = isBot(visitData.userAgent);
-    const ipOrg = await resolveIpOrg(visitData.ip);
+    const result = await resend.emails.send({
+      from: 'rodrigo@resend.dev',
+      to: 'rodrigo.anst@gmail.com',
+      subject: `🧭 Nova visita (score ${score})${botDetected ? ' 🤖 BOT' : ''}`,
+      text: `Lead Score: ${score}\nTipo: ${botDetected ? 'BOT' : 'HUMANO'}\nOrg. IP: ${ipOrg ?? 'Desconhecida'}`,
+      html: `
+        <h3>Lead Score: ${score}</h3>
+        <p><strong>Tipo:</strong> ${botDetected ? 'BOT' : 'HUMANO'}</p>
+        <p><strong>Org. IP:</strong> ${ipOrg ?? 'Desconhecida'}</p>
+        <pre>${JSON.stringify(fullVisitData, null, 2)}</pre>
+      `
+    });
 
+    console.log('[resend result]', result);
 
-const fullVisitData: VisitData = {
-  ...visitData,
-  ipOrg: ipOrg ?? undefined,
-  isBot: botDetected,
-  leadScore: score,
-};
-
-await db.collection<VisitData>('visitas').insertOne(fullVisitData);
-
-
-await resend.emails.send({
-  from: process.env.EMAIL_FROM!,
-  to: process.env.EMAIL_TO!,
-  subject: `🧭 Nova visita (score ${score})${botDetected ? ' 🤖 BOT' : ''}`,
-  text: `Lead Score: ${score}\nTipo: ${botDetected ? 'BOT' : 'HUMANO'}\nOrg. IP: ${ipOrg ?? 'Desconhecida'}`,
-  html: `
-    <h3>Lead Score: ${score}</h3>
-    <p><strong>Tipo:</strong> ${botDetected ? 'BOT' : 'HUMANO'}</p>
-    <p><strong>Org. IP:</strong> ${ipOrg ?? 'Desconhecida'}</p>
-    <pre>${JSON.stringify(fullVisitData, null, 2)}</pre>
-  `
-});
-
+if ('error' in result) {
+  console.error('[resend] erro ao enviar e-mail:', result.error);
+}
 
     return NextResponse.json({ status: 'ok' });
   } catch (err) {
