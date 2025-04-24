@@ -21,11 +21,11 @@ interface Props {
   locations: VisitorGeo[];
 }
 
-const defaultIcon = new L.Icon({
-  iconUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-});
+// const defaultIcon = new L.Icon({
+//   iconUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png',
+//   iconSize: [25, 41],
+//   iconAnchor: [12, 41],
+// });
 
 export default function VisitorMap({ locations }: Props) {
   return (
