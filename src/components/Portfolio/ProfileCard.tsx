@@ -1,23 +1,27 @@
 // src/components/Portfolio/ProfileCard.tsx
 
 import styles from './ProfileCard.module.css';
+import Image from 'next/image';
 
 export default function ProfileCard() {
   return (
     <div className={styles.cardWrapper}>
       <div className={styles.avatarCard}>
-        <img
+        <Image
           src="/rodrigo-avatar.jpeg"
           alt="Foto de Rodrigo Alexandre na Imersao"
           className={styles.avatar}
+          width={200}
+          height={200}
+          priority
         />
-        <a
+        {/* <a
           href="/Rodrigo_Alexandre_CV.pdf"
           download
           className={styles.downloadBtn}
         >
           Baixar CV
-        </a>
+        </a> */}
       </div>
       <div className={styles.cardContent}>
         <h2 className={styles.name}>Rodrigo Alexandre</h2>

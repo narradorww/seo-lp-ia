@@ -1,0 +1,11 @@
+{
+    "extends": ["next", "next/core-web-vitals"],
+    "rules": {
+      "react/no-unescaped-entities": "off",
+      "@next/next/no-img-element": "off",
+      "react/jsx-key": "warn",
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-no-comment-textnodes": "off"
+    }
+  }
+  

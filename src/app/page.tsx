@@ -1,6 +1,5 @@
 import Header from '@components/Layout/Header';
 import Footer from '@components/Layout/Footer';
-import ProjectList from '@components/Portfolio/ProjectList';
 import HeroSection from '@components/HeroSection/HeroSection';
 import VisitorStats from '@components/Stats/VisitorStats';
 import styles from './page.module.css';
