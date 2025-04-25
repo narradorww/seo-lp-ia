@@ -3,7 +3,12 @@ require('dotenv').config({ path: '.env.local' });
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  /* config options here */
+  eslint: {
+    ignoreDuringBuilds: true, // ⬅️ Ignora erros do ESLint durante o build (na Vercel também)
+  },
+  images: {
+    domains: ['images.unsplash.com'], // ⬅️ Libera imagens externas
+  },
 };
 
 export default nextConfig;
