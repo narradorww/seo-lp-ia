@@ -2,10 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { MapPin, Users, Eye, BarChart } from 'lucide-react';
-import Link from 'next/link';
 import { useTrackVisitor } from '@/hooks/useTrackVisitor';
 import styles from './VisitorStats.module.css';
-import LeadEnrichmentModal from '@/components/Stats/LeadEnrichmentModal';
 import { useModal } from '@/contexts/ModalContext';
 
 export default function VisitorStats() {
@@ -13,7 +11,6 @@ export default function VisitorStats() {
   const [isVisible, setIsVisible] = useState(true);
   const [visitorCount, setVisitorCount] = useState(1);
   const [totalVisits, setTotalVisits] = useState(145);
-  const [showModal, setShowModal] = useState(false);
   const { open } = useModal();
   
 
