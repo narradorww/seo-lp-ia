@@ -25,6 +25,7 @@ export interface VisitorGeoData {
     asn: string;
     org: string;
     hostname: string;
+    enrichment?: string;
   }
 
   
@@ -54,6 +55,7 @@ export interface VisitorGeoData {
     ipOrg?: string;
     isBot?: boolean;
     leadScore?: number;
+    enrichment?: string;
   }
   
   

@@ -1,34 +1,127 @@
 /* VisitorStats.module.css */
 
 .container {
-    margin-top: 2rem;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    background-color: var(--background);
-    font-size: 0.95rem;
-    color: var(--foreground);
-  }
-  
-  .container h2 {
-    color: var(--primary);
-    margin-bottom: 1rem;
-  }
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1000;
+  max-width: 280px;
+  transition: transform 0.3s ease-in-out;
+}
 
+.toggleButton {
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  transform: translateX(-100%);
+  background-color: var(--background);
+  border: 1px solid var(--border-color);
+  border-right: none;
+  border-radius: var(--radius) 0 0 var(--radius);
+  padding: 0.5rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.toggleIcon {
+  color: var(--primary);
+}
+
+.card {
+  background-color: rgba(20, 20, 20, 0.9);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  color: var(--foreground);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.icon {
+  color: var(--primary);
+}
+
+.iconSmall {
+  margin-right: 0.25rem;
+  color: var(--primary);
+}
+
+.section {
+  margin-bottom: 1rem;
+}
+
+.label {
+  font-size: 0.75rem;
+  color: var(--foreground);
+  opacity: 0.7;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.value {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--foreground);
+  word-break: break-word;
+}
+
+.sectionRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  margin-top: 0.75rem;
+}
+
+.sectionLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--foreground);
+  opacity: 0.8;
+}
+
+.dashboardButton {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.dashboardButton:hover {
+  background: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .container {
+    bottom: 1rem;
+    right: 1rem;
+    max-width: 90%;
+  }
+  .card {
+    padding: 1rem;
+  }
   .dashboardButton {
-    margin-top: 1rem;
-    display: inline-block;
-    padding: 0.75rem 1.25rem;
-    background-color: var(--primary);
-    color: white;
-    border-radius: var(--radius);
-    font-weight: bold;
-    text-align: center;
-    transition: background 0.3s ease;
+    font-size: 0.8rem;
   }
-  
-  .dashboardButton:hover {
-    background-color: #0057c2;
-  }
-  
-  
+}

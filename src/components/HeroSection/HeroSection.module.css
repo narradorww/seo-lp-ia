@@ -1,0 +1,241 @@
+.hero {
+    position: relative;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    justify-content: center;
+}
+
+/* fundo com gradient + pattern que cobre a tela inteira */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom, var(--background), rgba(0, 0, 0, 0.9));
+    z-index: -2;
+}
+
+.pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.05;
+    z-index: -3;
+}
+
+/* brilhos laterais */
+.glowLeft,
+.glowRight {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(80px);
+    opacity: 0.5;
+    animation: pulse 5s ease-in-out infinite;
+    z-index: 0;
+}
+
+.glowLeft {
+    top: 30%;
+    left: -8rem;
+    width: 20rem;
+    height: 20rem;
+    background-color: var(--primary);
+}
+
+.glowRight {
+    bottom: 30%;
+    right: -8rem;
+    width: 20rem;
+    height: 20rem;
+    background-color: var(--accent);
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(1.1);
+    }
+}
+
+/* conteúdo do Hero centralizado */
+.containerHero {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.content {
+    max-width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}
+
+/* avatar + botão */
+.avatarCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius);
+    padding: 1rem;
+}
+
+.avatar {
+    width: 226px;
+    height: 226px;
+    border-radius: var(--radius);
+    object-fit: cover;
+    border: 2px solid var(--primary);
+    margin-bottom: 1rem;
+}
+
+.downloadBtn {
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: var(--foreground);
+    border: 1px solid var(--foreground);
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.downloadBtn:hover {
+    background-color: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+}
+
+/* texto */
+.textBlock {
+    max-width: 600px;
+}
+
+.subtitle {
+    margin-bottom: 1rem;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--foreground);
+    margin-bottom: 1.5rem;
+}
+
+.highlight {
+    color: var(--primary);
+    text-shadow: 0 0 8px var(--primary);
+}
+
+.description {
+    color: var(--foreground);
+    font-size: 1.2rem;
+    opacity: 0.85;
+    margin-bottom: 2rem;
+}
+
+/* botões */
+.buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.primaryBtn {
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.outlineBtn {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    color: white;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.outlineBtn:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* seta pra baixo */
+.scrollDown {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+    z-index: 10;
+    color: var(--foreground);
+}
+
+.highlight {
+    color: var(--primary);
+    text-shadow:
+      0 0 4px var(--primary),
+      0 0 6px var(--primary),
+      0 0 8px var(--primary);
+    transition: opacity 0.4s ease-in-out;
+    animation: glowMedium 4s ease-in-out infinite;
+  }
+  
+  @keyframes glowMedium {
+    0%, 100% {
+      text-shadow:
+        0 0 4px var(--primary),
+        0 0 6px var(--primary),
+        0 0 8px var(--primary);
+    }
+    50% {
+      text-shadow:
+        0 0 2px var(--primary),
+        0 0 4px var(--primary),
+        0 0 6px var(--primary);
+    }
+  }
+  
+
+
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translate(-50%, 0);
+    }
+
+    50% {
+        transform: translate(-50%, -10px);
+    }
+}
