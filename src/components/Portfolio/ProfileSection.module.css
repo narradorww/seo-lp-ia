@@ -1,0 +1,106 @@
+.section {
+    position: relative;
+    padding: 6rem 1.5rem;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .sectionTitle {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--foreground);
+    text-align: left;
+  }
+  
+  .highlight {
+    color: var(--primary);
+  }
+  
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  
+  @media (min-width: 768px) {
+    .columns {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .card {
+    background-color: var(--background);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .cardHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: var(--primary);
+  }
+  
+  .cardHeader h3 {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin: 0;
+  }
+  
+  .cardHeader svg {
+    margin-right: 0.75rem;
+  }
+  
+  .text {
+    color: var(--foreground);
+    opacity: 0.8;
+    margin-bottom: 1rem;
+  }
+  
+  .badgeList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .list {
+    list-style-type: none;
+    padding-left: 1rem;
+    color: var(--foreground);
+    opacity: 0.8;
+  }
+  
+  .list li::before {
+    content: "• ";
+    margin-right: 0.5rem;
+  }
+  
+  .journeyCard {
+    margin-top: 3rem;
+    background-color: var(--background);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+  }
+  
+  .journeyCard h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--foreground);
+  }
+  
+  .journeyCard p {
+    color: var(--foreground);
+    opacity: 0.8;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  

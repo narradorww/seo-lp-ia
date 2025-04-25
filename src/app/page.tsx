@@ -1,29 +1,25 @@
 import Header from '@components/Layout/Header';
 import Footer from '@components/Layout/Footer';
-import ProfileCard from '@components/Portfolio/ProfileCard';
 import ProjectList from '@components/Portfolio/ProjectList';
-import MagicMirror from '@components/MagicMirror/MagicMirror';
+import HeroSection from '@components/HeroSection/HeroSection';
 import VisitorStats from '@components/Stats/VisitorStats';
 import styles from './page.module.css';
 import CookieNotice from '@/components/Layout/CookieNotice';
+import ProfileSection from '@/components/Portfolio/ProfileSection';
 
 export default function LandingPage() {
   return (
     <div className={styles.container}>
       <Header />
+          <HeroSection />
 
       <main className={styles.mainContent}>
         <section className={styles.portfolioArea}>
-          <ProfileCard />
-          <ProjectList />
-        </section>
-
-        <section className={styles.interactiveArea}>
-          <MagicMirror />
-          <VisitorStats />
+        <ProfileSection />
         </section>
       </main>
 
+      <VisitorStats /> {/* flutuando no canto */}
       <Footer />
       <CookieNotice />
     </div>

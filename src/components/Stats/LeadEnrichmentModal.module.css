@@ -1,0 +1,84 @@
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal {
+    background-color: rgba(20, 20, 20, 0.95);
+    border: 1px solid var(--primary);
+    border-radius: var(--radius);
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+  
+  .modal h3 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .modal p {
+    color: var(--foreground);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .modal input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--foreground);
+  }
+  
+  .modal input::placeholder {
+    color: var(--foreground);
+    opacity: 0.6;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  .actions button {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .actions button:first-child {
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    color: white;
+  }
+  
+  .actions button:first-child:hover {
+    opacity: 0.9;
+  }
+  
+  .cancel {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--foreground);
+    border: 1px solid var(--border-color);
+  }
+  
+  .cancel:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
