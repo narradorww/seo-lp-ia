@@ -1,6 +1,7 @@
 'use client';
 
 import { useRotatingWords } from '@/hooks/useRotatingWords';
+import Image from 'next/image';
 import styles from './HeroSection.module.css';
 import { ArrowDown } from 'lucide-react';
 
@@ -45,10 +46,13 @@ export default function HeroSection() {
         <div className={styles.content}>
           {/* Avatar */}
           <div className={styles.avatarCard}>
-            <img
+            <Image
               src="/rodrigo-avatar.jpeg"
               alt="Foto de Rodrigo Alexandre"
               className={styles.avatar}
+              width={200}
+              height={200}
+              priority
             />
             <a
               href="/Rodrigo_Alexandre_CV.pdf"

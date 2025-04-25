@@ -4,7 +4,7 @@
 import Badge from '../common/Badge';
 import styles from './ProfileSection.module.css';
 ;
-import { Code, Rocket, Users } from 'lucide-react';
+import { ArrowDown, Code, Rocket, Users } from 'lucide-react';
 
 const skills = [
   'JavaScript', 'TypeScript', 'React Native', 'React.js',
@@ -87,6 +87,11 @@ export default function ProfileSection() {
           </p>
         </div>
       </div>
+      <div className={styles.scrollDown}>
+  <a href="#projects">
+    <ArrowDown size={24} />
+  </a>
+</div>
     </section>
   );
 }

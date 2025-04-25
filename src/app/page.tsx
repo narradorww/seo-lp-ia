@@ -6,6 +6,7 @@ import VisitorStats from '@components/Stats/VisitorStats';
 import styles from './page.module.css';
 import CookieNotice from '@/components/Layout/CookieNotice';
 import ProfileSection from '@/components/Portfolio/ProfileSection';
+import ProjectsSection from '@/components/ProjectsSection/ProjectSection';
 
 export default function LandingPage() {
   return (
@@ -16,6 +17,7 @@ export default function LandingPage() {
       <main className={styles.mainContent}>
         <section className={styles.portfolioArea}>
         <ProfileSection />
+        <ProjectsSection />
         </section>
       </main>
 

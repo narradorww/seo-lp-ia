@@ -1,0 +1,36 @@
+/* ProjectsSection.module.css */
+
+.section {
+    padding: 6rem 1.5rem;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .sectionTitle {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--foreground);
+    text-align: left;
+  }
+  
+  .highlight {
+    color: var(--primary);
+  }
+  
+  .description {
+    color: var(--foreground);
+    opacity: 0.8;
+    max-width: 640px;
+    margin-bottom: 3rem;
+  }
+  
+  .projectsList {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+  
+ 
