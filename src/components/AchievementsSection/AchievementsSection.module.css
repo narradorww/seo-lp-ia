@@ -1,0 +1,108 @@
+.section {
+    padding: 6rem 1.5rem;
+    background-color: var(--background);
+  }
+  
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--foreground);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .highlight {
+    color: var(--primary);
+    text-shadow: 0 0 8px var(--primary);
+  }
+  
+  .description {
+    text-align: center;
+    color: var(--foreground);
+    opacity: 0.8;
+    margin-bottom: 4rem;
+  }
+  
+  .achievementList {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .achievementList {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  .achievementCard {
+    background: var(--background);
+    padding: 2rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+  }
+  
+  .achievementCard:hover {
+    border-color: var(--primary);
+  }
+  
+  .achievementHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .iconWrapper {
+    background-color: var(--primary);
+    padding: 0.75rem;
+    border-radius: 9999px;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .icon {
+    color: var(--background);
+    width: 24px;
+    height: 24px;
+  }
+  
+  .headerText {
+    flex: 1;
+  }
+  
+  .achievementTitle {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--foreground);
+  }
+  
+  .event {
+    font-size: 0.875rem;
+    color: var(--primary);
+  }
+  
+  .year {
+    font-size: 0.875rem;
+    color: var(--foreground);
+    opacity: 0.6;
+  }
+  
+  .project {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .text {
+    color: var(--foreground);
+    opacity: 0.8;
+  }
+  

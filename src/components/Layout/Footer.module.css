@@ -1,12 +1,120 @@
-/* Footer.module.css */
+/* src/components/Footer/Footer.module.css */
 
 .footer {
-    text-align: center;
-    padding: 1.5rem;
-    font-size: 0.875rem;
-    color: var(--secondary);
-    background-color: var(--background);
-    border-top: 1px solid var(--border-color);
-    margin-top: 2rem;
+  padding: 3rem 1.5rem;
+  background-color: var(--background);
+  border-top: 1px solid var(--border-color);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
   }
-  
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.description {
+  color: var(--foreground);
+  opacity: 0.8;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.socials {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.socials a {
+  color: var(--foreground);
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.socials a:hover {
+  color: var(--primary);
+}
+
+.navTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navList li {
+  margin-bottom: 0.5rem;
+}
+
+.navList li a {
+  color: var(--foreground);
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.navList li a:hover {
+  color: var(--primary);
+}
+
+.contactEmail {
+  color: var(--primary);
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 0.5rem;
+  text-decoration: none;
+}
+
+.contactEmail:hover {
+  text-decoration: underline;
+}
+
+.location {
+  color: var(--foreground);
+  opacity: 0.7;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.bottomBar {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--foreground);
+  opacity: 0.6;
+}
+
+@media (min-width: 768px) {
+  .bottomBar {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

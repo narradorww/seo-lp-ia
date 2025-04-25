@@ -13,7 +13,7 @@ export default function Header() {
     <ul className={styles.navList}>
       <li><a href="#profile">Profile</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#magic-mirror">Magic Mirror</a></li>
+      {/* <li><a href="#magic-mirror">Magic Mirror</a></li> */}
       <li><a href="#achievements">Achievements</a></li>
     </ul>
     <a href="#contact" className={styles.contactButton}>Contact Me</a>
