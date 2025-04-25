@@ -10,6 +10,8 @@ interface VisitDocument {
     country?: string;
     country_name?: string;
   } | null;
+  leadScore?: number;
+  referrer?: string;
 }
 
 interface VisitorGeo {
@@ -18,6 +20,8 @@ interface VisitorGeo {
   city?: string;
   region?: string;
   country?: string;
+  leadScore?: number;
+  referrer?: string;
 }
 
 export async function GET() {
@@ -44,6 +48,8 @@ export async function GET() {
         city: doc.geo?.city,
         region: doc.geo?.region,
         country: doc.geo?.country || doc.geo?.country_name,
+        leadScore: doc.leadScore ?? 0,
+        referrer: doc.referrer ?? 'direto',
       }));
     
 

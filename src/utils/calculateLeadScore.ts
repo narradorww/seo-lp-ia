@@ -8,12 +8,14 @@ export function calculateLeadScore(visit: VisitData): number {
     score += 30;
   }
 
-  // 👥 Visitante vindo do LinkedIn
-  if (visit.referrer?.includes('linkedin.com')) {
+  // 👥 Fontes estratégicas (LinkedIn, Glassdoor)
+  const strategicSources = ['linkedin', 'glassdoor'];
+  const referrer = visit.referrer?.toLowerCase() ?? '';
+  if (referrer && strategicSources.some(source => referrer.includes(source))) {
     score += 40;
   }
 
-  // 💼 User Agent corporativo heurístico (Windows comum em ambientes de trabalho)
+  // 💼 User Agent corporativo (Windows)
   if (visit.userAgent.includes('Windows')) {
     score += 15;
   }
