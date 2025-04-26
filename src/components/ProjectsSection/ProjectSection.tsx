@@ -16,7 +16,7 @@ const projects = [
     title: "RecicleLink",
     description: "First Place at Hack for Change 2023 (Alura + FIAP)",
     challenge: "Creating a platform to connect recycling cooperatives with waste generators and optimize sorting processes that were inefficient and manual.",
-    outcome: "Developed an AI-powered solution that streamlines recycling operations, improving efficiency by 40% and increasing material recovery rates for cooperatives.",
+    outcome: "Developed a WhatsApp-based chatbot to assist the Embu das Artes community in connecting recycling generators with cooperatives, promoting more efficient and accessible recycling practices.",
     image: "/images/reciclelink.png",
     technologies: ["Generative AI", "React", "Node.js", "AWS", "Computer Vision"]
   },
@@ -26,7 +26,7 @@ const projects = [
     challenge: "Addressing the critical problem of pets getting lost during natural disasters and the difficulty in reuniting them with their owners.",
     outcome: "Created an AI-driven application using image recognition to match lost pets with their owners, recognized among 1200+ projects for its innovative approach.",
     image: "/images/scooby.png",
-    technologies: ["Image Recognition", "React Native", "Google Cloud", "TensorFlow"]
+    technologies: ["Image Recognition", "React Native", "Google Cloud", "Google Gemini"]
   }
 ];
 

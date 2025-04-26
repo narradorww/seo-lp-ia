@@ -23,7 +23,7 @@ const achievements: Achievement[] = [
   },
   {
     title: "6th Place",
-    event: "AI Immersion 2023 (Alura + Google)",
+    event: "AI Immersion 2024 (Alura + Google)",
     project: "\"Scooby-Doo, Where Are You?\"",
     description: "Developed an AI-powered solution for locating lost pets during natural disasters, standing out among 1200+ projects.",
     year: 2023,
