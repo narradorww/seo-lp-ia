@@ -1,110 +1,100 @@
- /* ProjectCard.module.css */
-  
- .card {
-    background-color: var(--background);
-    border: none;
-    overflow: hidden;
-  }
-  
+.card {
+  background-color: var(--background);
+  border: none;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.projectGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
   .projectGrid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
-  @media (min-width: 768px) {
-    .projectGrid {
-      grid-template-columns: 1fr 1fr;
-    }
-  
-    .reversed {
-      direction: rtl;
-    }
-  
-    .reversed > * {
-      direction: ltr;
-    }
-  }
-  
-  .imageWrapper {
-    position: relative;
-    height: 16rem;
-    overflow: hidden;
-    border-radius: var(--radius);
-  }
-  
-  .imageWrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.7s;
-  }
-  
-  .imageWrapper img:hover {
-    transform: scale(1.05);
-  }
-  
-  .overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
-  }
-  
-  .content {
-    padding: 1.5rem;
-  }
-  
-  .projectTitle {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--foreground);
-  }
-  
-  .projectDescription {
-    margin-top: 0.5rem;
-    color: var(--foreground);
-    opacity: 0.7;
-  }
-  
-  .sectionHeader {
-    margin-bottom: 1rem;
-    color: var(--primary);
-    font-size: 1rem;
-    font-weight: 600;
-  }
-  
-  .textBlock {
-    margin-bottom: 1rem;
-    color: var(--foreground);
-    opacity: 0.8;
-    font-size: 0.95rem;
-  }
-  
-  .techList {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.5rem;
-  }
-  
-  .buttonWrapper {
-    margin-top: 2rem;
+    flex-direction: row;
+    align-items: center;
   }
 
-  .viewButton {
-    padding: 0.75rem 1.5rem;
-    border: 1px solid var(--primary);
-    border-radius: var(--radius);
-    background: transparent;
-    color: var(--primary);
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  .reversed {
+    flex-direction: row-reverse;
   }
-  
-  .viewButton:hover {
-    background-color: var(--primary);
-    color: var(--background);
-  }
-  
-  
+}
+
+.imageWrapper {
+  flex: 0 0 400px; /* fixo para ficar padronizado */
+  height: 300px;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.imageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s;
+}
+
+.imageWrapper img:hover {
+  transform: scale(1.05);
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 1rem;
+}
+
+.projectTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.projectDescription {
+  margin-top: 0.5rem;
+  color: var(--foreground);
+  opacity: 0.7;
+}
+
+.sectionHeader {
+  color: var(--primary);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.textBlock {
+  color: var(--foreground);
+  opacity: 0.8;
+  font-size: 0.95rem;
+}
+
+.techList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.buttonWrapper {
+  margin-top: 2rem;
+}
+
+.viewButton {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--primary);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--primary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.viewButton:hover {
+  background-color: var(--primary);
+  color: var(--background);
+}

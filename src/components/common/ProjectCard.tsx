@@ -24,42 +24,24 @@ export default function ProjectCard({
     isReversed = false
 }: ProjectCardProps) {
     return (
-        <div className={`${styles.card} ${isReversed ? styles.reversed : ''}`}>
-            <div className={styles.projectGrid}>
-                {/* Image section */}
-                <div className={styles.imageWrapper}>
-                    <img src={image} alt={title} />
-                    <div className={styles.overlay}></div>
-                </div>
+        <div className={`${styles.projectGrid} ${isReversed ? styles.reversed : ''}`}>
+  <div className={styles.imageWrapper}>
+    <img src={image} alt={title} />
+  </div>
+  <div className={styles.content}>
+    <h3 className={styles.projectTitle}>{title}</h3>
+    <p className={styles.projectDescription}>{description}</p>
+    <div className={styles.sectionHeader}>Challenge</div>
+    <p className={styles.textBlock}>{challenge}</p>
+    <div className={styles.sectionHeader}>Outcome</div>
+    <p className={styles.textBlock}>{outcome}</p>
+    <div className={styles.techList}>
+      {technologies.map((tech) => (
+        <span key={tech}>{tech}</span>
+      ))}
+    </div>
+  </div>
+</div>
 
-                {/* Content section */}
-                <div className={styles.content}>
-                    <h3 className={styles.projectTitle}>{title}</h3>
-                    <p className={styles.projectDescription}>{description}</p>
-
-                    <div className={styles.textBlock}>
-                        <h4 className={styles.sectionHeader}>The Challenge</h4>
-                        <p>{challenge}</p>
-                    </div>
-
-                    <div className={styles.textBlock}>
-                        <h4 className={styles.sectionHeader}>The Outcome</h4>
-                        <p>{outcome}</p>
-                    </div>
-
-                    <div className={styles.techList}>
-                        {technologies.map(tech => (
-                            <Badge key={tech}>{tech}</Badge>
-                        ))}
-                    </div>
-
-                    <div className={styles.buttonWrapper}>
-                        <button className={styles.viewButton}>
-                            View Project
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
     );
 }

@@ -3,14 +3,13 @@
 import ProjectCard from '../common/ProjectCard';
 import styles from './ProjectsSection.module.css';
 
-
 const projects = [
   {
     title: "Fretador (Logistics App)",
     description: "Mobile freight management solution for TRC Logistics",
     challenge: "Taking charge of an unfinished project that required significant refactoring, process implementation, and LGPD compliance to meet industry standards.",
     outcome: "Successfully delivered a complete, compliant freight management platform with improved code quality, enhanced user experience, and increased customer trust.",
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&q=80",
+    image: "/images/fretador.png",
     technologies: ["React Native", "Next.js", "Node.js", "MongoDB", "AWS"]
   },
   {
@@ -18,15 +17,15 @@ const projects = [
     description: "First Place at Hack for Change 2023 (Alura + FIAP)",
     challenge: "Creating a platform to connect recycling cooperatives with waste generators and optimize sorting processes that were inefficient and manual.",
     outcome: "Developed an AI-powered solution that streamlines recycling operations, improving efficiency by 40% and increasing material recovery rates for cooperatives.",
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80",
+    image: "/images/reciclelink.png",
     technologies: ["Generative AI", "React", "Node.js", "AWS", "Computer Vision"]
   },
   {
     title: "\"Scooby-Doo, Where Are You?\"",
-    description: "6th Place at AI Immersion 2023 (Alura + Google)",
+    description: "6th Place at AI Immersion 2024 (Alura + Google)",
     challenge: "Addressing the critical problem of pets getting lost during natural disasters and the difficulty in reuniting them with their owners.",
     outcome: "Created an AI-driven application using image recognition to match lost pets with their owners, recognized among 1200+ projects for its innovative approach.",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80",
+    image: "/images/scooby.png",
     technologies: ["Image Recognition", "React Native", "Google Cloud", "TensorFlow"]
   }
 ];
