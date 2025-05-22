@@ -5,10 +5,29 @@
     border-radius: var(--radius);
     overflow: hidden;
     box-shadow: 0 0 12px rgba(0, 112, 243, 0.2);
+    position: relative;
   }
   
   .map {
     height: 100%;
     width: 100%;
+  }
+  
+  .noData {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: rgba(20, 20, 20, 0.9);
+    color: var(--foreground);
+    font-size: 1rem;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .mapWrapper {
+      height: 400px;
+    }
   }
   

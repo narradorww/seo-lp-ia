@@ -82,6 +82,117 @@ export async function GET() {
       avgScore: Math.round(stat.avgScore || 0)
     }));
 
+    // Buscar estatísticas de sistemas operacionais
+    const osStats = await collection.aggregate([
+      {
+        $match: {
+          sistema_operacional: { $exists: true, $ne: null }
+        }
+      },
+      {
+        $group: {
+          _id: '$sistema_operacional',
+          count: { $sum: 1 },
+          avgScore: { $avg: { $ifNull: ['$leadScore', 0] } }
+        }
+      },
+      { $sort: { count: -1 } },
+      { $limit: 6 }
+    ]).toArray();
+
+    const osSummary = osStats.map(stat => ({
+      name: stat._id,
+      count: stat.count,
+      avgScore: Math.round(stat.avgScore || 0)
+    }));
+
+    // Buscar estatísticas de referral/redes sociais
+    const referralStats = await collection.aggregate([
+      {
+        $match: {
+          referrer: { $exists: true, $ne: null, $ne: '' }
+        }
+      },
+      {
+        $addFields: {
+          // Categorizar referrers por domínio/origem
+          referralSource: {
+            $cond: [
+              { $regexMatch: { input: { $ifNull: ['$referrer', ''] }, regex: /linkedin\.com|linkedin/i } },
+              'LinkedIn',
+              {
+                $cond: [
+                  { $regexMatch: { input: { $ifNull: ['$referrer', ''] }, regex: /github\.com|github/i } },
+                  'GitHub',
+                  {
+                    $cond: [
+                      { $regexMatch: { input: { $ifNull: ['$referrer', ''] }, regex: /twitter\.com|twitter|x\.com/i } },
+                      'Twitter',
+                      {
+                        $cond: [
+                          { $regexMatch: { input: { $ifNull: ['$referrer', ''] }, regex: /instagram\.com|instagram/i } },
+                          'Instagram',
+                          {
+                            $cond: [
+                              { $regexMatch: { input: { $ifNull: ['$referrer', ''] }, regex: /facebook\.com|facebook/i } },
+                              'Facebook',
+                              {
+                                $cond: [
+                                  { $regexMatch: { input: { $ifNull: ['$referrer', ''] }, regex: /google\.com|google/i } },
+                                  'Google',
+                                  'Outros'
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        $group: {
+          _id: '$referralSource',
+          count: { $sum: 1 },
+          avgScore: { $avg: { $ifNull: ['$leadScore', 0] } }
+        }
+      },
+      { $sort: { count: -1 } },
+      { $limit: 7 }
+    ]).toArray();
+
+    const referralSummary = referralStats.map(stat => ({
+      source: stat._id,
+      count: stat.count,
+      avgScore: Math.round(stat.avgScore || 0)
+    }));
+
+    // Estatísticas de enriquecimento
+    const enrichmentStats = await collection.aggregate([
+      {
+        $match: {
+          structuredEnrichment: { $exists: true }
+        }
+      },
+      {
+        $group: {
+          _id: '$structuredEnrichment.platform',
+          count: { $sum: 1 },
+        }
+      },
+      { $sort: { count: -1 } }
+    ]).toArray();
+
+    const enrichmentSummary = enrichmentStats.map(stat => ({
+      platform: stat._id || 'Outro',
+      count: stat.count
+    }));
+
     // Buscar contagem total de visitantes
     const totalVisitors = await collection.countDocuments();
     
@@ -92,6 +203,9 @@ export async function GET() {
     return NextResponse.json({ 
       locations,
       countrySummary,
+      osSummary,
+      referralSummary,
+      enrichmentSummary,
       stats: {
         totalVisitors,
         uniqueVisitors

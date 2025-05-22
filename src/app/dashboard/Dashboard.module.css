@@ -40,8 +40,14 @@
   .chartsGrid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.5rem;
     margin-bottom: 2rem;
+  }
+  
+  .chartColumn {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
   
   @media (min-width: 1024px) {

@@ -7,6 +7,8 @@ import { Loader } from '@/components/common/Loader';
 import Header from '@/components/Layout/Header';
 import CountryChart from '@/components/Stats/CountryChart';
 import VisitorSummary from '@/components/Stats/VisitorSummary';
+import OsStatsChart from '@/components/Stats/OsStatsChart';
+import SocialStatsChart from '@/components/Stats/SocialStatsChart';
 
 const Map = dynamic(() => import('@/components/Stats/VisitorMap'), {
   ssr: false,
@@ -27,9 +29,29 @@ interface CountryData {
   avgScore: number;
 }
 
+interface OsData {
+  name: string;
+  count: number;
+  avgScore: number;
+}
+
+interface SocialData {
+  source: string;
+  count: number;
+  avgScore: number;
+}
+
+interface EnrichmentData {
+  platform: string;
+  count: number;
+}
+
 interface DashboardData {
   locations: VisitorGeo[];
   countrySummary: CountryData[];
+  osSummary: OsData[];
+  referralSummary: SocialData[];
+  enrichmentSummary: EnrichmentData[];
   stats: {
     totalVisitors: number;
     uniqueVisitors: number;
@@ -40,6 +62,9 @@ export default function DashboardPage() {
   const [dashboardData, setDashboardData] = useState<DashboardData>({
     locations: [],
     countrySummary: [],
+    osSummary: [],
+    referralSummary: [],
+    enrichmentSummary: [],
     stats: {
       totalVisitors: 0,
       uniqueVisitors: 0
@@ -85,6 +110,15 @@ export default function DashboardPage() {
             <div className={styles.chartsGrid}>
               <div className={styles.chartColumn}>
                 <CountryChart data={dashboardData.countrySummary} />
+              </div>
+              <div className={styles.chartColumn}>
+                <OsStatsChart data={dashboardData.osSummary} />
+              </div>
+            </div>
+            
+            <div className={styles.chartsGrid}>
+              <div className={styles.chartColumn}>
+                <SocialStatsChart data={dashboardData.referralSummary} />
               </div>
             </div>
             
