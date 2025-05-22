@@ -110,7 +110,7 @@ export async function GET() {
     const referralStats = await collection.aggregate([
       {
         $match: {
-          referrer: { $exists: true, $ne: null, $ne: '' }
+          referrer: { $exists: true, $ne: null }
         }
       },
       {
