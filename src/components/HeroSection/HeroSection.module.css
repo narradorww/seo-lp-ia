@@ -60,7 +60,6 @@
 }
 
 @keyframes pulse {
-
     0%,
     100% {
         opacity: 0.4;
@@ -208,28 +207,24 @@
       0 0 8px var(--primary);
     transition: opacity 0.4s ease-in-out;
     animation: glowMedium 4s ease-in-out infinite;
-  }
+}
   
-  @keyframes glowMedium {
+@keyframes glowMedium {
     0%, 100% {
-      text-shadow:
-        0 0 4px var(--primary),
-        0 0 6px var(--primary),
-        0 0 8px var(--primary);
+        text-shadow:
+            0 0 4px var(--primary),
+            0 0 6px var(--primary),
+            0 0 8px var(--primary);
     }
     50% {
-      text-shadow:
-        0 0 2px var(--primary),
-        0 0 4px var(--primary),
-        0 0 6px var(--primary);
+        text-shadow:
+            0 0 2px var(--primary),
+            0 0 4px var(--primary),
+            0 0 6px var(--primary);
     }
-  }
-  
-
-
+}
 
 @keyframes bounce {
-
     0%,
     100% {
         transform: translate(-50%, 0);
@@ -237,5 +232,73 @@
 
     50% {
         transform: translate(-50%, -10px);
+    }
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 4rem;
+        justify-content: flex-start;
+    }
+
+    .containerHero {
+        padding: 1rem;
+    }
+
+    .content {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .avatarCard {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .avatar {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .textBlock {
+        width: 100%;
+        padding: 0 0.5rem;
+    }
+    
+    .title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .description {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .buttons {
+        justify-content: center;
+    }
+    
+    .primaryBtn, .outlineBtn {
+        width: 100%;
+        text-align: center;
+        padding: 0.75rem 1rem;
+    }
+    
+    /* Adjust glows for mobile */
+    .glowLeft {
+        top: 20%;
+        left: -12rem;
+        width: 16rem;
+        height: 16rem;
+    }
+    
+    .glowRight {
+        bottom: 20%;
+        right: -12rem;
+        width: 16rem;
+        height: 16rem;
     }
 }
