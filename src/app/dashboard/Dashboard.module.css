@@ -18,6 +18,38 @@
     margin-bottom: 2rem;
   }
   
+  .sectionTitle {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin: 2rem 0 0.5rem;
+  }
+  
+  .sectionDescription {
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+  }
+  
+  .chartsGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (min-width: 1024px) {
+    .chartsGrid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
   @media (max-width: 768px) {
     .dashboardWrapper {
       padding: 6rem 1rem 1rem;
@@ -25,6 +57,10 @@
     
     .title {
       font-size: 1.5rem;
+    }
+    
+    .sectionTitle {
+      font-size: 1.25rem;
     }
   }
   

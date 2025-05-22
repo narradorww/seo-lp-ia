@@ -13,9 +13,16 @@ export function calculateLeadScore(visit: VisitData): number {
     score += 40;
   }
 
-  // 💼 User Agent corporativo heurístico
-  if (visit.userAgent.includes('Windows')) {
-    score += 15;
+  // 💼 Pontuação por sistema operacional
+  const userAgent = visit.userAgent.toLowerCase();
+  if (userAgent.includes('mac os') || userAgent.includes('macintosh') || userAgent.includes('iphone') || userAgent.includes('ipad')) {
+    score += 25; // Apple (macOS, iOS) tem valor maior (geralmente dispositivos premium)
+  } else if (userAgent.includes('windows')) {
+    score += 15; // Windows tem valor intermediário
+  } else if (userAgent.includes('android')) {
+    score += 10; // Android tem valor base
+  } else if (userAgent.includes('linux')) {
+    score += 20; // Linux pode indicar perfil técnico
   }
 
   // 🕓 Horário comercial UTC-3 (Brasil)

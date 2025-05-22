@@ -30,6 +30,7 @@ export async function GET() {
     const db = client.db('visitTracker');
     const collection = db.collection<VisitDocument>('visitas');
 
+    // Buscar localizações para o mapa
     const cursor = await collection
       .find({
         geo: { $ne: null },
@@ -40,7 +41,7 @@ export async function GET() {
       .limit(100)
       .toArray();
 
-      const locations: VisitorGeo[] = cursor
+    const locations: VisitorGeo[] = cursor
       .filter(doc => doc.geo && doc.geo.latitude != null && doc.geo.longitude != null)
       .map((doc) => ({
         latitude: doc.geo!.latitude,
@@ -52,8 +53,50 @@ export async function GET() {
         referrer: doc.referrer ?? 'direto',
       }));
     
+    // Buscar estatísticas de países
+    const countryStats = await collection.aggregate([
+      { 
+        $match: { 
+          $or: [
+            { 'geo.country': { $exists: true, $ne: null } },
+            { 'geo.country_name': { $exists: true, $ne: null } }
+          ]
+        } 
+      },
+      {
+        $group: {
+          _id: { 
+            $ifNull: ['$geo.country_name', '$geo.country'] 
+          },
+          count: { $sum: 1 },
+          avgScore: { $avg: { $ifNull: ['$leadScore', 0] } }
+        }
+      },
+      { $sort: { count: -1 } },
+      { $limit: 10 }
+    ]).toArray();
 
-    return NextResponse.json({ locations });
+    const countrySummary = countryStats.map(stat => ({
+      country: stat._id || 'Desconhecido',
+      count: stat.count,
+      avgScore: Math.round(stat.avgScore || 0)
+    }));
+
+    // Buscar contagem total de visitantes
+    const totalVisitors = await collection.countDocuments();
+    
+    // Buscar contagem de visitantes únicos (por IP)
+    const uniqueIPs = await collection.distinct('ip');
+    const uniqueVisitors = uniqueIPs.length;
+
+    return NextResponse.json({ 
+      locations,
+      countrySummary,
+      stats: {
+        totalVisitors,
+        uniqueVisitors
+      }
+    });
   } catch (err) {
     console.error('[stats] erro:', err);
     return NextResponse.json({ error: 'Erro ao buscar dados de visitas' }, { status: 500 });

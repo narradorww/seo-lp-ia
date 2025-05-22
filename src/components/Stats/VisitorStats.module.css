@@ -95,6 +95,15 @@
   word-break: break-word;
 }
 
+.loading {
+  font-size: 0.8rem;
+  color: var(--foreground);
+  opacity: 0.7;
+  text-align: center;
+  padding: 0.5rem 0;
+  font-style: italic;
+}
+
 .sectionRow {
   display: flex;
   justify-content: space-between;
