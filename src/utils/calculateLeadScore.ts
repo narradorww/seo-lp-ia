@@ -24,8 +24,44 @@ export function calculateLeadScore(visit: VisitData): number {
     score += 10;
   }
 
-  // 🧠 Enrichment analysis
-  if (visit.enrichment) {
+  // 🧠 Structured Enrichment analysis (prioridade para o formato estruturado)
+  if (visit.structuredEnrichment) {
+    const { platform, value } = visit.structuredEnrichment;
+
+    switch (platform) {
+      case 'email':
+        if (value.includes('@')) {
+          if (/(gmail|yahoo|hotmail|outlook|icloud)/.test(value.toLowerCase())) {
+            score += 30; // e-mail gratuito
+          } else {
+            score += 50; // e-mail corporativo
+          }
+        }
+        break;
+      
+      case 'linkedin':
+        score += 40; // LinkedIn tem alto valor
+        break;
+      
+      case 'github':
+        score += 30; // GitHub tem bom valor (desenvolvedor)
+        break;
+      
+      case 'twitter':
+      case 'instagram':
+        score += 25; // Redes sociais genéricas
+        break;
+      
+      case 'phone':
+        score += 60; // Telefone tem valor máximo (contato direto)
+        break;
+      
+      default:
+        score += 15; // Plataforma não reconhecida, mas algum valor
+    }
+  }
+  // 🧠 Legacy Enrichment analysis - formato antigo como fallback
+  else if (visit.enrichment) {
     const enrich = visit.enrichment.toLowerCase();
 
     // Detectar email

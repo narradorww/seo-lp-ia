@@ -14,12 +14,15 @@ export default function VisitorStats() {
   const { open } = useModal();
   
 
-  const handleEnrichmentSubmit = async (input: string) => {
+  const handleEnrichmentSubmit = async (input: string, structuredData?: any) => {
     try {
       await fetch('/api/visitor/enrich', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ enrichment: input }),
+        body: JSON.stringify({ 
+          enrichment: input,
+          structuredEnrichment: structuredData 
+        }),
       });
       // opcional: feedback visual ou redirecionar
       window.location.href = '/dashboard';

@@ -36,6 +36,11 @@ export interface VisitorGeoData {
     geo?: VisitorGeoData;
   }
 
+  export interface EnrichmentData {
+    platform: string;
+    value: string;
+  }
+
   export interface VisitData {
     ip: string;
     userAgent: string;
@@ -56,6 +61,7 @@ export interface VisitorGeoData {
     isBot?: boolean;
     leadScore?: number;
     enrichment?: string;
+    structuredEnrichment?: EnrichmentData;
   }
   
   

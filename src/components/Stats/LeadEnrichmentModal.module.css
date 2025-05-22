@@ -32,17 +32,101 @@
     margin-bottom: 1.5rem;
   }
   
-  .modal input {
+  /* Platform grid styles */
+  .platformGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .platformButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    background-color: rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .platformButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .platformIcon {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+  }
+
+  /* Input styles */
+  .inputContainer {
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  .inputHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .backButton {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .platformLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--foreground);
+    font-weight: 500;
+  }
+
+  .prefixInput {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .inputPrefix {
+    position: absolute;
+    left: 0.75rem;
+    color: var(--foreground);
+    opacity: 0.7;
+    font-size: 0.9rem;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  input {
     width: 100%;
     padding: 0.75rem;
-    margin-bottom: 1.5rem;
     border: 1px solid var(--border-color);
     border-radius: var(--radius);
     background-color: rgba(255, 255, 255, 0.05);
     color: var(--foreground);
   }
-  
-  .modal input::placeholder {
+
+  input.hasPrefix {
+    padding-left: 7.5rem;
+  }
+
+  input::placeholder {
     color: var(--foreground);
     opacity: 0.6;
   }
@@ -80,5 +164,33 @@
   
   .cancel:hover {
     background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .modal {
+      padding: 1.5rem;
+    }
+
+    .platformGrid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .platformButton {
+      padding: 0.75rem 0.5rem;
+    }
+
+    .platformIcon {
+      margin-bottom: 0.25rem;
+    }
+
+    input.hasPrefix {
+      padding-left: 6.5rem;
+      font-size: 0.9rem;
+    }
+
+    .inputPrefix {
+      font-size: 0.8rem;
+    }
   }
   
