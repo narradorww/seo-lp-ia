@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import styles from './Dashboard.module.css';
 import { Loader } from '@/components/common/Loader';
+import Header from '@/components/Layout/Header';
 
 
 const Map = dynamic(() => import('@/components/Stats/VisitorMap'), {
@@ -33,11 +34,13 @@ export default function DashboardPage() {
   }, []);
 
   return (
-    <div className={styles.dashboardWrapper}>
-      <h1 className={styles.title}>Visitas no Mapa</h1>
-<p className={styles.description}>Veja de onde vieram os acessos ao site nas últimas horas.</p>
-
-      <Map locations={locations} />
-    </div>
+    <>
+      <Header />
+      <div className={styles.dashboardWrapper}>
+        <h1 className={styles.title}>Visitas no Mapa</h1>
+        <p className={styles.description}>Veja de onde vieram os acessos ao site nas últimas horas.</p>
+        <Map locations={locations} />
+      </div>
+    </>
   );
 } 

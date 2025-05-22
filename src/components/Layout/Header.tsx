@@ -1,11 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import styles from './Header.module.css';
 import { Menu, X } from 'lucide-react';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isDashboard = pathname === '/dashboard';
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -31,11 +34,23 @@ export default function Header() {
 
       <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
         <ul className={styles.navList}>
-          <li><a href="#profile" onClick={closeMenu}>Profile</a></li>
-          <li><a href="#projects" onClick={closeMenu}>Projects</a></li>
-          <li><a href="#achievements" onClick={closeMenu}>Achievements</a></li>
+          {isDashboard ? (
+            <>
+              <li><a href="/" onClick={closeMenu}>Home</a></li>
+            </>
+          ) : (
+            <>
+              <li><a href="#profile" onClick={closeMenu}>Profile</a></li>
+              <li><a href="#projects" onClick={closeMenu}>Projects</a></li>
+              <li><a href="#achievements" onClick={closeMenu}>Achievements</a></li>
+            </>
+          )}
         </ul>
-        <a href="#contact" className={styles.contactButton} onClick={closeMenu}>Contact Me</a>
+        {!isDashboard ? (
+          <a href="#contact" className={styles.contactButton} onClick={closeMenu}>Contact Me</a>
+        ) : (
+          <a href="/" className={styles.contactButton} onClick={closeMenu}>Back to Site</a>
+        )}
       </nav>
 
       {isMenuOpen && <div className={styles.overlay} onClick={closeMenu}></div>}
