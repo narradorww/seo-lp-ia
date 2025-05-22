@@ -6,7 +6,27 @@
   right: 1.5rem;
   z-index: 1000;
   max-width: 280px;
-  transition: transform 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.expanded {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.minimized {
+  transform: translateX(calc(100% - 30px));
+  opacity: 0.9;
+}
+
+.minimized .card {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.minimized .toggleButton {
+  background-color: var(--primary);
+  border-color: var(--primary);
 }
 
 .toggleButton {
@@ -159,5 +179,9 @@
     font-size: 0.75rem;
     padding: 0.5rem 0.75rem;
     margin-top: 0.75rem;
+  }
+  
+  .minimized {
+    transform: translateX(calc(100% - 24px));
   }
 }

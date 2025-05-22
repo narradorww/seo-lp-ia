@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { MapPin, Users, Eye, BarChart } from 'lucide-react';
+import { MapPin, Users, Eye, BarChart, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTrackVisitor } from '@/hooks/useTrackVisitor';
 import styles from './VisitorStats.module.css';
 import { useModal } from '@/contexts/ModalContext';
@@ -52,15 +52,14 @@ export default function VisitorStats() {
 
   return (
     <div
-      className={`fixed right-6 bottom-6 z-40 transition-transform duration-300 ${isVisible ? 'translate-x-0' : 'translate-x-[calc(100%-2rem)]'
-        } ${styles.container}`}
+      className={`fixed right-6 bottom-6 z-40 transition-all duration-300 ${isVisible ? styles.expanded : styles.minimized} ${styles.container}`}
     >
       <button
         onClick={toggleVisibility}
         className={styles.toggleButton}
         aria-label="Toggle Visitor Stats"
       >
-        <BarChart size={16} className={styles.toggleIcon} />
+        {isVisible ? <ChevronRight size={16} className={styles.toggleIcon} /> : <ChevronLeft size={16} className={styles.toggleIcon} />}
       </button>
 
       <div className={styles.card}>
