@@ -133,8 +133,6 @@ export default function VisitorStats() {
           Improve your score & see your location 🌍
         </a>
       </div>
-
-      </div>
     </div>
   );
 }
