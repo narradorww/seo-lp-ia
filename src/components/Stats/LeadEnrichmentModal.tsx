@@ -22,45 +22,64 @@ export default function LeadEnrichmentModal({ onClose, onSubmit }: Props) {
   const [selectedPlatform, setSelectedPlatform] = useState<string | null>(null);
   const [input, setInput] = useState('');
 
+  const renderIcon = (iconType: string, size: number = 18) => {
+    switch(iconType) {
+      case 'email':
+        return <AtSign size={size} />;
+      case 'linkedin':
+        return <Linkedin size={size} />;
+      case 'github':
+        return <Github size={size} />;
+      case 'twitter':
+        return <Twitter size={size} />;
+      case 'instagram':
+        return <Instagram size={size} />;
+      case 'phone':
+        return <Phone size={size} />;
+      default:
+        return <AtSign size={size} />;
+    }
+  };
+
   const platforms: PlatformOption[] = [
     { 
       id: 'email', 
       label: 'Email', 
-      icon: <AtSign size={18} />, 
+      icon: renderIcon('email'), 
       placeholder: 'Enter your email address' 
     },
     { 
       id: 'linkedin', 
       label: 'LinkedIn', 
-      icon: <Linkedin size={18} />, 
+      icon: renderIcon('linkedin'), 
       placeholder: 'Enter your LinkedIn username or URL',
       prefix: 'linkedin.com/in/'
     },
     { 
       id: 'github', 
       label: 'GitHub', 
-      icon: <Github size={18} />, 
+      icon: renderIcon('github'), 
       placeholder: 'Enter your GitHub username',
       prefix: 'github.com/'
     },
     { 
       id: 'twitter', 
       label: 'Twitter', 
-      icon: <Twitter size={18} />, 
+      icon: renderIcon('twitter'), 
       placeholder: 'Enter your Twitter/X username',
       prefix: '@'
     },
     { 
       id: 'instagram', 
       label: 'Instagram', 
-      icon: <Instagram size={18} />, 
+      icon: renderIcon('instagram'), 
       placeholder: 'Enter your Instagram username',
       prefix: '@'
     },
     { 
       id: 'phone', 
       label: 'Phone', 
-      icon: <Phone size={18} />, 
+      icon: renderIcon('phone'), 
       placeholder: 'Enter your phone number' 
     },
   ];
@@ -134,7 +153,7 @@ export default function LeadEnrichmentModal({ onClose, onSubmit }: Props) {
                 ← Back to options
               </button>
               <span className={styles.platformLabel}>
-                {getSelectedPlatform()?.icon}
+                {selectedPlatform && renderIcon(selectedPlatform)}
                 {getSelectedPlatform()?.label}
               </span>
             </div>
@@ -148,7 +167,7 @@ export default function LeadEnrichmentModal({ onClose, onSubmit }: Props) {
                 placeholder={getSelectedPlatform()?.placeholder}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className={getSelectedPlatform()?.prefix ? styles.hasPrefix : ''}
+                className={`${styles.inputField} ${getSelectedPlatform()?.prefix ? styles.hasPrefix : ''}`}
               />
             </div>
           </div>

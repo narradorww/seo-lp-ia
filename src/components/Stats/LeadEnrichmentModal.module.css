@@ -113,7 +113,7 @@
     z-index: 1;
   }
 
-  input {
+  .inputField {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid var(--border-color);
@@ -122,11 +122,11 @@
     color: var(--foreground);
   }
 
-  input.hasPrefix {
+  .hasPrefix {
     padding-left: 7.5rem;
   }
 
-  input::placeholder {
+  .inputField::placeholder {
     color: var(--foreground);
     opacity: 0.6;
   }
@@ -184,7 +184,7 @@
       margin-bottom: 0.25rem;
     }
 
-    input.hasPrefix {
+    .hasPrefix {
       padding-left: 6.5rem;
       font-size: 0.9rem;
     }
