@@ -7,7 +7,20 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true, // ⬅️ Ignora erros do ESLint durante o build (na Vercel também)
   },
   images: {
-    domains: ['images.unsplash.com'], // ⬅️ Libera imagens externas
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'rodrigoalexandre.dev',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 };
 

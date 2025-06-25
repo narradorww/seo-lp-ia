@@ -36,7 +36,21 @@ export async function POST(request: NextRequest) {
 
     const score = calculateLeadScore(visitData);
     const botDetected = isBot(userAgent);
-    const ipOrg = await resolveIpOrg(ip); // tolerante a falha
+    
+    // Resolve IP organization with timeout and fallback
+    let ipOrg: string | null = null;
+    try {
+      // Add timeout to prevent hanging
+      const orgPromise = resolveIpOrg(ip);
+      const timeoutPromise = new Promise<null>((_, reject) => 
+        setTimeout(() => reject(new Error('IP resolution timeout')), 8000)
+      );
+      
+      ipOrg = await Promise.race([orgPromise, timeoutPromise]);
+    } catch (err) {
+      console.warn('[visitor] IP organization resolution failed:', err instanceof Error ? err.message : 'Unknown error');
+      ipOrg = null;
+    }
 
     const fullVisitData: VisitData = {
       ...visitData,
