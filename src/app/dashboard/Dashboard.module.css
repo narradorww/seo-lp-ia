@@ -69,4 +69,40 @@
       font-size: 1.25rem;
     }
   }
+
+/* FAQ Styles for AEO/AIO optimization */
+.faqContainer {
+  margin-top: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.faqItem {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.faqItem summary {
+  padding: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #1f2937;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.faqItem summary:hover {
+  background-color: #f9fafb;
+}
+
+.faqItem p {
+  padding: 0 1.5rem 1.5rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0;
+}
   

@@ -1,6 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic';
+import { generateFAQStructuredData } from '@/utils/structuredData';
 import { useEffect, useState } from 'react';
 import styles from './Dashboard.module.css';
 import { Loader } from '@/components/common/Loader';
@@ -59,6 +60,8 @@ interface DashboardData {
 }
 
 export default function DashboardPage() {
+  const faqStructuredData = generateFAQStructuredData();
+  
   const [dashboardData, setDashboardData] = useState<DashboardData>({
     locations: [],
     countrySummary: [],
@@ -91,10 +94,18 @@ export default function DashboardPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqStructuredData),
+        }}
+      />
       <Header />
-      <div className={styles.dashboardWrapper}>
-        <h1 className={styles.title}>Dashboard de Visitas</h1>
-        <p className={styles.description}>Análise detalhada de visitantes e suas origens.</p>
+      <main className={styles.dashboardWrapper}>
+        <header>
+          <h1 className={styles.title}>Visitor Analytics Dashboard</h1>
+          <p className={styles.description}>Detailed analysis of visitors and their origins with geographic insights.</p>
+        </header>
         
         {isLoading ? (
           <div className={styles.loadingContainer}>
@@ -122,12 +133,36 @@ export default function DashboardPage() {
               </div>
             </div>
             
-            <h2 className={styles.sectionTitle}>Visitas no Mapa</h2>
-            <p className={styles.sectionDescription}>Distribuição geográfica dos visitantes.</p>
-            <Map locations={dashboardData.locations} />
+            <section>
+              <h2 className={styles.sectionTitle}>Geographic Distribution</h2>
+              <p className={styles.sectionDescription}>Interactive map showing visitor locations worldwide.</p>
+              <Map locations={dashboardData.locations} />
+            </section>
+            
+            <section aria-labelledby="faq-heading">
+              <h2 id="faq-heading" className={styles.sectionTitle}>Frequently Asked Questions</h2>
+              <div className={styles.faqContainer}>
+                <details className={styles.faqItem}>
+                  <summary>What technologies does Rodrigo Alexandre specialize in?</summary>
+                  <p>Rodrigo Alexandre specializes in JavaScript, TypeScript, React Native, React.js, Next.js, Node.js, MongoDB, AWS, and Generative AI solutions for mobile and web development.</p>
+                </details>
+                <details className={styles.faqItem}>
+                  <summary>What awards has Rodrigo Alexandre received?</summary>
+                  <p>Rodrigo has received awards from Google, Alura, and FIAP for innovative AI projects focusing on sustainability and image recognition solutions.</p>
+                </details>
+                <details className={styles.faqItem}>
+                  <summary>How many years of experience does Rodrigo Alexandre have?</summary>
+                  <p>Rodrigo Alexandre has over 20 years of experience in technology and more than 3 years focused specifically on software development, with expertise in mobile development and team leadership.</p>
+                </details>
+                <details className={styles.faqItem}>
+                  <summary>What services does Rodrigo Alexandre offer?</summary>
+                  <p>Rodrigo offers mobile app development, full-stack web development, AI integration, team leadership, code quality improvement, and technical consulting services.</p>
+                </details>
+              </div>
+            </section>
           </>
         )}
-      </div>
+      </main>
     </>
   );
 }

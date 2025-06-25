@@ -34,21 +34,21 @@ export default function HeroSection() {
     ]);
 
   return (
-    <section className={styles.hero}>
+    <section className={styles.hero} role="banner" aria-label="Hero section introducing Rodrigo Alexandre">
       {/* Fundo + padrão + brilhos */}
-      <div className={styles.background}></div>
-      <div className={styles.pattern}></div>
-      <div className={styles.glowLeft}></div>
-      <div className={styles.glowRight}></div>
+      <div className={styles.background} aria-hidden="true"></div>
+      <div className={styles.pattern} aria-hidden="true"></div>
+      <div className={styles.glowLeft} aria-hidden="true"></div>
+      <div className={styles.glowRight} aria-hidden="true"></div>
 
       {/* Conteúdo */}
       <div className={styles.containerHero}>
         <div className={styles.content}>
           {/* Avatar */}
-          <div className={styles.avatarCard}>
+          <aside className={styles.avatarCard} role="complementary">
             <Image
               src="/rodrigo-avatar.jpeg"
-              alt="Foto de Rodrigo Alexandre"
+              alt="Professional headshot of Rodrigo Alexandre, Brazilian Mobile Developer specialized in React Native and AI"
               className={styles.avatar}
               width={200}
               height={200}
@@ -58,42 +58,43 @@ export default function HeroSection() {
               href="/Rodrigo_Alexandre_CV.pdf"
               download
               className={styles.downloadBtn}
+              aria-label="Download Rodrigo Alexandre's CV in PDF format"
             >
-              Baixar CV
+              Download CV
             </a>
-          </div>
+          </aside>
 
           {/* Texto */}
-          <div className={styles.textBlock}>
-            <p className={styles.subtitle}>Mobile Developer</p>
+          <header className={styles.textBlock}>
+            <p className={styles.subtitle} role="doc-subtitle">Mobile Developer</p>
             <h1 className={styles.title}>
-  Building <span className={styles.highlight}>{word}</span> mobile experiences
-</h1>
+              Building <span className={styles.highlight}>{word}</span> mobile experiences
+            </h1>
             <p className={styles.description}>
-            <span className={styles.highlight}>{greeting}</span>! I'm Rodrigo Alexandre, a Brazilian Mobile Developer with 20+ years in
-              technology, specializing in JavaScript/TypeScript, React Native, and
+              <span className={styles.highlight} aria-label="Greeting in multiple languages">{greeting}</span> I'm Rodrigo Alexandre, a Brazilian Mobile Developer with 20+ years in
+              technology, specializing in JavaScript, TypeScript, React Native, and
               AI-powered solutions that solve real-world problems.
             </p>
 
-            <div className={styles.buttons}>
-              <a href="#projects" className={styles.primaryBtn}>
+            <nav className={styles.buttons} role="navigation" aria-label="Main navigation">
+              <a href="#projects" className={styles.primaryBtn} aria-label="Navigate to projects section">
                 View My Projects
               </a>
-              <a href="#contact" className={styles.outlineBtn}>
+              <a href="#contact" className={styles.outlineBtn} aria-label="Navigate to contact section">
                 Contact Me
               </a>
-            </div>
-          </div>
+            </nav>
+          </header>
         </div>
       </div>
 
       
       {/* Seta scroll */}
-<div className={styles.scrollDown}>
-  <a href="#profile">
-    <ArrowDown size={24} />
-  </a>
-</div>
+      <div className={styles.scrollDown} role="navigation" aria-label="Scroll to next section">
+        <a href="#profile" aria-label="Scroll down to profile section">
+          <ArrowDown size={24} />
+        </a>
+      </div>
 
     </section>
   );

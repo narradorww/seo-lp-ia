@@ -28,6 +28,7 @@
     "react-leaflet": "^5.0.0",
     "react-slick": "^0.30.3",
     "resend": "^4.2.0",
+    "schema-dts": "^1.1.5",
     "slick-carousel": "^1.8.1",
     "ua-parser-js": "^2.0.3"
   },

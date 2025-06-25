@@ -1,0 +1,45 @@
+# Robots.txt optimized for AI crawlers and search engines
+User-agent: *
+Allow: /
+
+# AI Crawlers - Explicit permission for better AEO/AIO
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+# Block access to admin areas and sensitive files
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /.env*
+Disallow: /node_modules/
+
+# Allow specific API endpoints for crawlers
+Allow: /api/stats
+Allow: /api/geo
+
+# Sitemap location
+Sitemap: https://rodrigoalexandre.dev/sitemap.xml
+
+# Crawl delay (optional - adjust based on server capacity)
+Crawl-delay: 1

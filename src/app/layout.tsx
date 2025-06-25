@@ -22,26 +22,67 @@ export async function generateMetadata(): Promise<Metadata> {
   const isPortuguese = acceptLanguage?.startsWith("pt");
 
   const description = isPortuguese
-    ? "Rodrigo Alexandre é desenvolvedor mobile com mais de 20 anos em tecnologia e 3 anos de experiência em software, especialista em React Native, TypeScript e Inteligência Artificial. Foi premiado em iniciativas da Alura, Google e FIAP por projetos de IA voltados para sustentabilidade e reconhecimento de imagens."
-    : "Rodrigo Alexandre is a mobile developer with 20+ years in tech and 3+ years in software, specialized in React Native, TypeScript, and AI. He received awards from Alura, Google, and FIAP for innovative AI solutions in sustainability and image recognition.";
+    ? "Rodrigo Alexandre é desenvolvedor mobile especialista em React Native, TypeScript e IA. Mais de 20 anos em tecnologia, premiado por Google, Alura e FIAP. Criador de soluções inovadoras em sustentabilidade e reconhecimento de imagens."
+    : "Rodrigo Alexandre is a mobile developer specialized in React Native, TypeScript, and AI. 20+ years in tech, awarded by Google, Alura, and FIAP. Creator of innovative solutions in sustainability and image recognition.";
+
+  const title = isPortuguese 
+    ? "Rodrigo Alexandre | Desenvolvedor Mobile React Native & IA"
+    : "Rodrigo Alexandre | Mobile Developer React Native & AI";
 
   return {
     title: {
-      default: "Rodrigo Alexandre | Especialista em Mobile, React Native, TypeScript e IA",
+      default: title,
       template: "%s | Rodrigo Alexandre",
     },
     description,
+    keywords: [
+      "Rodrigo Alexandre",
+      "React Native Developer", 
+      "Mobile Developer",
+      "TypeScript",
+      "JavaScript",
+      "AI Developer",
+      "Artificial Intelligence",
+      "Next.js",
+      "AWS",
+      "MongoDB",
+      "Full Stack Developer",
+      "Brazil Developer",
+      "Freelance Developer"
+    ],
+    authors: [{ name: "Rodrigo Alexandre" }],
+    creator: "Rodrigo Alexandre",
+    publisher: "Rodrigo Alexandre",
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    verification: {
+      google: 'your-google-verification-code',
+    },
     openGraph: {
-      title: "Rodrigo Alexandre | Especialista em Mobile, React Native, TypeScript e IA",
+      title,
       description,
       url: "https://rodrigoalexandre.dev",
-      siteName: "Rodrigo Alexandre",
+      siteName: "Rodrigo Alexandre Portfolio",
       images: [
         {
           url: "https://rodrigoalexandre.dev/og-banner.png",
           width: 1200,
           height: 630,
-          alt: "Rodrigo Alexandre - Desenvolvedor Mobile",
+          alt: "Rodrigo Alexandre - Mobile Developer specialized in React Native and AI",
         },
       ],
       locale: isPortuguese ? "pt_BR" : "en_US",
@@ -49,10 +90,18 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Rodrigo Alexandre | Especialista em Mobile, React Native, TypeScript e IA",
+      title,
       description,
       site: "@rodrigoalexandre79",
+      creator: "@rodrigoalexandre79",
       images: ["https://rodrigoalexandre.dev/og-banner.png"],
+    },
+    alternates: {
+      canonical: "https://rodrigoalexandre.dev",
+      languages: {
+        'en-US': 'https://rodrigoalexandre.dev/en',
+        'pt-BR': 'https://rodrigoalexandre.dev/pt',
+      },
     },
   };
 }
