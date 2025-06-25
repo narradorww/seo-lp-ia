@@ -61,9 +61,12 @@ export function generateWebsiteStructuredData(): WithContext<WebSite> {
     },
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://rodrigoalexandre.dev/search?q={search_term_string}",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://rodrigoalexandre.dev/search?q={search_term_string}"
+      },
       "query-input": "required name=search_term_string"
-    }
+    } as any
   };
 }
 

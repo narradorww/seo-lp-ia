@@ -31,6 +31,17 @@ export function useTrackVisitor() {
       try {
         // 1. Obtem IP e localização via Vercel Edge
         const geoRes = await fetch('/api/geo');
+        
+        if (!geoRes.ok) {
+          throw new Error(`Geo API failed: ${geoRes.status} ${geoRes.statusText}`);
+        }
+        
+        const contentType = geoRes.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          const text = await geoRes.text();
+          throw new Error(`Expected JSON but got: ${contentType}. Response: ${text.substring(0, 100)}`);
+        }
+        
         const geoData = await geoRes.json();
 
         // 2. Extrai dados de navegação

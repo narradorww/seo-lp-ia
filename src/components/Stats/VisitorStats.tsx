@@ -36,6 +36,18 @@ export default function VisitorStats() {
   const fetchVisitorStats = async () => {
     try {
       const response = await fetch('/api/stats');
+      
+      if (!response.ok) {
+        throw new Error(`Stats API failed: ${response.status} ${response.statusText}`);
+      }
+      
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        const text = await response.text();
+        console.error('Expected JSON but got:', contentType, 'Response:', text.substring(0, 200));
+        throw new Error('Invalid response format');
+      }
+      
       const data = await response.json();
       
       if (data.stats) {

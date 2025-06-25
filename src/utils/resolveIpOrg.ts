@@ -34,6 +34,13 @@ export async function resolveIpOrg(ip: string): Promise<string | null> {
           continue;
         }
         
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          const text = await response.text();
+          console.warn(`[resolveIpOrg] ${service.name} retornou não-JSON:`, contentType, text.substring(0, 100));
+          continue;
+        }
+        
         const data = await response.json();
         const org = service.extractOrg(data);
         

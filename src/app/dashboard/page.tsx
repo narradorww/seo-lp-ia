@@ -80,6 +80,18 @@ export default function DashboardPage() {
       setIsLoading(true);
       try {
         const res = await fetch('/api/stats');
+        
+        if (!res.ok) {
+          throw new Error(`Dashboard API failed: ${res.status} ${res.statusText}`);
+        }
+        
+        const contentType = res.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          const text = await res.text();
+          console.error('Expected JSON but got:', contentType, 'Response:', text.substring(0, 200));
+          throw new Error('Invalid response format from stats API');
+        }
+        
         const data = await res.json();
         setDashboardData(data);
       } catch (error) {

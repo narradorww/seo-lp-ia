@@ -12,7 +12,18 @@ export function useGitHubRepos(username: string) {
     async function fetchRepos() {
       try {
         const response = await fetch(`https://api.github.com/users/${username}/repos?sort=stars&direction=desc`);
-        if (!response.ok) throw new Error(`Erro: ${response.status}`);
+        
+        if (!response.ok) {
+          throw new Error(`GitHub API failed: ${response.status} ${response.statusText}`);
+        }
+        
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          const text = await response.text();
+          console.error('GitHub API returned non-JSON:', contentType, text.substring(0, 200));
+          throw new Error('Invalid GitHub API response format');
+        }
+        
         const data: GitHubRepo[] = await response.json();
         const topRepos = data.slice(0, REPOS_TO_DISPLAY);
         setRepos(topRepos);
