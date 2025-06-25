@@ -2,6 +2,7 @@
 
 .section {
     padding: 6rem 1.5rem;
+    position: relative;
   }
   
   .container {
@@ -32,5 +33,35 @@
     flex-direction: column;
     gap: 4rem;
   }
+
+  .scrollDown {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
   
+  .scrollDown:hover {
+    opacity: 1;
+  }
+  
+  .scrollDown a {
+    color: var(--primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+  
+  .scrollDown a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(2px);
+  }
  

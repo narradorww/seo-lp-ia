@@ -1,6 +1,7 @@
 'use client';
 
 import { Badge } from 'lucide-react';
+import Image from 'next/image';
 import styles from './ProjectCard.module.css';
 
 
@@ -23,25 +24,46 @@ export default function ProjectCard({
     technologies,
     isReversed = false
 }: ProjectCardProps) {
+    // Generate descriptive alt text for better accessibility and AI understanding
+    const altText = `Screenshot of ${title} project showing ${description.toLowerCase()}`;
+    
     return (
-        <div className={`${styles.projectGrid} ${isReversed ? styles.reversed : ''}`}>
-  <div className={styles.imageWrapper}>
-    <img src={image} alt={title} />
-  </div>
-  <div className={styles.content}>
-    <h3 className={styles.projectTitle}>{title}</h3>
-    <p className={styles.projectDescription}>{description}</p>
-    <div className={styles.sectionHeader}>Challenge</div>
-    <p className={styles.textBlock}>{challenge}</p>
-    <div className={styles.sectionHeader}>Outcome</div>
-    <p className={styles.textBlock}>{outcome}</p>
-    <div className={styles.techList}>
-      {technologies.map((tech) => (
-        <span key={tech}>{tech}</span>
-      ))}
-    </div>
-  </div>
-</div>
-
+        <article className={`${styles.projectGrid} ${isReversed ? styles.reversed : ''}`} itemScope itemType="https://schema.org/CreativeWork">
+            <div className={styles.imageWrapper}>
+                <Image 
+                    src={image} 
+                    alt={altText}
+                    width={400}
+                    height={300}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    loading="lazy"
+                    itemProp="image"
+                />
+            </div>
+            <div className={styles.content}>
+                <header>
+                    <h3 className={styles.projectTitle} itemProp="name">{title}</h3>
+                    <p className={styles.projectDescription} itemProp="description">{description}</p>
+                </header>
+                
+                <section aria-labelledby={`challenge-${title.replace(/\s+/g, '-').toLowerCase()}`}>
+                    <h4 id={`challenge-${title.replace(/\s+/g, '-').toLowerCase()}`} className={styles.sectionHeader}>Challenge</h4>
+                    <p className={styles.textBlock}>{challenge}</p>
+                </section>
+                
+                <section aria-labelledby={`outcome-${title.replace(/\s+/g, '-').toLowerCase()}`}>
+                    <h4 id={`outcome-${title.replace(/\s+/g, '-').toLowerCase()}`} className={styles.sectionHeader}>Outcome</h4>
+                    <p className={styles.textBlock}>{outcome}</p>
+                </section>
+                
+                <footer>
+                    <div className={styles.techList} role="list" aria-label="Technologies used">
+                        {technologies.map((tech) => (
+                            <span key={tech} role="listitem" itemProp="keywords">{tech}</span>
+                        ))}
+                    </div>
+                </footer>
+            </div>
+        </article>
     );
 }

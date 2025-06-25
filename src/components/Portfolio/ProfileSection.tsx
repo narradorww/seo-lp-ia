@@ -34,7 +34,9 @@ export default function ProfileSection() {
             </p>
             <div className={styles.badgeList} role="list" aria-label="Technical skills">
               {skills.map(skill => (
-                <Badge key={skill} role="listitem">{skill}</Badge>
+                <span key={skill} role="listitem">
+                  <Badge>{skill}</Badge>
+                </span>
               ))}
             </div>
           </article>

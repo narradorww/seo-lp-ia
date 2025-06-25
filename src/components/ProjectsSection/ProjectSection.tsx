@@ -2,6 +2,7 @@
 
 import ProjectCard from '../common/ProjectCard';
 import styles from './ProjectsSection.module.css';
+import { ArrowDown } from 'lucide-react';
 
 const projects = [
   {
@@ -31,29 +32,65 @@ const projects = [
 ];
 
 export default function ProjectsSection() {
-  return (
-    <section id="projects" className={styles.section}>
-      <div className={styles.container}>
-        <h2 className={styles.sectionTitle}>Featured <span className={styles.highlight}>Projects</span></h2>
-        <p className={styles.description}>
-          A selection of my most impactful work, showcasing problem-solving abilities and technical expertise in mobile development and AI solutions.
-        </p>
+  // Generate structured data for projects
+  const projectsStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Featured Projects by Rodrigo Alexandre",
+    "description": "Award-winning mobile development and AI projects",
+    "itemListElement": projects.map((project, index) => ({
+      "@type": "CreativeWork",
+      "position": index + 1,
+      "name": project.title,
+      "description": project.description,
+      "image": `https://rodrigoalexandre.dev${project.image}`,
+      "keywords": project.technologies.join(", "),
+      "author": {
+        "@type": "Person",
+        "name": "Rodrigo Alexandre"
+      }
+    }))
+  };
 
-        <div className={styles.projectsList}>
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={project.title}
-              title={project.title}
-              description={project.description}
-              challenge={project.challenge}
-              outcome={project.outcome}
-              image={project.image}
-              technologies={project.technologies}
-              isReversed={index % 2 !== 0}
-            />
-          ))}
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(projectsStructuredData),
+        }}
+      />
+      <section id="projects" className={styles.section} role="main" aria-labelledby="projects-heading">
+        <div className={styles.container}>
+          <header>
+            <h2 id="projects-heading" className={styles.sectionTitle}>Featured <span className={styles.highlight}>Projects</span></h2>
+            <p className={styles.description}>
+              A selection of my most impactful work, showcasing problem-solving abilities and technical expertise in mobile development and AI solutions.
+            </p>
+          </header>
+
+          <div className={styles.projectsList} role="list" aria-label="Featured projects">
+            {projects.map((project, index) => (
+              <ProjectCard
+                key={project.title}
+                title={project.title}
+                description={project.description}
+                challenge={project.challenge}
+                outcome={project.outcome}
+                image={project.image}
+                technologies={project.technologies}
+                isReversed={index % 2 !== 0}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+        
+        <div className={styles.scrollDown} role="navigation" aria-label="Navigate to achievements section">
+          <a href="#achievements" aria-label="Scroll down to achievements section">
+            <ArrowDown size={24} />
+          </a>
+        </div>
+      </section>
+    </>
   );
 }
