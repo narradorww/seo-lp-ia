@@ -3,6 +3,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { Smartphone } from 'lucide-react';
 import QRCodeDownload from '@/components/common/QRCodeDownload';
+import InternalStoreClient from './InternalStoreClient';
 import styles from './InternalStore.module.css';
 
 export const metadata: Metadata = {
@@ -83,6 +84,7 @@ export default async function InternalStorePage() {
 
   return (
     <div className={styles.container}>
+      <InternalStoreClient />
       <main className={styles.main}>
         <header className={styles.header}>
           <div className={styles.titleSection}>

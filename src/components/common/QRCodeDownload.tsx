@@ -1,5 +1,6 @@
 import { QRCodeSVG } from 'qrcode.react';
 import { Download } from 'lucide-react';
+import { trackDownload } from '@/hooks/useTrackInternalStore';
 import styles from './QRCodeDownload.module.css';
 
 interface QRCodeDownloadProps {
@@ -43,6 +44,7 @@ export default function QRCodeDownload({
             href={downloadUrl}
             download={fileName}
             className={styles.downloadButton}
+            onClick={trackDownload(fileName, downloadUrl)}
           >
             <Download size={16} />
             Download APK

@@ -3,6 +3,11 @@ import { VisitData } from '@/types/visitor';
 export function calculateLeadScore(visit: VisitData): number {
   let score = 0;
 
+  // 🏪 SUPER BOOST: Acesso à Internal Store (equivale a recruiter!)
+  if (visit.page === '/internal-store' || visit.action === 'apk_download') {
+    score += 100; // Valor máximo - interesse em tecnologia e apps
+  }
+
   // 🌍 País estrangeiro (não Brasil)
   if (visit.geo?.country && !['BR', 'Brazil'].includes(visit.geo.country)) {
     score += 30;
