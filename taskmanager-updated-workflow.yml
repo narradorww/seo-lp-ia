@@ -1,0 +1,20 @@
+# Adicione estas linhas ao final do job build-android no TaskManager:
+
+      # Enviar notificação de APK publicado
+      - name: Notify APK deployment
+        run: |
+          APK_SIZE=$(du -h android/app/build/outputs/apk/debug/app-debug.apk | cut -f1)
+          DOWNLOAD_URL="https://rodrigoalexandre.com/builds/taskmanager-v${{ github.run_number }}.apk"
+          
+          curl -X POST "https://rodrigoalexandre.com/api/webhook/apk-uploaded" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.WEBHOOK_SECRET }}" \
+            -d "{
+              \"fileName\": \"taskmanager-v${{ github.run_number }}.apk\",
+              \"version\": \"v${{ github.run_number }}\",
+              \"size\": \"$APK_SIZE\",
+              \"downloadUrl\": \"$DOWNLOAD_URL\",
+              \"buildNumber\": \"${{ github.run_number }}\",
+              \"commitMessage\": \"${{ github.event.head_commit.message }}\",
+              \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)\"
+            }" || echo "Webhook notification failed, but continuing..."

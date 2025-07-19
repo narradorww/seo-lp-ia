@@ -1,0 +1,148 @@
+name: Notify New APK Upload
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'public/builds/*.apk'
+
+jobs:
+  notify-apk-upload:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
+
+    - name: Get APK info
+      id: apk-info
+      run: |
+        # Encontra APKs adicionados no último commit
+        NEW_APKS=$(git diff --name-only HEAD~1 HEAD | grep "public/builds/.*\.apk$" || true)
+        
+        if [ -z "$NEW_APKS" ]; then
+          echo "No new APKs found"
+          echo "has_new_apk=false" >> $GITHUB_OUTPUT
+          exit 0
+        fi
+        
+        echo "has_new_apk=true" >> $GITHUB_OUTPUT
+        
+        # Pega informações do primeiro APK encontrado
+        FIRST_APK=$(echo "$NEW_APKS" | head -1)
+        APK_NAME=$(basename "$FIRST_APK")
+        
+        # Extrai versão do nome do arquivo
+        VERSION=$(echo "$APK_NAME" | grep -o 'v[0-9]\+' || echo "v1.0")
+        
+        # Calcula tamanho do arquivo
+        if [ -f "$FIRST_APK" ]; then
+          SIZE=$(du -h "$FIRST_APK" | cut -f1)
+        else
+          SIZE="Unknown"
+        fi
+        
+        # URL para download
+        DOWNLOAD_URL="https://${{ github.repository_owner }}.github.io/seo-lp-ia/$FIRST_APK"
+        if [ "${{ github.repository_owner }}" = "narradorww" ]; then
+          DOWNLOAD_URL="https://rodrigoalexandre.com/$FIRST_APK"
+        fi
+        
+        echo "apk_name=$APK_NAME" >> $GITHUB_OUTPUT
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "size=$SIZE" >> $GITHUB_OUTPUT
+        echo "download_url=$DOWNLOAD_URL" >> $GITHUB_OUTPUT
+        echo "commit_message=${{ github.event.head_commit.message }}" >> $GITHUB_OUTPUT
+
+    - name: Send notification email
+      if: steps.apk-info.outputs.has_new_apk == 'true'
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.resend.com
+        server_port: 587
+        username: resend
+        password: ${{ secrets.RESEND_API_KEY }}
+        subject: "🚀 Novo APK Disponível na Internal Store!"
+        from: ${{ secrets.EMAIL_FROM }}
+        to: ${{ secrets.EMAIL_TO }}
+        html_body: |
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <meta charset="utf-8">
+            <style>
+              body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; }
+              .header { background: linear-gradient(135deg, #0070f3, #f5a623); color: white; padding: 20px; border-radius: 8px 8px 0 0; }
+              .content { background: #f8f9fa; padding: 20px; }
+              .apk-info { background: white; padding: 20px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #0070f3; }
+              .download-btn { display: inline-block; background: #0070f3; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; margin: 10px 0; }
+              .footer { background: #333; color: #ccc; padding: 15px; text-align: center; font-size: 12px; border-radius: 0 0 8px 8px; }
+            </style>
+          </head>
+          <body>
+            <div class="header">
+              <h1>📱 Novo APK Publicado!</h1>
+              <p>Uma nova versão do aplicativo foi automaticamente deployada na Internal Store</p>
+            </div>
+            
+            <div class="content">
+              <div class="apk-info">
+                <h2>📦 Detalhes do APK</h2>
+                <p><strong>📁 Arquivo:</strong> ${{ steps.apk-info.outputs.apk_name }}</p>
+                <p><strong>🏷️ Versão:</strong> ${{ steps.apk-info.outputs.version }}</p>
+                <p><strong>📏 Tamanho:</strong> ${{ steps.apk-info.outputs.size }}</p>
+                <p><strong>🕒 Data:</strong> ${{ github.event.head_commit.timestamp }}</p>
+                <p><strong>💬 Commit:</strong> ${{ github.event.head_commit.message }}</p>
+              </div>
+              
+              <div style="text-align: center; margin: 20px 0;">
+                <a href="${{ steps.apk-info.outputs.download_url }}" class="download-btn">
+                  📱 Download Direto
+                </a>
+                <br><br>
+                <a href="https://rodrigoalexandre.com/internal-store" class="download-btn" style="background: #f5a623;">
+                  🏪 Ver Internal Store
+                </a>
+              </div>
+              
+              <div style="background: #e3f2fd; padding: 15px; border-radius: 6px; margin: 15px 0;">
+                <h3>🎯 Próximos Passos</h3>
+                <ul>
+                  <li>✅ APK disponível na Internal Store</li>
+                  <li>📊 Analytics de download serão trackados</li>
+                  <li>🔔 Notificações de leads ativadas</li>
+                  <li>📱 QR Code gerado automaticamente</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="footer">
+              <p>🤖 Notificação automática do GitHub Actions</p>
+              <p>Repository: ${{ github.repository }} | Build: #${{ github.run_number }}</p>
+            </div>
+          </body>
+          </html>
+        body: |
+          🚀 Novo APK Disponível na Internal Store!
+          
+          📦 Detalhes:
+          - Arquivo: ${{ steps.apk-info.outputs.apk_name }}
+          - Versão: ${{ steps.apk-info.outputs.version }}
+          - Tamanho: ${{ steps.apk-info.outputs.size }}
+          - Data: ${{ github.event.head_commit.timestamp }}
+          
+          💬 Commit: ${{ github.event.head_commit.message }}
+          
+          📱 Download: ${{ steps.apk-info.outputs.download_url }}
+          🏪 Internal Store: https://rodrigoalexandre.com/internal-store
+          
+          🎯 O APK está disponível para download e o tracking de leads está ativo!
+
+    - name: Update sitemap (optional)
+      if: steps.apk-info.outputs.has_new_apk == 'true'
+      run: |
+        echo "✅ APK ${{ steps.apk-info.outputs.apk_name }} successfully deployed"
+        echo "📊 Analytics and lead tracking are now active"
+        echo "🔗 Available at: ${{ steps.apk-info.outputs.download_url }}"

@@ -62,6 +62,8 @@ export interface VisitorGeoData {
     leadScore?: number;
     enrichment?: string;
     structuredEnrichment?: EnrichmentData;
+    page?: string;
+    action?: string;
   }
   
   
