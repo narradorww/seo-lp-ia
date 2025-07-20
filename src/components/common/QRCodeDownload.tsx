@@ -1,3 +1,5 @@
+'use client';
+
 import { QRCodeSVG } from 'qrcode.react';
 import { Download } from 'lucide-react';
 import { trackDownload } from '@/hooks/useTrackInternalStore';
