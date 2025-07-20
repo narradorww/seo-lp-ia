@@ -42,7 +42,7 @@ function formatDate(timestamp: Date): string {
 }
 
 function extractVersion(filename: string): string {
-  const match = filename.match(/app-v(\d+)\.apk$/);
+  const match = filename.match(/v(\d+)\.apk$/);
   return match ? `v${match[1]}` : 'v1.0';
 }
 
