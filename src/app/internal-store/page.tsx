@@ -129,11 +129,17 @@ export default async function InternalStorePage() {
         <aside className={styles.instructions}>
           <h2>Como usar</h2>
           <ol>
+            <li><strong>Primeiro:</strong> Faça login na Vercel (necessário para acesso aos arquivos)</li>
             <li>Escaneie o QR Code com seu dispositivo Android</li>
             <li>Ou clique no botão "Download APK" para baixar diretamente</li>
-            <li>Ative "Instalação de fontes desconhecidas" nas configurações</li>
+            <li>Ative "Instalação de fontes desconhecidas" nas configurações do Android</li>
             <li>Instale o APK baixado</li>
           </ol>
+          
+          <div className={styles.loginNote}>
+            <p><strong>⚠️ Importante:</strong> O download requer autenticação na Vercel. 
+            Certifique-se de estar logado antes de tentar baixar.</p>
+          </div>
         </aside>
       </main>
     </div>
