@@ -1,29 +1,23 @@
-// __tests__/components/Layout/Header.test.tsx
-
 import { render, screen, fireEvent } from '@testing-library/react';
-import Header from '@components/Layout/Header';
+import Header from '@/components/Layout/Header';
 
 describe('Header', () => {
-  it('renderiza logo e links externos', () => {
+  it('renderiza o logo', () => {
     render(<Header />);
-
-   
-    expect(screen.getByText(/RODRIGOALEXANDRE.DEV/i)).toBeInTheDocument();
-
-  
-    expect(screen.getByText(/GitHub/i)).toBeInTheDocument();
-    expect(screen.getByText(/LinkedIn/i)).toBeInTheDocument();
-    expect(screen.getByText(/Medium/i)).toBeInTheDocument();
+    expect(screen.getByText(/Rodrigo/i)).toBeInTheDocument();
+    expect(screen.getByText(/Alexandre/i)).toBeInTheDocument();
   });
 
-  it('abre o menu hamburguer no mobile', () => {
+  it('abre o menu hamburguer no mobile e exibe os links', () => {
     render(<Header />);
 
-    const menuButton = screen.getByRole('button');
+    const menuButton = screen.getByRole('button', { name: /Toggle menu/i });
     fireEvent.click(menuButton);
 
-    expect(screen.getByText(/GitHub/i)).toBeVisible();
-    expect(screen.getByText(/LinkedIn/i)).toBeVisible();
-    expect(screen.getByText(/Medium/i)).toBeVisible();
+    expect(screen.getByText(/Profile/i)).toBeVisible();
+    expect(screen.getByText(/Projects/i)).toBeVisible();
+    expect(screen.getByText(/Achievements/i)).toBeVisible();
+    expect(screen.getByText(/Apps/i)).toBeVisible();
+    expect(screen.getByText(/Contact Me/i)).toBeVisible();
   });
 });

@@ -7,6 +7,6 @@ describe('Footer', () => {
   it('exibe o copyright com o ano atual', () => {
     render(<Footer />);
     const year = new Date().getFullYear();
-    expect(screen.getByText(`© ${year} Rodrigo Alexandre. Todos os direitos reservados.`)).toBeInTheDocument();
+    expect(screen.getByText(`© ${year} Rodrigo Alexandre. All rights reserved.`)).toBeInTheDocument();
   });
 });
