@@ -12,6 +12,7 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.848.0",
     "@types/react-slick": "^0.23.13",
     "@types/ua-parser-js": "^0.7.39",
     "@vercel/edge": "^1.2.1",
