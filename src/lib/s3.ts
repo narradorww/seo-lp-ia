@@ -39,6 +39,7 @@ export async function listApkFiles(): Promise<S3ApkFile[]> {
 
     const apkFiles = response.Contents
       .filter(obj => obj.Key?.endsWith('.apk'))
+      .sort((a, b) => (b.LastModified?.getTime() || 0) - (a.LastModified?.getTime() || 0))
       .map(obj => {
         const fileName = obj.Key!.replace(APK_PREFIX, '');
         return {
@@ -49,8 +50,7 @@ export async function listApkFiles(): Promise<S3ApkFile[]> {
           version: extractVersion(fileName),
           key: obj.Key!,
         };
-      })
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      });
 
     return apkFiles;
   } catch (error) {

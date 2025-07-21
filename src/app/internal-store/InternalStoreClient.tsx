@@ -42,13 +42,14 @@ export default function InternalStoreClient({ apkFiles }: InternalStoreClientPro
           </div>
         ) : (
           <div className={styles.apkList}>
-            {apkFiles.map((apk) => (
+            {apkFiles.map((apk, index) => (
               <QRCodeDownload
                 key={apk.name}
                 downloadUrl={apk.url}
                 fileName={apk.name}
                 fileSize={apk.size}
                 fileDate={apk.date}
+                isLatest={index === 0}
               />
             ))}
           </div>

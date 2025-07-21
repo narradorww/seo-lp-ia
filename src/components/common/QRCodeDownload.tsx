@@ -1,7 +1,7 @@
 'use client';
 
 import { QRCodeSVG } from 'qrcode.react';
-import { Download } from 'lucide-react';
+import { Download, Star } from 'lucide-react'; // Importa o ícone de estrela
 import { trackDownload } from '@/hooks/useTrackInternalStore';
 import styles from './QRCodeDownload.module.css';
 
@@ -10,6 +10,7 @@ interface QRCodeDownloadProps {
   fileName: string;
   fileSize: string;
   fileDate: string;
+  isLatest?: boolean; // Propriedade opcional para a versão mais recente
 }
 
 export default function QRCodeDownload({
@@ -17,9 +18,17 @@ export default function QRCodeDownload({
   fileName,
   fileSize,
   fileDate,
+  isLatest = false, // Valor padrão é falso
 }: QRCodeDownloadProps) {
   return (
-    <article className={styles.container}>
+    <article className={`${styles.container} ${isLatest ? styles.latest : ''}`}>
+      {isLatest && (
+        <div className={styles.latestBadge}>
+          <Star size={16} />
+          <span>Mais Recente</span>
+        </div>
+      )}
+      
       <div className={styles.qrSection}>
         <div className={styles.qrWrapper}>
           <QRCodeSVG
