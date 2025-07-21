@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 require('dotenv').config({ path: '.env.local' });
 
 const nextConfig: NextConfig = {
+  transpilePackages: ['@aws-sdk/client-s3'],
   reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true, // ⬅️ Ignora erros do ESLint durante o build (na Vercel também)
