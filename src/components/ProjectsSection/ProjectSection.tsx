@@ -3,15 +3,17 @@
 import ProjectCard from '../common/ProjectCard';
 import styles from './ProjectsSection.module.css';
 import { ArrowDown } from 'lucide-react';
+import { generateProjectsStructuredData, type ProjectData } from '@/utils/structuredData';
 
-const projects = [
+const projects: ProjectData[] = [
   {
     title: "Fretador (Logistics App)",
     description: "Mobile freight management solution for TRC Logistics",
     challenge: "Taking charge of an unfinished project that required significant refactoring, process implementation, and LGPD compliance to meet industry standards.",
     outcome: "Successfully delivered a complete, compliant freight management platform with improved code quality, enhanced user experience, and increased customer trust.",
     image: "/images/fretador.png",
-    technologies: ["React Native", "Next.js", "Node.js", "MongoDB", "AWS"]
+    technologies: ["React Native", "Next.js", "Node.js", "MongoDB", "AWS"],
+    dateCreated: "2024"
   },
   {
     title: "RecicleLink",
@@ -19,7 +21,9 @@ const projects = [
     challenge: "Creating a platform to connect recycling cooperatives with waste generators and optimize sorting processes that were inefficient and manual.",
     outcome: "Developed a WhatsApp-based chatbot to assist the Embu das Artes community in connecting recycling generators with cooperatives, promoting more efficient and accessible recycling practices.",
     image: "/images/reciclelink.png",
-    technologies: ["Generative AI", "React", "Node.js", "AWS", "Computer Vision"]
+    technologies: ["Generative AI", "React", "Node.js", "AWS", "Computer Vision"],
+    award: "First Place - Hack for Change 2023 (Alura + FIAP)",
+    dateCreated: "2023"
   },
   {
     title: "\"Scooby-Doo, Where Are You?\"",
@@ -27,30 +31,15 @@ const projects = [
     challenge: "Addressing the critical problem of pets getting lost during natural disasters and the difficulty in reuniting them with their owners.",
     outcome: "Created an AI-driven application using image recognition to match lost pets with their owners, recognized among 1200+ projects for its innovative approach.",
     image: "/images/scooby.png",
-    technologies: ["Image Recognition", "React Native", "Google Cloud", "Google Gemini"]
+    technologies: ["Image Recognition", "React Native", "Google Cloud", "Google Gemini"],
+    award: "6th Place - AI Immersion 2024 (Alura + Google) - Top 0.5% among 1200+ projects",
+    dateCreated: "2024"
   }
 ];
 
 export default function ProjectsSection() {
-  // Generate structured data for projects
-  const projectsStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "Featured Projects by Rodrigo Alexandre",
-    "description": "Award-winning mobile development and AI projects",
-    "itemListElement": projects.map((project, index) => ({
-      "@type": "CreativeWork",
-      "position": index + 1,
-      "name": project.title,
-      "description": project.description,
-      "image": `https://rodrigoalexandre.dev${project.image}`,
-      "keywords": project.technologies.join(", "),
-      "author": {
-        "@type": "Person",
-        "name": "Rodrigo Alexandre"
-      }
-    }))
-  };
+  // Generate enriched structured data for projects using utility function
+  const projectsStructuredData = generateProjectsStructuredData(projects);
 
   return (
     <>
@@ -75,8 +64,8 @@ export default function ProjectsSection() {
                 key={project.title}
                 title={project.title}
                 description={project.description}
-                challenge={project.challenge}
-                outcome={project.outcome}
+                challenge={project.challenge || ''}
+                outcome={project.outcome || ''}
                 image={project.image}
                 technologies={project.technologies}
                 isReversed={index % 2 !== 0}

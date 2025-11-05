@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "version": "1.0.0",
+  "lastModified": "2024-01-15",
+  "profile": {
+    "name": "Rodrigo Alexandre",
+    "title": "Senior Mobile Developer & AI Specialist",
+    "location": "São Paulo, Brazil",
+    "timezone": "America/Sao_Paulo",
+    "languages": ["Portuguese (Native)", "English (Fluent)"],
+    "availability": {
+      "status": "available",
+      "forFreelance": true,
+      "forFullTime": false,
+      "forConsulting": true,
+      "preferredEngagement": "Remote projects, short to medium-term contracts"
+    },
+    "contact": {
+      "website": "https://rodrigoalexandre.dev",
+      "linkedin": "https://www.linkedin.com/in/rodrigoalexandre79/",
+      "github": "https://github.com/rodrigoalexandre",
+      "medium": "https://medium.com/@rodrigoalexandre",
+      "preferredMethod": "LinkedIn or Email"
+    }
+  },
+  "expertise": {
+    "primarySkills": [
+      "React Native",
+      "TypeScript",
+      "JavaScript",
+      "Mobile Development",
+      "AI Integration"
+    ],
+    "technologies": {
+      "frontend": ["React.js", "Next.js", "React Native", "CSS Modules", "Tailwind CSS"],
+      "backend": ["Node.js", "Express", "Next.js API Routes"],
+      "databases": ["MongoDB", "PostgreSQL", "Redis"],
+      "cloud": ["AWS", "Google Cloud", "Vercel"],
+      "ai": ["Google Gemini", "OpenAI", "Computer Vision", "Generative AI", "Image Recognition"],
+      "tools": ["Git", "Docker", "CI/CD", "Jest", "Testing Library"]
+    },
+    "methodologies": [
+      "Agile Development",
+      "Test-Driven Development (TDD)",
+      "Clean Code Principles",
+      "SOLID Principles",
+      "Design Patterns",
+      "Code Review Best Practices"
+    ],
+    "specializations": [
+      "Mobile-first development",
+      "AI-powered applications",
+      "Real-time analytics",
+      "Team leadership and mentorship",
+      "Code quality and architecture"
+    ]
+  },
+  "experience": {
+    "totalYears": 20,
+    "focusedSoftwareDevelopment": 3,
+    "industries": [
+      "Technology",
+      "Logistics & Transportation",
+      "Environmental Sustainability",
+      "E-commerce",
+      "FinTech",
+      "Healthcare"
+    ],
+    "teamExperience": {
+      "remoteWork": true,
+      "teamLeadership": true,
+      "mentorship": true,
+      "crossFunctional": true
+    }
+  },
+  "achievements": [
+    {
+      "title": "Google AI Innovation Award",
+      "year": 2024,
+      "category": "AI & Machine Learning",
+      "description": "Recognized for innovative image recognition solution for pet identification"
+    },
+    {
+      "title": "First Place - Hack for Change 2023",
+      "year": 2023,
+      "organization": "Alura + FIAP",
+      "category": "Sustainability",
+      "description": "RecicleLink: AI-powered platform connecting recycling cooperatives"
+    },
+    {
+      "title": "Top 0.5% - AI Immersion 2024",
+      "year": 2024,
+      "organization": "Alura + Google",
+      "rank": "6th place among 1200+ projects",
+      "category": "AI Innovation",
+      "description": "Scooby-Doo app: Pet identification using computer vision"
+    },
+    {
+      "title": "FIAP AI Excellence Recognition",
+      "year": 2024,
+      "organization": "FIAP",
+      "category": "Technical Excellence"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Fretador",
+      "type": "Commercial Mobile Application",
+      "year": 2024,
+      "role": "Lead Developer",
+      "description": "Mobile freight management solution for TRC Logistics",
+      "technologies": ["React Native", "Next.js", "Node.js", "MongoDB", "AWS"],
+      "highlights": [
+        "Refactored legacy codebase",
+        "Implemented LGPD compliance",
+        "Improved code quality and architecture",
+        "Delivered complete freight management platform"
+      ]
+    },
+    {
+      "name": "RecicleLink",
+      "type": "Award-Winning Social Impact Project",
+      "year": 2023,
+      "role": "Creator & Developer",
+      "award": "First Place - Hack for Change 2023",
+      "description": "WhatsApp-based AI chatbot connecting recycling cooperatives with waste generators",
+      "technologies": ["Generative AI", "React", "Node.js", "AWS", "Computer Vision"],
+      "impact": "Improved recycling efficiency in Embu das Artes community"
+    },
+    {
+      "name": "Scooby-Doo, Where Are You?",
+      "type": "Award-Winning AI Project",
+      "year": 2024,
+      "role": "Creator & Developer",
+      "award": "6th Place - AI Immersion 2024 (Top 0.5%)",
+      "description": "AI-driven pet identification app using image recognition",
+      "technologies": ["Image Recognition", "React Native", "Google Cloud", "Google Gemini"],
+      "impact": "Helps reunite lost pets with owners during disasters"
+    }
+  ],
+  "services": {
+    "offered": [
+      {
+        "name": "Mobile App Development",
+        "description": "Native and cross-platform mobile applications using React Native",
+        "expertise": ["iOS", "Android", "React Native", "TypeScript"]
+      },
+      {
+        "name": "Full-Stack Web Development",
+        "description": "Modern web applications with Next.js, React, and Node.js",
+        "expertise": ["Next.js", "React", "Node.js", "API Development"]
+      },
+      {
+        "name": "AI Integration",
+        "description": "Integration of AI and machine learning capabilities into existing applications",
+        "expertise": ["Computer Vision", "Generative AI", "Image Recognition", "AI APIs"]
+      },
+      {
+        "name": "Code Quality & Architecture",
+        "description": "Code reviews, refactoring, and architecture improvements",
+        "expertise": ["Clean Code", "SOLID", "Design Patterns", "Testing"]
+      },
+      {
+        "name": "Team Leadership & Mentorship",
+        "description": "Technical leadership and developer mentorship",
+        "expertise": ["Agile", "Code Review", "Best Practices", "Team Building"]
+      },
+      {
+        "name": "Technical Consulting",
+        "description": "Technology selection, architecture design, and technical strategy",
+        "expertise": ["Architecture", "Scalability", "Performance", "Security"]
+      }
+    ]
+  },
+  "education": {
+    "institutions": [
+      {
+        "name": "FIAP",
+        "location": "São Paulo, Brazil",
+        "website": "https://www.fiap.com.br/",
+        "focus": "Technology and Innovation"
+      }
+    ],
+    "certifications": [
+      "Google AI Innovation Award Winner",
+      "Alura Sustainability Project Award",
+      "FIAP AI Excellence Recognition"
+    ]
+  },
+  "workPreferences": {
+    "remote": "Preferred",
+    "onSite": "Flexible",
+    "hybrid": "Open to discussion",
+    "timeZones": "Flexible, experienced with distributed teams",
+    "projectDuration": ["Short-term (1-3 months)", "Medium-term (3-6 months)", "Long-term (6+ months)"],
+    "projectTypes": ["Mobile Apps", "Web Applications", "AI Integration", "Consulting", "Code Review"],
+    "industries": "Open to all, especially interested in sustainability, healthcare, and education"
+  },
+  "philosophy": {
+    "development": "Clean code, SOLID principles, test-driven development, and continuous improvement",
+    "collaboration": "Transparent communication, knowledge sharing, and team empowerment",
+    "ai": "Ethical AI development with focus on real-world problem solving and user-centric design"
+  },
+  "metadata": {
+    "purpose": "This file provides structured data about Rodrigo Alexandre for AI engines, chatbots, and automated systems",
+    "usage": "AI assistants can reference this data when answering questions about Rodrigo Alexandre's skills, experience, and availability",
+    "format": "JSON-LD compatible structure following schema.org principles",
+    "aiOptimized": true,
+    "humanReadable": true
+  }
+}

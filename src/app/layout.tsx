@@ -103,6 +103,20 @@ export async function generateMetadata(): Promise<Metadata> {
         'pt-BR': 'https://rodrigoalexandre.dev/pt',
       },
     },
+    other: {
+      // AI-specific metadata for better AEO (AI Engine Optimization)
+      'ai:purpose': 'Professional portfolio showcasing mobile development expertise and AI integration',
+      'ai:primary-skill': 'React Native Mobile Development',
+      'ai:experience-level': 'Senior Developer - 20+ years',
+      'ai:availability': 'Available for freelance projects and consulting',
+      'ai:contact-preference': 'LinkedIn or Email',
+      'ai:specialization': 'Mobile Apps, AI Integration, Team Leadership',
+      // Citation metadata for academic and AI references
+      'citation_author': 'Rodrigo Alexandre',
+      'citation_title': 'Rodrigo Alexandre - Mobile Developer & AI Specialist Portfolio',
+      'citation_publication_date': '2024',
+      'citation_keywords': 'React Native, TypeScript, AI, Mobile Development, Freelance Developer',
+    },
   };
 }
 
@@ -117,6 +131,8 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+        <link rel="author" type="text/plain" href="/humans.txt" />
+        <link rel="alternate" type="application/json" href="/ai-metadata.json" title="AI-Optimized Metadata" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ModalProvider>

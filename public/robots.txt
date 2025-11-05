@@ -41,5 +41,9 @@ Allow: /api/geo
 # Sitemap location
 Sitemap: https://rodrigoalexandre.dev/sitemap.xml
 
+# AI-optimized metadata for better understanding
+# AI engines can use this for comprehensive profile data
+AI-Metadata: https://rodrigoalexandre.dev/ai-metadata.json
+
 # Crawl delay (optional - adjust based on server capacity)
 Crawl-delay: 1
