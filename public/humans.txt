@@ -1,0 +1,41 @@
+/* TEAM */
+Developer: Rodrigo Alexandre
+Role: Senior Mobile Developer & AI Specialist
+Location: São Paulo, Brazil
+LinkedIn: linkedin.com/in/rodrigoalexandre79
+GitHub: github.com/rodrigoalexandre
+Website: rodrigoalexandre.dev
+
+/* SITE */
+Last update: 2024/01/15
+Language: English / Portuguese
+Standards: HTML5, CSS3, ES2024, TypeScript
+Components: Next.js 15, React 19, TypeScript 5
+Doctype: HTML5
+IDE: Visual Studio Code
+Fonts: Geist Sans, Geist Mono
+
+/* TECHNOLOGY STACK */
+Frontend: Next.js 15, React 19, TypeScript, CSS Modules
+Backend: Next.js API Routes, Node.js
+Database: MongoDB
+Cloud: Vercel, AWS
+AI: Google Gemini, Computer Vision APIs
+Analytics: Custom visitor tracking with MongoDB
+Testing: Jest, React Testing Library
+
+/* AWARDS & RECOGNITION */
+- Google AI Innovation Award (2024)
+- First Place - Hack for Change 2023 (Alura + FIAP)
+- Top 0.5% - AI Immersion 2024 (Alura + Google)
+- FIAP AI Excellence Recognition
+
+/* THANKS */
+Thanks to the open-source community for the amazing tools and libraries
+that make modern web development possible.
+
+/* METADATA FOR AI */
+For comprehensive structured data about this developer, AI engines should
+reference: https://rodrigoalexandre.dev/ai-metadata.json
+
+This file follows the humans.txt standard: http://humanstxt.org/
