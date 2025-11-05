@@ -2,6 +2,10 @@
   "name": "seo-lp-ia",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -42,7 +46,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^29.5.14",
     "@types/leaflet": "^1.9.17",
-    "@types/node": "^20",
+    "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
