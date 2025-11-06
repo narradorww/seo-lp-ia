@@ -1,0 +1,237 @@
+.container {
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+}
+
+.toolbar {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+}
+
+.toolbarGroup {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0 0.5rem;
+  border-right: 1px solid #e2e8f0;
+}
+
+.toolbarGroup:last-child {
+  border-right: none;
+}
+
+.toolButton {
+  padding: 0.5rem 0.75rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  color: #475569;
+  min-width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toolButton:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.toolButton.active {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.editorContainer {
+  position: relative;
+}
+
+.textarea {
+  width: 100%;
+  padding: 1.5rem;
+  border: none;
+  outline: none;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  resize: vertical;
+  color: #1e293b;
+}
+
+.textarea::placeholder {
+  color: #94a3b8;
+}
+
+.preview {
+  padding: 1.5rem;
+  overflow-y: auto;
+  background: #fafafa;
+}
+
+/* Markdown Preview Styles */
+.preview h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 1.5rem 0 1rem;
+  color: #1e293b;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+}
+
+.preview h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1.25rem 0 0.75rem;
+  color: #334155;
+}
+
+.preview h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1rem 0 0.5rem;
+  color: #475569;
+}
+
+.preview p {
+  margin: 0.75rem 0;
+  line-height: 1.7;
+  color: #334155;
+}
+
+.preview a {
+  color: #667eea;
+  text-decoration: none;
+  border-bottom: 1px solid #667eea;
+}
+
+.preview a:hover {
+  color: #764ba2;
+  border-color: #764ba2;
+}
+
+.preview code {
+  background: #f1f5f9;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.875rem;
+  color: #e11d48;
+}
+
+.preview pre {
+  background: #1e293b;
+  color: #f1f5f9;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.preview pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.preview blockquote {
+  border-left: 4px solid #667eea;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: #64748b;
+  font-style: italic;
+}
+
+.preview ul,
+.preview ol {
+  margin: 0.75rem 0;
+  padding-left: 2rem;
+}
+
+.preview li {
+  margin: 0.25rem 0;
+  line-height: 1.6;
+}
+
+.preview table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.preview th,
+.preview td {
+  border: 1px solid #e2e8f0;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.preview th {
+  background: #f8fafc;
+  font-weight: 600;
+  color: #475569;
+}
+
+.preview tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin: 1rem 0;
+}
+
+.preview hr {
+  border: none;
+  border-top: 2px solid #e2e8f0;
+  margin: 2rem 0;
+}
+
+.help {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  font-size: 0.8rem;
+  color: #64748b;
+  align-items: center;
+}
+
+.help span {
+  white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .toolbar {
+    padding: 0.5rem;
+  }
+
+  .toolButton {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
+    min-width: 32px;
+  }
+
+  .textarea,
+  .preview {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .help {
+    flex-wrap: wrap;
+    font-size: 0.75rem;
+  }
+}
