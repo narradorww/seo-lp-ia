@@ -15,8 +15,11 @@ export default function NewPostPage() {
     tags: '',
     category: '',
     status: 'draft' as 'draft' | 'published',
+    metaTitle: '',
     metaDescription: '',
     metaKeywords: '',
+    ogTitle: '',
+    ogDescription: '',
     featured: false,
   });
 
@@ -37,8 +40,11 @@ export default function NewPostPage() {
           status: formData.status,
           featured: formData.featured,
           seo: {
+            metaTitle: formData.metaTitle || undefined,
             metaDescription: formData.metaDescription,
             metaKeywords: formData.metaKeywords.split(',').map(k => k.trim()).filter(Boolean),
+            ogTitle: formData.ogTitle || undefined,
+            ogDescription: formData.ogDescription || undefined,
           },
         }),
       });
@@ -117,6 +123,19 @@ export default function NewPostPage() {
           </div>
         </div>
 
+        <h2 className={styles.sectionTitle}>SEO Settings</h2>
+
+        <div className={styles.field}>
+          <label>Meta Title (Optional)</label>
+          <input
+            type="text"
+            value={formData.metaTitle}
+            onChange={(e) => setFormData({ ...formData, metaTitle: e.target.value })}
+            maxLength={60}
+            placeholder="Leave empty to use post title"
+          />
+        </div>
+
         <div className={styles.field}>
           <label>Meta Description * (SEO)</label>
           <textarea
@@ -138,6 +157,28 @@ export default function NewPostPage() {
             onChange={(e) => setFormData({ ...formData, metaKeywords: e.target.value })}
             placeholder="keyword1, keyword2, keyword3"
             required
+          />
+        </div>
+
+        <div className={styles.field}>
+          <label>OpenGraph Title (Optional)</label>
+          <input
+            type="text"
+            value={formData.ogTitle}
+            onChange={(e) => setFormData({ ...formData, ogTitle: e.target.value })}
+            maxLength={60}
+            placeholder="Leave empty to use meta title or post title"
+          />
+        </div>
+
+        <div className={styles.field}>
+          <label>OpenGraph Description (Optional)</label>
+          <textarea
+            value={formData.ogDescription}
+            onChange={(e) => setFormData({ ...formData, ogDescription: e.target.value })}
+            maxLength={160}
+            rows={2}
+            placeholder="Leave empty to use meta description"
           />
         </div>
 

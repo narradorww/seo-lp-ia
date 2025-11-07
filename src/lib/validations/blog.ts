@@ -31,8 +31,11 @@ export const coverImageSchema = z.object({
  * SEO metadata schema
  */
 export const seoSchema = z.object({
+  metaTitle: z.string().min(1).max(60).optional(),
   metaDescription: z.string().min(50, 'Meta description must be at least 50 characters').max(160, 'Meta description must be at most 160 characters'),
   metaKeywords: z.array(z.string()).min(1, 'At least one keyword is required').max(10, 'Maximum 10 keywords allowed'),
+  ogTitle: z.string().min(1).max(60).optional(),
+  ogDescription: z.string().min(1).max(160).optional(),
   ogImage: z.string().url().optional(),
   canonicalUrl: z.string().url().optional()
 });

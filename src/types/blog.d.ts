@@ -20,6 +20,7 @@ export interface PostAuthor {
   name: string;
   email: string;
   avatar?: string;
+  url?: string;
 }
 
 /**
@@ -36,8 +37,11 @@ export interface CoverImage {
  * SEO metadata for individual posts
  */
 export interface PostSEO {
+  metaTitle?: string;
   metaDescription: string;
   metaKeywords: string[];
+  ogTitle?: string;
+  ogDescription?: string;
   ogImage?: string;
   canonicalUrl?: string;
 }
