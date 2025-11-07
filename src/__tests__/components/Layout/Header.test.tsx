@@ -17,6 +17,7 @@ describe('Header', () => {
     expect(screen.getByText(/Profile/i)).toBeVisible();
     expect(screen.getByText(/Projects/i)).toBeVisible();
     expect(screen.getByText(/Achievements/i)).toBeVisible();
+    expect(screen.getByText(/Blog/i)).toBeVisible();
     expect(screen.getByText(/Apps/i)).toBeVisible();
     expect(screen.getByText(/Contact Me/i)).toBeVisible();
   });
