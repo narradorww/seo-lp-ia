@@ -24,11 +24,14 @@ export default function MarkdownRenderer({ content, className }: MarkdownRendere
         rehypePlugins={[rehypeRaw, rehypeSanitize]}
         components={{
           // Custom rendering for code blocks with language support
-          code: ({ node, inline, className, children, ...props }) => {
+          code: ({ className, children, ...props }) => {
             const match = /language-(\w+)/.exec(className || '');
-            return !inline ? (
+            // If there's a language class, it's a code block; otherwise it's inline code
+            const isCodeBlock = !!match;
+
+            return isCodeBlock ? (
               <div className={styles.codeBlock}>
-                {match && <span className={styles.language}>{match[1]}</span>}
+                <span className={styles.language}>{match[1]}</span>
                 <pre className={className}>
                   <code {...props}>{children}</code>
                 </pre>
