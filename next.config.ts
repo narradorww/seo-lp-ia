@@ -6,6 +6,14 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
+        source: '/assets/:path*',
+        destination: 'https://tarot-dev-poker.vercel.app/assets/:path*',
+      },
+      {
+        source: '/vite.svg',
+        destination: 'https://tarot-dev-poker.vercel.app/vite.svg',
+      },
+      {
         source: '/tarot-dev',
         destination: 'https://tarot-dev-poker.vercel.app/tarot-dev',
       },
