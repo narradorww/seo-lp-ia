@@ -17,8 +17,10 @@ export default function ProjectsSection() {
     setLang(userLang.startsWith('pt') ? 'pt' : 'en');
   }, []);
 
-  const featured = projects.filter((p) => p.featured);
-  const standard = projects.filter((p) => !p.featured);
+  const displayed = ['vibe-beneficios', 'moveintech', 'reciclelink', 'scooby-doo'];
+  const visibleProjects = displayed
+    .map((slug) => projects.find((p) => p.slug === slug))
+    .filter(Boolean) as typeof projects;
 
   const heading = lang === 'pt'
     ? { title: 'Projetos', highlight: 'em Destaque', desc: 'Uma seleção dos meus trabalhos mais impactantes, com foco em desenvolvimento mobile e soluções com IA.' }
@@ -39,21 +41,11 @@ export default function ProjectsSection() {
           <p className={styles.description}>{heading.desc}</p>
         </header>
 
-        {/* Featured — large horizontal cards */}
-        <div className={styles.featuredList} aria-label="Featured projects">
-          {featured.map((project) => (
-            <ProjectCard key={project.slug} project={project} lang={lang} variant="featured" />
+        <div className={styles.grid} aria-label="Projects">
+          {visibleProjects.map((project) => (
+            <ProjectCard key={project.slug} project={project} lang={lang} variant="standard" />
           ))}
         </div>
-
-        {/* Standard — grid */}
-        {standard.length > 0 && (
-          <div className={styles.grid} aria-label="More projects">
-            {standard.map((project) => (
-              <ProjectCard key={project.slug} project={project} lang={lang} variant="standard" />
-            ))}
-          </div>
-        )}
       </div>
 
       <div className={styles.scrollDown} role="navigation" aria-label="Navigate to achievements section">
