@@ -1,8 +1,16 @@
 import { MetadataRoute } from 'next'
- 
+import projects from '@/data/projects'
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://rodrigoalexandre.dev'
-  
+
+  const projectPages: MetadataRoute.Sitemap = projects.map((p) => ({
+    url: `${baseUrl}/projects/${p.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.85,
+  }))
+
   return [
     {
       url: baseUrl,
@@ -40,5 +48,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    ...projectPages,
   ]
 }

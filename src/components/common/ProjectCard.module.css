@@ -1,100 +1,229 @@
-.card {
-  background-color: var(--background);
-  border: none;
+/* ── Featured card ── */
+.featured {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  border-radius: var(--radius);
+  transition: box-shadow 0.3s ease;
 }
 
-.projectGrid {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+.featured:hover {
+  box-shadow: var(--shadow-lg);
 }
 
 @media (min-width: 768px) {
-  .projectGrid {
-    flex-direction: row;
+  .featured {
+    grid-template-columns: 1fr 1fr;
     align-items: center;
   }
-
-  .reversed {
-    flex-direction: row-reverse;
-  }
 }
 
-.imageWrapper {
-  flex: 0 0 400px; /* fixo para ficar padronizado */
-  height: 300px;
+.featuredImage {
+  width: 100%;
+  aspect-ratio: 16/10;
   overflow: hidden;
-  border-radius: var(--radius);
+  background: #0a0a0a;
 }
 
-.imageWrapper img {
+.featuredImage img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.7s;
+  transition: transform 0.6s ease;
 }
 
-.imageWrapper img:hover {
-  transform: scale(1.05);
+.featured:hover .featuredImage img {
+  transform: scale(1.04);
 }
 
-.content {
-  flex: 1;
+.featuredContent {
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
   gap: 1rem;
+  padding: 2rem;
 }
 
-.projectTitle {
-  font-size: 1.75rem;
+.featuredTitle {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   font-weight: 700;
   color: var(--foreground);
 }
 
-.projectDescription {
-  margin-top: 0.5rem;
-  color: var(--foreground);
-  opacity: 0.7;
-}
-
-.sectionHeader {
-  color: var(--primary);
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.textBlock {
-  color: var(--foreground);
-  opacity: 0.8;
+.featuredDesc {
+  color: var(--color-text-muted);
   font-size: 0.95rem;
+  line-height: 1.6;
 }
 
+/* ── Award badge ── */
+.awardBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  background: linear-gradient(135deg, rgba(245, 166, 35, 0.15), rgba(245, 166, 35, 0.05));
+  border: 1px solid rgba(245, 166, 35, 0.4);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  width: fit-content;
+}
+
+.awardOrg {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.awardOrg:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* ── Standard card ── */
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.cardImage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+.cardImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.card:hover .cardImage img {
+  transform: scale(1.05);
+}
+
+.cardAwardBadge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.6rem;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(245, 166, 35, 0.5);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  flex: 1;
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.cardDesc {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* ── Shared ── */
 .techList {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1rem;
+  gap: 0.4rem;
+  margin-top: auto;
 }
 
-.buttonWrapper {
-  margin-top: 2rem;
-}
-
-.viewButton {
-  padding: 0.75rem 1.5rem;
-  border: 1px solid var(--primary);
-  border-radius: var(--radius);
-  background: transparent;
-  color: var(--primary);
+.techBadge {
+  padding: 0.2rem 0.55rem;
+  background: rgba(77, 159, 255, 0.1);
+  border: 1px solid rgba(77, 159, 255, 0.2);
+  border-radius: 999px;
+  font-size: 0.72rem;
   font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  color: var(--primary);
 }
 
-.viewButton:hover {
-  background-color: var(--primary);
-  color: var(--background);
+.techMore {
+  padding: 0.2rem 0.55rem;
+  background: var(--color-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.primaryAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.primaryAction:hover {
+  background: var(--primary-hover);
+}
+
+.secondaryAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.secondaryAction:hover {
+  border-color: var(--primary);
+  color: var(--primary);
 }
