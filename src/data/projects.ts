@@ -29,6 +29,7 @@ export interface ProjectData {
 }
 
 const projects: ProjectData[] = [
+  // Featured cards (horizontal layout) — shown first
   {
     slug: 'vibe-beneficios',
     image: '/images/vibe-beneficios.png',
@@ -54,59 +55,6 @@ const projects: ProjectData[] = [
       challenge: 'O escopo do projeto triplicou — de ~50 para ~150 telas interativas — com prazos apertados, mantendo qualidade e integrando com múltiplos parceiros como iFood, Visa, Rappi e Amazon Prime.',
       solution: 'Desenvolvido com React Native + Expo para entrega multiplataforma, Zustand para gerenciamento de estado escalável, React Query para cache de dados assíncronos e Vision Camera para escaneamento inteligente de notas fiscais.',
       outcome: 'Entregue dentro do prazo. O app alcançou mais de 100 mil downloads com avaliação 4,7★, foi destaque no O Globo, Exame e Marcas Mais, e se tornou um dos programas de fidelidade mais inovadores do Brasil.',
-    },
-  },
-  {
-    slug: 'moveintech',
-    image: '/images/moveintech.png',
-    images: [
-      '/images/moveintech.png',
-      '/images/moveintech-2.png',
-    ],
-    technologies: ['AI / LLM', 'SaaS', 'TypeScript', 'Node.js', 'React', 'Document Intelligence'],
-    dateCreated: '2025',
-    featured: false,
-    externalLink: 'https://moveintech.com.br',
-    en: {
-      title: 'MoveInTech',
-      description: 'SaaS platform with native AI (EnerCore Engine) for logistics intelligence — automating document processing, real-time tracking and smart back-office.',
-      challenge: 'Logistics operations rely heavily on manual document processing (NF-e, CTeS, DAMDFE), taking up to 20 minutes per document. The goal was to reduce this to under 30 seconds while providing full chain visibility.',
-      solution: 'Built the EnerCore Engine — an organizational AI that automates logistics document validation, enables intelligent document chat, and provides real-time supply chain monitoring with automated reconciliation and error detection.',
-      outcome: 'Reduced document processing time from ~20 minutes to ~30 seconds. Delivered a complete SaaS platform connecting shippers, carriers and drivers with full traceability and automated back-office operations.',
-    },
-    pt: {
-      title: 'MoveInTech',
-      description: 'Plataforma SaaS com IA nativa (EnerCore Engine) para inteligência logística — automatizando processamento de documentos, rastreamento em tempo real e back-office inteligente.',
-      challenge: 'Operações logísticas dependem de processamento manual de documentos (NF-e, CTe, DAMDFE), levando até 20 minutos por documento. O objetivo era reduzir esse tempo para menos de 30 segundos com visibilidade total da cadeia.',
-      solution: 'Desenvolvido o EnerCore Engine — uma IA organizacional que automatiza a validação de documentos logísticos, habilita chat inteligente sobre documentos e fornece monitoramento em tempo real com reconciliação automática e detecção de erros.',
-      outcome: 'Redução do tempo de processamento de documentos de ~20 minutos para ~30 segundos. Entregue plataforma SaaS completa conectando embarcadores, transportadores e motoristas com rastreabilidade total e back-office automatizado.',
-    },
-  },
-  {
-    slug: 'fretador',
-    image: '/images/fretador.png',
-    images: [
-      '/images/fretador.png',
-      '/images/fretador-2.png',
-      '/images/fretador-3.png',
-    ],
-    technologies: ['React Native', 'Node.js', 'MongoDB', 'AWS', 'Express', 'React'],
-    dateCreated: '2024',
-    featured: true,
-    externalLink: 'https://fretador.com.br',
-    en: {
-      title: 'Fretador',
-      description: 'Mobile freight management DMS (Delivery Management System) for TRC Logistics — restructured from the ground up with MERN stack on AWS.',
-      challenge: 'Inherited an unfinished React Native app developed by a third-party software house, with significant technical debt, no documentation, no processes and non-compliance with Google Store and LGPD requirements.',
-      solution: 'Restructured the entire development department from scratch: implemented Jira + Confluence, migrated to a MERN ecosystem on AWS, rebuilt the mobile app with proper architecture, LGPD compliance, and AI-powered document validation and freight matching.',
-      outcome: 'Delivered a complete, compliant freight management platform. The app was successfully published on the Google Play Store. The client (GZ LOG) reported significantly improved team efficiency and centralized operational control.',
-    },
-    pt: {
-      title: 'Fretador',
-      description: 'Sistema mobile de gestão de fretes (DMS) para a TRC Logistics — reestruturado do zero com stack MERN na AWS.',
-      challenge: 'Herdei um app React Native inacabado desenvolvido por software house terceirizada, com débito técnico significativo, sem documentação, sem processos e fora dos requisitos da Google Store e da LGPD.',
-      solution: 'Reestruturei todo o setor de desenvolvimento: implementei Jira + Confluence, migrei para ecossistema MERN na AWS, reconstruí o app mobile com arquitetura adequada, conformidade LGPD e validação de documentos e matching de fretes com IA.',
-      outcome: 'Plataforma de gestão de fretes completa e em conformidade entregue. App publicado com sucesso na Google Play Store. O cliente (GZ LOG) reportou melhora significativa na eficiência da equipe e controle centralizado das operações.',
     },
   },
   {
@@ -177,6 +125,61 @@ const projects: ProjectData[] = [
       challenge: 'Durante desastres naturais, milhares de pets se separam de seus donos. As soluções existentes eram manuais, lentas e inacessíveis para usuários não técnicos — tornando o reencontro quase impossível em escala.',
       solution: 'App mobile com Google Gemini e Google Cloud Vision para cruzar fotos de pets perdidos com registros de donos. React Native garantiu acessibilidade multiplataforma, e o pipeline de reconhecimento funcionava com fotos de baixa qualidade em contexto de desastre.',
       outcome: 'Alcançou o 6º lugar na Imersão IA 2024 da Alura + Google — top 0,5% entre mais de 1.200 projetos. Reconhecido pelo uso inovador das tecnologias de IA do Google para resolver um problema humanitário real.',
+    },
+  },
+  // Standard grid card
+  {
+    slug: 'moveintech',
+    image: '/images/moveintech.png',
+    images: [
+      '/images/moveintech.png',
+      '/images/moveintech-2.png',
+    ],
+    technologies: ['AI / LLM', 'SaaS', 'TypeScript', 'Node.js', 'React', 'Document Intelligence'],
+    dateCreated: '2025',
+    featured: false,
+    externalLink: 'https://moveintech.com.br',
+    en: {
+      title: 'MoveInTech',
+      description: 'SaaS platform with native AI (EnerCore Engine) for logistics intelligence — automating document processing, real-time tracking and smart back-office.',
+      challenge: 'Logistics operations rely heavily on manual document processing (NF-e, CTeS, DAMDFE), taking up to 20 minutes per document. The goal was to reduce this to under 30 seconds while providing full chain visibility.',
+      solution: 'Built the EnerCore Engine — an organizational AI that automates logistics document validation, enables intelligent document chat, and provides real-time supply chain monitoring with automated reconciliation and error detection.',
+      outcome: 'Reduced document processing time from ~20 minutes to ~30 seconds. Delivered a complete SaaS platform connecting shippers, carriers and drivers with full traceability and automated back-office operations.',
+    },
+    pt: {
+      title: 'MoveInTech',
+      description: 'Plataforma SaaS com IA nativa (EnerCore Engine) para inteligência logística — automatizando processamento de documentos, rastreamento em tempo real e back-office inteligente.',
+      challenge: 'Operações logísticas dependem de processamento manual de documentos (NF-e, CTe, DAMDFE), levando até 20 minutos por documento. O objetivo era reduzir esse tempo para menos de 30 segundos com visibilidade total da cadeia.',
+      solution: 'Desenvolvido o EnerCore Engine — uma IA organizacional que automatiza a validação de documentos logísticos, habilita chat inteligente sobre documentos e fornece monitoramento em tempo real com reconciliação automática e detecção de erros.',
+      outcome: 'Redução do tempo de processamento de documentos de ~20 minutos para ~30 segundos. Entregue plataforma SaaS completa conectando embarcadores, transportadores e motoristas com rastreabilidade total e back-office automatizado.',
+    },
+  },
+  // Last featured card
+  {
+    slug: 'fretador',
+    image: '/images/fretador.png',
+    images: [
+      '/images/fretador.png',
+      '/images/fretador-2.png',
+      '/images/fretador-3.png',
+    ],
+    technologies: ['React Native', 'Node.js', 'MongoDB', 'AWS', 'Express', 'React'],
+    dateCreated: '2024',
+    featured: true,
+    externalLink: 'https://fretador.com.br',
+    en: {
+      title: 'Fretador',
+      description: 'Mobile freight management DMS (Delivery Management System) for TRC Logistics — restructured from the ground up with MERN stack on AWS.',
+      challenge: 'Inherited an unfinished React Native app developed by a third-party software house, with significant technical debt, no documentation, no processes and non-compliance with Google Store and LGPD requirements.',
+      solution: 'Restructured the entire development department from scratch: implemented Jira + Confluence, migrated to a MERN ecosystem on AWS, rebuilt the mobile app with proper architecture, LGPD compliance, and AI-powered document validation and freight matching.',
+      outcome: 'Delivered a complete, compliant freight management platform. The app was successfully published on the Google Play Store. The client (GZ LOG) reported significantly improved team efficiency and centralized operational control.',
+    },
+    pt: {
+      title: 'Fretador',
+      description: 'Sistema mobile de gestão de fretes (DMS) para a TRC Logistics — reestruturado do zero com stack MERN na AWS.',
+      challenge: 'Herdei um app React Native inacabado desenvolvido por software house terceirizada, com débito técnico significativo, sem documentação, sem processos e fora dos requisitos da Google Store e da LGPD.',
+      solution: 'Reestruturei todo o setor de desenvolvimento: implementei Jira + Confluence, migrei para ecossistema MERN na AWS, reconstruí o app mobile com arquitetura adequada, conformidade LGPD e validação de documentos e matching de fretes com IA.',
+      outcome: 'Plataforma de gestão de fretes completa e em conformidade entregue. App publicado com sucesso na Google Play Store. O cliente (GZ LOG) reportou melhora significativa na eficiência da equipe e controle centralizado das operações.',
     },
   },
 ];
