@@ -109,15 +109,15 @@ export function generateWebsiteStructuredData(): WithContext<WebSite> {
       "@type": "Person",
       "name": "Rodrigo Alexandre"
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    "potentialAction": {
+    "potentialAction": ({
       "@type": "SearchAction",
       "target": {
         "@type": "EntryPoint",
         "urlTemplate": "https://rodrigoalexandre.dev/search?q={search_term_string}"
       },
       "query-input": "required name=search_term_string"
-    } as any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    }) as any
   };
 }
 
@@ -305,25 +305,66 @@ export function generateProjectsStructuredData(projects: ProjectData[]): WithCon
         } : undefined,
       };
 
-      // Add optional fields if present
-      if (project.award) {
-        creativeWork.award = project.award;
-      }
-
-      if (project.dateCreated) {
-        creativeWork.dateCreated = project.dateCreated;
-      }
-
-      if (project.url) {
-        creativeWork.url = project.url;
-      }
-
-      // Add outcome as abstract/summary
-      if (project.outcome) {
-        creativeWork.abstract = project.outcome;
-      }
+      if (project.award) creativeWork.award = project.award;
+      if (project.dateCreated) creativeWork.dateCreated = project.dateCreated;
+      if (project.url) creativeWork.url = project.url;
+      if (project.outcome) creativeWork.abstract = project.outcome;
 
       return creativeWork;
     })
+  };
+}
+
+/**
+ * Generates rich structured data for all projects from the data source.
+ * Includes sponsor/organizer organizations (Alura, FIAP, Google) for awarded projects
+ * so search engines and AI crawlers associate Rodrigo's work with these brands.
+ */
+export function generateRichProjectsStructuredData(
+  projects: import('@/data/projects').ProjectData[]
+): WithContext<ItemList> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Featured Projects by Rodrigo Alexandre — Mobile Developer & AI Specialist",
+    "description": "Award-winning mobile apps and AI solutions by Rodrigo Alexandre, recognized by Google, Alura, and FIAP.",
+    "numberOfItems": projects.length,
+    "itemListElement": projects.map((project, index) => {
+      const lang = 'en';
+      const t = project[lang];
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const item: any = {
+        "@type": "CreativeWork",
+        "position": index + 1,
+        "name": t.title,
+        "description": t.description,
+        "abstract": t.outcome,
+        "image": `https://rodrigoalexandre.dev${project.image}`,
+        "url": `https://rodrigoalexandre.dev/projects/${project.slug}`,
+        "dateCreated": project.dateCreated,
+        "keywords": project.technologies.join(", "),
+        "author": {
+          "@type": "Person",
+          "name": "Rodrigo Alexandre",
+          "url": "https://rodrigoalexandre.dev",
+          "award": [
+            "1st Place — Hack for Change 2023 (Alura + FIAP)",
+            "6th Place — AI Immersion 2024 (Alura + Google) — Top 0.5% of 1200+ projects",
+          ],
+        },
+      };
+
+      if (project.award) {
+        item.award = project.award.label;
+        item.sponsor = project.sponsors?.map((s) => ({
+          "@type": "Organization",
+          "name": s.name,
+          "url": s.url,
+          "sameAs": s.url,
+        }));
+      }
+
+      return item;
+    }),
   };
 }

@@ -1,67 +1,95 @@
-/* ProjectsSection.module.css */
-
 .section {
-    padding: 6rem 1.5rem;
-    position: relative;
-  }
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .sectionTitle {
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: var(--foreground);
-    text-align: left;
-  }
-  
-  .highlight {
-    color: var(--primary);
-  }
-  
-  .description {
-    color: var(--foreground);
-    opacity: 0.8;
-    max-width: 640px;
-    margin-bottom: 3rem;
-  }
-  
-  .projectsList {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
-  }
+  padding: 6rem 1.5rem;
+  position: relative;
+}
 
-  .scrollDown {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: var(--foreground);
+  margin-bottom: 0.75rem;
+}
+
+.highlight {
+  color: var(--primary);
+}
+
+.description {
+  color: var(--color-text-muted);
+  max-width: 640px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Featured list — stacked large cards */
+.featuredList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Standard grid — 1 → 2 → 3 cols */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  .scrollDown:hover {
-    opacity: 1;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
   }
-  
-  .scrollDown a {
-    color: var(--primary);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+}
+
+.scrollDown {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.scrollDown:hover {
+  opacity: 1;
+}
+
+.scrollDown a {
+  color: var(--primary);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.scrollDown a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(2px);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 1rem;
   }
-  
-  .scrollDown a:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(2px);
-  }
- 
+}
