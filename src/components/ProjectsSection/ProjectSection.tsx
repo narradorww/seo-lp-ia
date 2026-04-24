@@ -17,7 +17,7 @@ export default function ProjectsSection() {
     setLang(userLang.startsWith('pt') ? 'pt' : 'en');
   }, []);
 
-  const displayed = ['vibe-beneficios', 'moveintech', 'reciclelink', 'scooby-doo'];
+  const displayed = ['vibe-beneficios', 'moveintech', 'reciclelink', 'scooby-doo', 'fretador'];
   const visibleProjects = displayed
     .map((slug) => projects.find((p) => p.slug === slug))
     .filter(Boolean) as typeof projects;
