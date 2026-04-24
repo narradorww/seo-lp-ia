@@ -85,7 +85,7 @@ export default function ProfileSection() {
           <h3 id="journey-heading">Professional Journey</h3>
           <p>
             With over 20 years in technology and more than 3 years focused on software development,
-            I've led impactful projects across various industries. My expertise lies in crafting
+            I&apos;ve led impactful projects across various industries. My expertise lies in crafting
             efficient, user-friendly mobile experiences while implementing best practices that
             enhance both code quality and team productivity.
           </p>

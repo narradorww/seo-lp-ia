@@ -60,8 +60,8 @@ export default function InternalStoreClient({ apkFiles }: InternalStoreClientPro
         <h2>Como usar</h2>
         <ol>
           <li>Escaneie o QR Code com seu dispositivo Android</li>
-          <li>Ou clique no botão "Download APK" para baixar diretamente</li>
-          <li>Ative "Instalação de fontes desconhecidas" nas configurações do Android</li>
+          <li>Ou clique no botão &quot;Download APK&quot; para baixar diretamente</li>
+          <li>Ative &quot;Instalação de fontes desconhecidas&quot; nas configurações do Android</li>
           <li>Instale o APK baixado</li>
         </ol>
         

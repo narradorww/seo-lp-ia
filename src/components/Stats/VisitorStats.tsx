@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { MapPin, Users, Eye, BarChart, ChevronLeft, ChevronRight } from 'lucide-react';
+import { MapPin, Users, Eye, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTrackVisitor } from '@/hooks/useTrackVisitor';
 import styles from './VisitorStats.module.css';
 import { useModal } from '@/contexts/ModalContext';
@@ -15,7 +15,7 @@ export default function VisitorStats() {
   const { open } = useModal();
   
 
-  const handleEnrichmentSubmit = async (input: string, structuredData?: any) => {
+  const handleEnrichmentSubmit = async (input: string, structuredData?: Record<string, unknown>) => {
     try {
       await fetch('/api/visitor/enrich', {
         method: 'POST',

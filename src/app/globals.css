@@ -1,25 +1,52 @@
 
 :root {
+  /* Colors */
   --background: #ffffff;
   --foreground: #171717;
-  --primary: #0070f3;
+  --primary: #0057cc;
+  --primary-hover: #0041a8;
   --secondary: #6c757d;
   --accent: #f5a623;
   --border-color: #eaeaea;
-  --radius: 8px;
-  --font-base: 16px;
 
-  --bp-sm: 480px;
-  --bp-md: 768px;
-  --bp-lg: 1024px;
-  --bp-xl: 1280px;
+  /* Semantic colors */
+  --color-text-muted: #6b7280;
+  --color-surface: #f9fafb;
+  --color-surface-raised: #ffffff;
+  --color-error: #dc2626;
+  --color-success: #16a34a;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+
+  /* Misc */
+  --radius: 8px;
+  --radius-lg: 12px;
+  --font-base: 16px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: #4d9fff;
+    --primary-hover: #74b3ff;
     --border-color: #333333;
+    --color-text-muted: #9ca3af;
+    --color-surface: #111111;
+    --color-surface-raised: #1a1a1a;
   }
 }
 
@@ -41,12 +68,31 @@ body {
   overflow-x: hidden;
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans, Arial, Helvetica, sans-serif);
   font-size: var(--font-base);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+/* Skip link for keyboard navigation */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-4);
+  z-index: 9999;
+  padding: var(--space-2) var(--space-4);
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius);
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: var(--space-4);
 }
 
 a {
@@ -66,7 +112,13 @@ button {
   cursor: pointer;
   background: none;
   border: none;
-  outline: none;
+}
+
+/* Visible focus styles for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 3px;
 }
 
 h1 {
@@ -81,12 +133,24 @@ h2 {
 
 .container {
   margin: 0 auto;
-  padding: 2rem;
+  padding: var(--space-8);
   max-width: 1280px;
 }
 
 @media (max-width: 768px) {
   .container {
-    padding: 1rem;
+    padding: var(--space-4);
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

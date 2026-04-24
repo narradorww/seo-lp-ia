@@ -1,6 +1,5 @@
 'use client';
 
-import { Badge } from 'lucide-react';
 import Image from 'next/image';
 import styles from './ProjectCard.module.css';
 
