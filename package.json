@@ -16,11 +16,16 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^3.0.71",
+    "@ai-sdk/google": "^3.0.64",
+    "@ai-sdk/openai": "^3.0.53",
+    "@anthropic-ai/sdk": "^0.91.0",
     "@aws-sdk/client-s3": "^3.848.0",
     "@types/react-slick": "^0.23.13",
     "@types/ua-parser-js": "^0.7.39",
     "@vercel/edge": "^1.2.1",
     "@vercel/functions": "^2.0.0",
+    "ai": "^6.0.168",
     "axios": "^1.8.4",
     "dotenv": "^16.5.0",
     "leaflet": "^1.9.4",
