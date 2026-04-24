@@ -1,5 +1,5 @@
 // AWS S3 integration for APK file management
-import { S3Client, ListObjectsV2Command, GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client, ListObjectsV2Command, PutObjectCommand } from '@aws-sdk/client-s3';
 
 const s3Client = new S3Client({
   region: process.env.AWS_REGION || 'us-east-1',

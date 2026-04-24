@@ -6,7 +6,7 @@ import { isBot } from '@/utils/isBot';
 import { resolveIpOrg } from '@/utils/resolveIpOrg';
 import { VisitData } from '@/types/visitor';
 
-const resend = new Resend(process.env.RESEND_API_KEY as string);
+const resend = new Resend(process.env.RESEND_API_KEY ?? 'placeholder');
 
 
 export async function POST(request: NextRequest) {

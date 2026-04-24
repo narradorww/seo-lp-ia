@@ -1,5 +1,5 @@
 // utils/structuredData.ts
-import { Person, WithContext, Organization, WebSite, BreadcrumbList, FAQPage, Thing, ItemList, CreativeWork } from 'schema-dts';
+import { Person, WithContext, Organization, WebSite, BreadcrumbList, FAQPage, ItemList, CreativeWork } from 'schema-dts';
 
 /**
  * Project data structure for generating structured data
@@ -109,6 +109,7 @@ export function generateWebsiteStructuredData(): WithContext<WebSite> {
       "@type": "Person",
       "name": "Rodrigo Alexandre"
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     "potentialAction": {
       "@type": "SearchAction",
       "target": {

@@ -24,7 +24,7 @@ export default function LandingPage() {
         <Header />
         <HeroSection />
 
-        <main className={styles.mainContent}>
+        <main id="main-content" className={styles.mainContent}>
           <ProfileSection />
           <ProjectsSection />
           <AchievementsSection />

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import clientPromise from '@/lib/mongodb';
 import { calculateLeadScore } from '@/utils/calculateLeadScore';
-import { VisitData, EnrichmentData } from '@/types/visitor';
+import { VisitData } from '@/types/visitor';
 
 export async function POST(request: NextRequest) {
   try {

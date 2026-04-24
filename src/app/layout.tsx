@@ -122,19 +122,26 @@ export async function generateMetadata(): Promise<Metadata> {
 
 
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = await headers();
+  const acceptLanguage = headersList.get('accept-language');
+  const lang = acceptLanguage?.startsWith('pt') ? 'pt-BR' : 'en';
+
   return (
-    <html lang="en">
+    <html lang={lang}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
         <link rel="author" type="text/plain" href="/humans.txt" />
         <link rel="alternate" type="application/json" href="/ai-metadata.json" title="AI-Optimized Metadata" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <a href="#main-content" className="skip-link">
+          {lang === 'pt-BR' ? 'Pular para o conteúdo' : 'Skip to content'}
+        </a>
         <ModalProvider>
           {children}
         </ModalProvider>

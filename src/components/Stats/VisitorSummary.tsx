@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import styles from './VisitorSummary.module.css';
 import { Users, Eye } from 'lucide-react';
 

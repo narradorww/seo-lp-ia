@@ -34,7 +34,7 @@ export default function HeroSection() {
     ]);
 
   return (
-    <section className={styles.hero} role="banner" aria-label="Hero section introducing Rodrigo Alexandre">
+    <section className={styles.hero} aria-label="Hero section introducing Rodrigo Alexandre">
       {/* Fundo + padrão + brilhos */}
       <div className={styles.background} aria-hidden="true"></div>
       <div className={styles.pattern} aria-hidden="true"></div>
@@ -45,13 +45,14 @@ export default function HeroSection() {
       <div className={styles.containerHero}>
         <div className={styles.content}>
           {/* Avatar */}
-          <aside className={styles.avatarCard} role="complementary">
+          <div className={styles.avatarCard}>
             <Image
               src="/rodrigo-avatar.jpeg"
               alt="Professional headshot of Rodrigo Alexandre, Brazilian Mobile Developer specialized in React Native and AI"
               className={styles.avatar}
-              width={200}
-              height={200}
+              width={226}
+              height={226}
+              sizes="(max-width: 480px) 140px, (max-width: 768px) 180px, 226px"
               priority
             />
             <a
@@ -62,29 +63,30 @@ export default function HeroSection() {
             >
               Download CV
             </a>
-          </aside>
+          </div>
 
           {/* Texto */}
-          <header className={styles.textBlock}>
-            <p className={styles.subtitle} role="doc-subtitle">Mobile Developer</p>
+          <div className={styles.textBlock}>
+            <p className={styles.subtitle}>Mobile Developer</p>
             <h1 className={styles.title}>
-              Building <span className={styles.highlight}>{word}</span> mobile experiences
+              Building <span className={styles.highlight} aria-live="polite" aria-atomic="true">{word}</span> mobile experiences
             </h1>
             <p className={styles.description}>
-              <span className={styles.highlight} aria-label="Greeting in multiple languages">{greeting}</span> I'm Rodrigo Alexandre, a Brazilian Mobile Developer with 20+ years in
+              <span aria-label="Greeting in multiple languages" aria-live="polite" aria-atomic="true" className={styles.highlight}>{greeting}</span>{' '}
+              I&apos;m Rodrigo Alexandre, a Brazilian Mobile Developer with 20+ years in
               technology, specializing in JavaScript, TypeScript, React Native, and
               AI-powered solutions that solve real-world problems.
             </p>
 
-            <nav className={styles.buttons} role="navigation" aria-label="Main navigation">
-              <a href="#projects" className={styles.primaryBtn} aria-label="Navigate to projects section">
+            <div className={styles.buttons}>
+              <a href="#projects" className={styles.primaryBtn}>
                 View My Projects
               </a>
-              <a href="#contact" className={styles.outlineBtn} aria-label="Navigate to contact section">
+              <a href="#contact" className={styles.outlineBtn}>
                 Contact Me
               </a>
-            </nav>
-          </header>
+            </div>
+          </div>
         </div>
       </div>
 

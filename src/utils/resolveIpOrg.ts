@@ -4,12 +4,12 @@ export async function resolveIpOrg(ip: string): Promise<string | null> {
       {
         name: 'ipapi.co',
         url: `https://ipapi.co/${ip}/json/`,
-        extractOrg: (data: any) => data?.org
+        extractOrg: (data: Record<string, unknown>) => data?.org as string | undefined
       },
       {
         name: 'ip-api.com',
         url: `http://ip-api.com/json/${ip}?fields=org`,
-        extractOrg: (data: any) => data?.org
+        extractOrg: (data: Record<string, unknown>) => data?.org as string | undefined
       }
     ];
 
