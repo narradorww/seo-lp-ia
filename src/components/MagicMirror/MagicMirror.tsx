@@ -2,18 +2,11 @@
 
 import { useState, useRef, useEffect } from 'react';
 import styles from './MagicMirror.module.css';
-import type { Provider } from '@/app/api/mirror/route';
 
 interface Message {
   role: 'user' | 'assistant';
   content: string;
 }
-
-const PROVIDERS: { value: Provider; label: string }[] = [
-  { value: 'anthropic', label: 'Claude' },
-  { value: 'openai', label: 'GPT-4o' },
-  { value: 'google', label: 'Gemini' },
-];
 
 const SUGGESTED_QUESTIONS = [
   'Me fale sobre sua experiência com React Native',
@@ -26,7 +19,6 @@ export default function MagicMirror() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [provider, setProvider] = useState<Provider>('anthropic');
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -49,7 +41,7 @@ export default function MagicMirror() {
       const response = await fetch('/api/mirror', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: updatedMessages, provider }),
+        body: JSON.stringify({ messages: updatedMessages }),
       });
 
       if (!response.ok) throw new Error('Erro na resposta');
@@ -86,18 +78,6 @@ export default function MagicMirror() {
           <div>
             <h2 className={styles.heading}>MirrorIA</h2>
             <p className={styles.subtext}>Converse com o digital twin de Rodrigo Alexandre</p>
-          </div>
-          <div className={styles.providerSelector}>
-            {PROVIDERS.map((p) => (
-              <button
-                key={p.value}
-                className={`${styles.providerChip} ${provider === p.value ? styles.providerActive : ''}`}
-                onClick={() => setProvider(p.value)}
-                disabled={isLoading}
-              >
-                {p.label}
-              </button>
-            ))}
           </div>
         </div>
       </div>
