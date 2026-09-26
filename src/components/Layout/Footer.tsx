@@ -29,6 +29,7 @@ export default function Footer() {
               <li><a href="#projects">Projects</a></li>
               {/* <li><a href="#magic-mirror">Magic Mirror</a></li> */}
               <li><a href="#achievements">Achievements</a></li>
+              <li><a href="/games">Games</a></li>
             </ul>
           </div>
 

@@ -88,6 +88,7 @@ export default function Header() {
               <li><a href="#projects" onClick={closeMenu}>Projects</a></li>
               <li><a href="#achievements" onClick={closeMenu}>Achievements</a></li>
               <li><Link href="/internal-store" onClick={closeMenu}>Apps</Link></li>
+              <li><Link href="/games" onClick={closeMenu}>Games</Link></li>
             </>
           )}
         </ul>
