@@ -55,7 +55,8 @@
   transition: color 0.2s ease;
 }
 
-.navList li a:hover {
+.navList li a:hover,
+.navList li a[aria-current="page"] {
   color: var(--primary);
 }
 

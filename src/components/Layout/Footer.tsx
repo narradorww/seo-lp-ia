@@ -25,10 +25,10 @@ export default function Footer() {
           <div>
             <h3 className={styles.navTitle}>Navigation</h3>
             <ul className={styles.navList}>
-              <li><a href="#profile">Profile</a></li>
-              <li><a href="#projects">Projects</a></li>
+              <li><a href="/#profile">Profile</a></li>
+              <li><a href="/#projects">Projects</a></li>
               {/* <li><a href="#magic-mirror">Magic Mirror</a></li> */}
-              <li><a href="#achievements">Achievements</a></li>
+              <li><a href="/#achievements">Achievements</a></li>
               <li><a href="/games">Games</a></li>
             </ul>
           </div>
