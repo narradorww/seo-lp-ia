@@ -17,10 +17,10 @@ export const metadata: Metadata = {
     title: 'Games & experimentos — Rodrigo Alexandre',
     description: 'Só mais uma partida. Jogos autorais, direto no navegador.',
     url: 'https://rodrigoalexandre.dev/games',
-    images: [{ url: 'https://rodrigoalexandre.dev/arcade/macunaima/assets/macunaima.png', width: 1376, height: 768, alt: 'Macunaíma — A trilha das saúvas' }],
+    images: [{ url: 'https://rodrigoalexandre.dev/arcade/macunaima/assets/macunaima-otelo.webp', width: 1672, height: 941, alt: 'Macunaíma — A trilha das saúvas' }],
     locale: 'pt_BR',
   },
-  twitter: { card: 'summary_large_image', title: 'Games & experimentos — Rodrigo Alexandre', description: 'Só mais uma partida. Jogos autorais, direto no navegador.', images: ['https://rodrigoalexandre.dev/arcade/macunaima/assets/macunaima.png'] },
+  twitter: { card: 'summary_large_image', title: 'Games & experimentos — Rodrigo Alexandre', description: 'Só mais uma partida. Jogos autorais, direto no navegador.', images: ['https://rodrigoalexandre.dev/arcade/macunaima/assets/macunaima-otelo.webp'] },
 };
 
 export default function GamesPage() {
@@ -43,7 +43,7 @@ export default function GamesPage() {
             </div>
             <a className={styles.featuredCover} href={`/games/${featured.slug}`} aria-label={`Jogar ${featured.title}: ${featured.subtitle}`}>
               <div className={styles.coverImage}>
-                <Image src={featured.cover} alt="Macunaíma e as saúvas na floresta amazônica, em pixel art" width={1376} height={768} priority sizes="(max-width: 768px) 90vw, 540px" />
+                <Image src={featured.cover} alt="Macunaíma e as saúvas na floresta amazônica, em pixel art" width={1672} height={941} priority sizes="(max-width: 768px) 90vw, 540px" />
               </div>
               <div className={styles.coverCaption}><div><span className={styles.featuredLabel}>Em destaque</span><strong>{featured.title}</strong><span>{featured.subtitle}</span></div><span className={styles.playIcon}><Play size={21} fill="currentColor" aria-hidden="true" /></span></div>
             </a>
@@ -59,7 +59,7 @@ export default function GamesPage() {
             {games.map(game => (
               <article className={cardStyles.featured} key={game.slug}>
                 <a href={`/games/${game.slug}`} className={`${cardStyles.featuredImage} ${styles.gameImage}`} aria-label={`Jogar ${game.title}`}>
-                  <Image src={game.cover} alt={`Capa de ${game.title}`} width={1376} height={768} sizes="(max-width: 768px) 90vw, 580px" />
+                  <Image src={game.cover} alt={`Capa de ${game.title}`} width={1672} height={941} sizes="(max-width: 768px) 90vw, 580px" />
                 </a>
                 <div className={cardStyles.featuredContent}>
                   <span className={styles.gameNumber}>Jogo {game.id} · Experimento autoral</span>
