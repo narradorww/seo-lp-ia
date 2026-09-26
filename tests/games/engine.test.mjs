@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createGame,turn,step,emptyCell} from '../../public/arcade/macunaima/engine.mjs';
+import {createGame,turn,step,emptyCell} from '../../public/arcade/macunaima/v2/engine.mjs';
 test('starts with one ant, eats and grows',()=>{const g=createGame();assert.equal(g.snake.length,1);for(let i=0;i<5;i++)step(g,()=>.5);assert.equal(g.score,10);assert.equal(g.snake.length,2);assert.ok(!g.snake.some(p=>p.x===g.food.x&&p.y===g.food.y));});
 test('rejects reverse moves and handles queued turns',()=>{const g=createGame();turn(g,'left');assert.deepEqual(g.queue,[]);turn(g,'up');turn(g,'left');step(g);assert.deepEqual(g.snake[0],{x:7,y:6});step(g);assert.deepEqual(g.snake[0],{x:6,y:6});});
 test('wall and character collisions end the game',()=>{for(const wall of [true,false]){const g=createGame();if(wall)g.snake=[{x:29,y:7}];else g.obstacles=[{x:8,y:7,name:'Piaimã'}];assert.equal(step(g).type,'over');assert.equal(g.state,'over');}});

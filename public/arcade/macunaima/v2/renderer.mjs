@@ -17,7 +17,7 @@ export function createRenderer(canvas) {
   const ctx = canvas.getContext('2d');
   const background = document.createElement('canvas');
   let forest, sprites, effects = [], dimensions = '';
-  const ready = Promise.all([loadImage('./assets/forest-clearing.webp'), loadImage('./assets/characters.webp')])
+  const ready = Promise.all([loadImage('../assets/forest-clearing.webp'), loadImage('../assets/characters.webp')])
     .then(([a, b]) => { forest = a; sprites = b; });
 
   function resize(game) {

@@ -41,11 +41,11 @@ export default function GamesPage() {
               <a href="#catalogo" className={`${heroStyles.primaryBtn} ${styles.explore}`}>Explorar os jogos <ArrowDown size={17} aria-hidden="true" /></a>
               <p className={styles.note}>Grátis, direto no navegador. Sem cadastro.</p>
             </div>
-            <a className={styles.featuredCover} href={`/games/${featured.slug}`} aria-label={`Jogar ${featured.title}: ${featured.subtitle}`}>
+            <a className={styles.featuredCover} href={`/games/${featured.slug}/${featured.currentVersion}`} aria-label={`Jogar ${featured.title}: ${featured.subtitle}`}>
               <div className={styles.coverImage}>
                 <Image src={featured.cover} alt="Macunaíma e as saúvas na floresta amazônica, em pixel art" width={1672} height={941} priority sizes="(max-width: 768px) 90vw, 540px" />
               </div>
-              <div className={styles.coverCaption}><div><span className={styles.featuredLabel}>Em destaque</span><strong>{featured.title}</strong><span>{featured.subtitle}</span></div><span className={styles.playIcon}><Play size={21} fill="currentColor" aria-hidden="true" /></span></div>
+              <div className={styles.coverCaption}><div><span className={styles.featuredLabel}>Em destaque · {featured.currentVersion.toUpperCase()}</span><strong>{featured.title}</strong><span>{featured.subtitle}</span></div><span className={styles.playIcon}><Play size={21} fill="currentColor" aria-hidden="true" /></span></div>
             </a>
           </div>
         </section>
@@ -53,12 +53,12 @@ export default function GamesPage() {
         <section id="catalogo" className={styles.catalog} aria-labelledby="catalog-title">
           <div className={styles.sectionHead}>
             <div><h2 id="catalog-title">Explore a <span>coleção</span></h2><p>Escolha um jogo na prateleira e aperte play.</p></div>
-            <span className={styles.inventory}>{games.length} jogo disponível</span>
+            <span className={styles.inventory}>{games.length} jogo · {games.reduce((total, game) => total + game.versions.length, 0)} versões jogáveis</span>
           </div>
           <div className={styles.gameList}>
             {games.map(game => (
               <article className={cardStyles.featured} key={game.slug}>
-                <a href={`/games/${game.slug}`} className={`${cardStyles.featuredImage} ${styles.gameImage}`} aria-label={`Jogar ${game.title}`}>
+                <a href={`/games/${game.slug}/${game.currentVersion}`} className={`${cardStyles.featuredImage} ${styles.gameImage}`} aria-label={`Jogar ${game.title}`}>
                   <Image src={game.cover} alt={`Capa de ${game.title}`} width={1672} height={941} sizes="(max-width: 768px) 90vw, 580px" />
                 </a>
                 <div className={cardStyles.featuredContent}>
@@ -66,7 +66,16 @@ export default function GamesPage() {
                   <div><h3 className={`${cardStyles.featuredTitle} ${styles.gameTitle}`}>{game.title}</h3><p className={styles.subtitle}>{game.subtitle}</p></div>
                   <p className={`${cardStyles.featuredDesc} ${styles.gameDescription}`}>{game.description}</p>
                   <div className={cardStyles.techList}><span className={cardStyles.techBadge}>{game.genre}</span><span className={cardStyles.techBadge}>{game.players}</span><span className={`${cardStyles.techBadge} ${styles.controls}`}><Keyboard size={13} aria-hidden="true" /><Smartphone size={12} aria-hidden="true" /> Teclado e toque</span></div>
-                  <div className={cardStyles.actions}><a className={cardStyles.primaryAction} href={`/games/${game.slug}`}><Play size={14} fill="currentColor" aria-hidden="true" /> Jogar agora <ArrowRight size={16} aria-hidden="true" /></a></div>
+                  <section className={styles.versions} aria-label={`Evolução de ${game.title}`}>
+                    <h4>Evolução do exercício</h4>
+                    <ol>{game.versions.map(version => (
+                      <li key={version.id}>
+                        <div><strong>{version.id.toUpperCase()} · {version.title}</strong><p>{version.description}</p></div>
+                        <a href={`/games/${game.slug}/${version.id}`} aria-label={`Jogar ${game.title} ${version.id.toUpperCase()}`}>Jogar {version.id.toUpperCase()} <ArrowRight size={14} aria-hidden="true" /></a>
+                      </li>
+                    ))}</ol>
+                  </section>
+                  <div className={cardStyles.actions}><a className={cardStyles.primaryAction} href={`/games/${game.slug}/${game.currentVersion}`}><Play size={14} fill="currentColor" aria-hidden="true" /> Jogar versão atual <ArrowRight size={16} aria-hidden="true" /></a></div>
                 </div>
               </article>
             ))}
