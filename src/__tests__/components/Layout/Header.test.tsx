@@ -11,7 +11,7 @@ describe('Header', () => {
   it('abre o menu hamburguer no mobile e exibe os links', () => {
     render(<Header />);
 
-    const menuButton = screen.getByRole('button', { name: /Toggle menu/i });
+    const menuButton = screen.getByRole('button', { name: /Open menu/i });
     fireEvent.click(menuButton);
 
     expect(screen.getByText(/Profile/i)).toBeVisible();
@@ -19,5 +19,10 @@ describe('Header', () => {
     expect(screen.getByText(/Achievements/i)).toBeVisible();
     expect(screen.getByText(/Apps/i)).toBeVisible();
     expect(screen.getByText(/Contact Me/i)).toBeVisible();
+    const gamesLink = screen.getByRole('link', { name: 'Games' });
+    expect(gamesLink).toHaveAttribute('href', '/games');
+    expect(menuButton).toHaveAttribute('aria-expanded', 'true');
+    fireEvent.click(gamesLink);
+    expect(menuButton).toHaveAttribute('aria-expanded', 'false');
   });
 });

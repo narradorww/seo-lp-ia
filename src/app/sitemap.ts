@@ -48,6 +48,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    { url: `${baseUrl}/games`, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/games/macunaima`, changeFrequency: 'monthly', priority: 0.7 },
     ...projectPages,
   ]
 }

@@ -8,8 +8,9 @@ import { Menu, X } from 'lucide-react';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const pathname = usePathname();
+  const pathname = usePathname() ?? '/';
   const isDashboard = pathname === '/dashboard';
+  const sectionHref = (id: string) => pathname === '/' ? `#${id}` : `/#${id}`;
   const navRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
 
@@ -84,15 +85,16 @@ export default function Header() {
             <li><Link href="/" onClick={closeMenu}>Home</Link></li>
           ) : (
             <>
-              <li><a href="#profile" onClick={closeMenu}>Profile</a></li>
-              <li><a href="#projects" onClick={closeMenu}>Projects</a></li>
-              <li><a href="#achievements" onClick={closeMenu}>Achievements</a></li>
+              <li><a href={sectionHref('profile')} onClick={closeMenu}>Profile</a></li>
+              <li><a href={sectionHref('projects')} onClick={closeMenu}>Projects</a></li>
+              <li><a href={sectionHref('achievements')} onClick={closeMenu}>Achievements</a></li>
               <li><Link href="/internal-store" onClick={closeMenu}>Apps</Link></li>
+              <li><Link href="/games" onClick={closeMenu} aria-current={pathname.startsWith('/games') ? 'page' : undefined}>Games</Link></li>
             </>
           )}
         </ul>
         {!isDashboard ? (
-          <a href="#contact" className={styles.contactButton} onClick={closeMenu}>Contact Me</a>
+          <a href={sectionHref('contact')} className={styles.contactButton} onClick={closeMenu}>Contact Me</a>
         ) : (
           <Link href="/" className={styles.contactButton} onClick={closeMenu}>Back to Site</Link>
         )}

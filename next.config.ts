@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   async rewrites() {
     return [
+      { source: "/games/macunaima", destination: "/arcade/macunaima/index.html" },
       {
         source: '/assets/:path*',
         destination: 'https://tarot-dev-poker.vercel.app/assets/:path*',

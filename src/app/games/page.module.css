@@ -1,0 +1,149 @@
+.store {
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 10rem 2rem 5rem;
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4rem;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.heroCopy h1 {
+  margin: 0 0 1.5rem;
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.heroCopy h1 span,
+.sectionHead h2 span,
+.about h2 span {
+  color: var(--primary);
+}
+
+.description {
+  margin: 0 0 2rem;
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 520px;
+}
+
+.explore {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.explore:hover { transform: translateY(-2px); }
+
+.note {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  margin: 1.25rem 0 0;
+}
+
+.glowLeft,
+.glowRight {
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.glowLeft { top: 25%; left: -14rem; background: var(--primary); }
+.glowRight { top: 20%; right: -13rem; background: var(--accent); }
+
+.featuredCover {
+  display: block;
+  background: var(--color-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  animation: enter 0.5s ease-out;
+}
+
+.featuredCover:hover { transform: translateY(-4px); border-color: var(--primary); }
+.coverImage { position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+.coverImage img { position: absolute; width: 112.1%; height: 112.5%; max-width: none; object-fit: fill; }
+.coverCaption { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.5rem; }
+.coverCaption strong { display: block; font-size: 1.3rem; margin: 0.2rem 0; }
+.coverCaption span { font-size: 0.85rem; color: var(--color-text-muted); }
+.coverCaption .featuredLabel { color: var(--primary); font-size: 0.75rem; font-weight: 600; }
+.coverCaption .playIcon { color: var(--primary); display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid var(--border-color); border-radius: var(--radius); }
+
+.catalog {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 2rem 4rem;
+  scroll-margin-top: 6rem;
+}
+
+.sectionHead { display: flex; justify-content: space-between; align-items: end; gap: 1.5rem; margin-bottom: 2rem; }
+.sectionHead h2, .about h2 { font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 700; margin: 0 0 0.75rem; }
+.sectionHead p { color: var(--color-text-muted); font-size: 1rem; margin: 0; }
+.inventory { font-size: 0.85rem; color: var(--color-text-muted); white-space: nowrap; }
+.gameList { display: flex; flex-direction: column; gap: 2rem; }
+.gameImage { position: relative; }
+.gameImage img { position: absolute; width: 112.1%; height: 112.5%; max-width: none; object-fit: fill; }
+.gameNumber { font-size: 0.75rem; color: var(--primary); font-weight: 500; }
+.gameTitle { margin: 0 0 0.3rem; }
+.subtitle { margin: 0; color: var(--color-text-muted); font-size: 1rem; }
+.gameDescription { margin: 0; }
+.controls { display: inline-flex; align-items: center; gap: 0.3rem; }
+.shelfEnd { font-size: 0.875rem; margin: 2rem 0 0; color: var(--color-text-muted); }
+.about { max-width: 1200px; margin: 0 auto; border-top: 1px solid var(--border-color); padding: 3rem 0 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.about .eyebrow { font-size: 0.85rem; }
+.about p:not(.eyebrow) { color: var(--color-text-muted); margin: 0 0 1.5rem; line-height: 1.8; }
+.aboutLink { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--primary); font-weight: 500; }
+.aboutLink:hover { text-decoration: underline; }
+
+@keyframes enter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 1280px) { .about { margin-inline: 2rem; } }
+@media (max-width: 1000px) { .heroInner { gap: 2rem; } }
+@media (max-width: 768px) {
+  .hero { padding: 8rem 1rem 3rem; }
+  .heroInner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .heroCopy h1 { font-size: 2rem; }
+  .description { font-size: 1rem; }
+  .featuredCover { width: 100%; max-width: 540px; }
+  .catalog { padding: 2rem 1rem 3rem; }
+  .sectionHead { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+  .about { margin-inline: 1rem; padding: 2rem 0 3rem; grid-template-columns: 1fr; gap: 1rem; }
+  .coverCaption { padding: 1.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .featuredCover { animation: none; transition: none; }
+  .explore { transition: none; }
+}
