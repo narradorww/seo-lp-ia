@@ -147,3 +147,5 @@
   .featuredCover { animation: none; transition: none; }
   .explore { transition: none; }
 }
+
+.versions{width:100%;margin:8px 0}.versions h4{font-size:14px;color:var(--foreground);margin:0 0 12px}.versions ol{list-style:none;padding:0;margin:0}.versions li{display:flex;align-items:center;gap:16px;justify-content:space-between;padding:14px 0;border-top:1px solid var(--border-color)}.versions strong{font-size:13px;color:var(--foreground)}.versions p{font-size:12px;line-height:1.6;color:var(--color-text-muted);margin:6px 0 0}.versions a{display:flex;align-items:center;gap:6px;flex-shrink:0;color:var(--primary);font-size:12px;padding:12px 0;text-decoration:none}.versions a:hover{text-decoration:underline}@media(max-width:500px){.versions li{align-items:flex-start;flex-direction:column;gap:4px}}
