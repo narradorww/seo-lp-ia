@@ -20,8 +20,8 @@ describe('ProjectList', () => {
     expect(screen.getByText('Principais Projetos')).toBeInTheDocument();
 
     // Use getAllByText for items that are duplicated by the carousel
-    expect(await screen.findAllByText(/HandsOn 3D/i).length).toBeGreaterThan(0);
-    expect(await screen.findAllByText(/Cleanly Redirect System/i).length).toBeGreaterThan(0);
-    expect(await screen.findAllByText(/Balaio Rural/i).length).toBeGreaterThan(0);
+    expect((await screen.findAllByText(/HandsOn 3D/i)).length).toBeGreaterThan(0);
+    expect((await screen.findAllByText(/Cleanly Redirect System/i)).length).toBeGreaterThan(0);
+    expect((await screen.findAllByText(/Balaio Rural/i)).length).toBeGreaterThan(0);
   });
 });
