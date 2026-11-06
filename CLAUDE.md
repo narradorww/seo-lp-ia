@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `yarn dev` - Start development server with Turbopack
 - `yarn build` - Build for production
 - `yarn start` - Start production server
-- `yarn lint` - Run Next.js linting
+- `yarn lint` - Run ESLint checks
 - `yarn test` - Run Jest tests
 - `yarn test:watch` - Run tests in watch mode
 - `yarn test:coverage` - Run tests with coverage report
