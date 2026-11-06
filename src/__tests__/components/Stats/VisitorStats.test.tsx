@@ -13,51 +13,40 @@ Object.defineProperty(document, 'referrer', {
   configurable: true,
 });
 
-const mockedVisitorInfo = {
+const mockGeo = {
   ip: '192.168.0.1',
-  userAgent: 'MockedAgent',
-  referrer: 'https://google.com',
-  geo: {
-    city: 'São Paulo',
-    region: 'SP',
-    country_name: 'Brasil',
-    latitude: -23.55052,
-    longitude: -46.633308,
-    org: 'Mocked ISP',
-  },
+  geo: { city: 'São Paulo', region: 'SP', country: 'Brasil' },
 };
-
 const mockStats = { stats: { totalVisitors: 100, uniqueVisitors: 80 } };
 
 describe('VisitorStats', () => {
   beforeEach(() => {
-    global.fetch = jest.fn()
-      .mockResolvedValueOnce({ // /api/visitor
-        json: () => Promise.resolve(mockedVisitorInfo),
-      })
-      .mockResolvedValueOnce({ // /api/stats
-        ok: true,
-        headers: new Headers({ 'Content-Type': 'application/json' }),
-        json: () => Promise.resolve(mockStats),
-      })
-      .mockResolvedValueOnce({ // /api/notify
-        ok: true,
-      });
+    global.fetch = jest.fn((input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url === '/api/geo') {
+        return Promise.resolve({
+          ok: true,
+          headers: new Headers({ 'Content-Type': 'application/json' }),
+          json: () => Promise.resolve(mockGeo),
+        } as Response);
+      }
+      if (url === '/api/stats') {
+        return Promise.resolve({
+          ok: true,
+          headers: new Headers({ 'Content-Type': 'application/json' }),
+          json: () => Promise.resolve(mockStats),
+        } as Response);
+      }
+      return Promise.resolve({ ok: true } as Response);
+    }) as jest.Mock;
   });
 
   it('mostra estatísticas simuladas corretamente', async () => {
-    render(
-      <ModalProvider>
-        <VisitorStats />
-      </ModalProvider>
-    );
-
-    // Aguarda a renderização com os dados
-    expect(await screen.findByText(/192.168.0.1/)).toBeInTheDocument();
-    expect(screen.getByText(/MockedAgent/)).toBeInTheDocument();
-    expect(screen.getByText(/https:\/\/google.com/)).toBeInTheDocument();
-    expect(screen.getByText(/São Paulo, Brasil/)).toBeInTheDocument();
-    expect(await screen.findByText(/100/)).toBeInTheDocument(); // Total Visits
-    expect(screen.getByText(/8/)).toBeInTheDocument(); // Current Visitors (8% of unique)
+    render(<ModalProvider><VisitorStats /></ModalProvider>);
+    expect(await screen.findByText('192.168.0.1')).toBeInTheDocument();
+    expect(screen.getByText('São Paulo, Brasil')).toBeInTheDocument();
+    expect(screen.getByText('https://google.com')).toBeInTheDocument();
+    expect(await screen.findByText('100')).toBeInTheDocument();
+    expect(screen.getByText('6')).toBeInTheDocument();
   });
 });

@@ -11,8 +11,9 @@ describe('Header', () => {
   it('abre o menu hamburguer no mobile e exibe os links', () => {
     render(<Header />);
 
-    const menuButton = screen.getByRole('button', { name: /Toggle menu/i });
+    const menuButton = screen.getByRole('button', { name: /Open menu/i });
     fireEvent.click(menuButton);
+    expect(menuButton).toHaveAttribute('aria-expanded', 'true');
 
     expect(screen.getByText(/Profile/i)).toBeVisible();
     expect(screen.getByText(/Projects/i)).toBeVisible();
